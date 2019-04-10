@@ -32,6 +32,13 @@ export default class extends BaseService {
     return await methods.tokenPoolWithdraw().send({from: wallet})
   }
 
+  async setLockDuration (_duration) {
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    let wallet = store.user.wallet
+    return await methods.setLockDuration(_duration).send({from: wallet})
+  }
+
   // members actions
   async deposit (_amount) {
     const store = this.store.getState()
@@ -65,6 +72,33 @@ export default class extends BaseService {
   async loadPoolAddress () {
     const poolRedux = this.store.getRedux('pool')
     await this.dispatch(poolRedux.actions.address_update(CONTRACTS.NtfPool.address))
+  }
+
+  async loadMaxLockDuration () {
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    const poolRedux = this.store.getRedux('pool')
+    let _maxLockDuration = await methods.MAX_LOCK_DURATION().call()
+    await this.dispatch(poolRedux.actions.maxLockDuration_update(_maxLockDuration))
+    return await _maxLockDuration
+  }
+
+  async loadOwnerDelay () {
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    const poolRedux = this.store.getRedux('pool')
+    let _delay = await methods.OWNER_ACTION_DELAY().call()
+    await this.dispatch(poolRedux.actions.ownerDelay_update(_delay))
+    return await _delay
+  }
+
+  async loadLockDuration () {
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    const poolRedux = this.store.getRedux('pool')
+    let _lockDuration = await methods.getLockDuration().call()
+    await this.dispatch(poolRedux.actions.lockDuration_update(_lockDuration))
+    return await _lockDuration
   }
 
   async loadOwner () {

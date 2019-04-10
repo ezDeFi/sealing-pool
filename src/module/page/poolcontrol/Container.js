@@ -10,6 +10,13 @@ export default createContainer(Component, (state) => {
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
 
+  async function loadOnInit () {
+    ntfPoolService.loadLockDuration()
+    ntfPoolService.loadMaxLockDuration()
+    ntfPoolService.loadOwnerDelay()
+    load()
+  }
+
   async function load () {
     userService.loadBlockNumber()
 
@@ -28,7 +35,7 @@ export default createContainer(Component, (state) => {
 
   if (state.user.wallet !== curWallet && !curWallet) {
     curWallet = state.user.wallet
-    load()
+    loadOnInit()
     setInterval(() => {
       load()
     }, 5000)
@@ -44,7 +51,10 @@ export default createContainer(Component, (state) => {
     poolStatus: state.pool.status,
     signer: state.pool.signer,
     unlockHeight: state.pool.unlockHeight,
-    blockNumber: state.user.blockNumber
+    blockNumber: state.user.blockNumber,
+    lockDuration: state.pool.lockDuration,
+    maxLockDuration: state.pool.maxLockDuration,
+    ownerDelay: state.pool.ownerDelay
   }
 }, () => {
   const userService = new UserService()
@@ -66,6 +76,9 @@ export default createContainer(Component, (state) => {
     },
     async tokenPoolWithdraw () {
       await ntfPoolService.tokenPoolWithdraw()
+    },
+    async setLockDuration (_lockDuration) {
+      await ntfPoolService.setLockDuration(_lockDuration)
     }
   }
 })

@@ -7,7 +7,7 @@ import web3 from 'web3'
 
 import './style.scss'
 
-import { Col, Row, Icon, Button, Breadcrumb, Input } from 'antd' // eslint-disable-line
+import { Col, Row, Icon, Button, Breadcrumb, Input, InputNumber } from 'antd' // eslint-disable-line
 
 const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
@@ -86,6 +86,24 @@ export default class extends LoggedInPage {
 
             <Row>
               <Col span={6}>
+                            lockDuration / MAX:
+              </Col>
+              <Col span={6}>
+                {this.props.lockDuration} / {this.props.maxLockDuration} second(s)
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
+                            Owner's actionDelay:
+              </Col>
+              <Col span={6}>
+                {this.props.ownerDelay} second(s)
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
                             fund:
               </Col>
               <Col span={6}>
@@ -158,6 +176,26 @@ export default class extends LoggedInPage {
                 <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
               </Col>
             </Row>
+
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={6}>
+                _lockDuration
+              </Col>
+              <Col span={18}>
+                <InputNumber
+                  style = {{'width' : '100%'}}
+                  defaultValue = {0}
+                  value={this.state.lockDuration}
+                  onChange={this.onLockDurationChange.bind(this)}
+                />
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.setLockDuration.bind(this)} type="primary" className="btn-margin-top submit-button">Set lockDuration</Button>
+              </Col>
+            </Row>
+
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={24}>
                 <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
@@ -186,6 +224,12 @@ export default class extends LoggedInPage {
     })
   }
 
+  onLockDurationChange (value) {
+    this.setState({
+      lockDuration: value
+    })
+  }
+
   claimFund () {
     this.props.claimFund()
   }
@@ -200,6 +244,10 @@ export default class extends LoggedInPage {
 
   tokenPoolWithdraw () {
     this.props.tokenPoolWithdraw()
+  }
+  
+  setLockDuration () {
+    this.props.setLockDuration(this.state.lockDuration)
   }
 
   virtuellMining () {
