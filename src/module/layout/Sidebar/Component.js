@@ -103,15 +103,15 @@ export default class extends BaseComponent {
           <Menu.Item key="transfer">
             <Icon type="credit-card" /> {I18N.get('0016')}
           </Menu.Item> */}
-          <Menu.Item key="userdata">
+{/*           <Menu.Item key="userdata">
             <Icon type="credit-card" /> {I18N.get('0001')}
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="usercontrol">
             <Icon type="credit-card" /> {I18N.get('0002')}
           </Menu.Item>
-          <Menu.Item key="pooldata">
+{/*           <Menu.Item key="pooldata">
             <Icon type="credit-card" /> {I18N.get('0003')}
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="poolcontrol">
             <Icon type="credit-card" /> {I18N.get('0004')}
           </Menu.Item>

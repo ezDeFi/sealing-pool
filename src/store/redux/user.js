@@ -16,10 +16,12 @@ class UserRedux extends BaseRedux {
       },
 
       web3: null,
+      blockNumber: 0,
       wallet: null,
       balance: 0,
       ntfBalance: 0,
       ntfDeposited: 0,
+      rewardBalance: 0,
       isLocking: false,
       unlockTime: 0,
       loginMetamask: true

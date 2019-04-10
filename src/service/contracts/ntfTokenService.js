@@ -3,7 +3,15 @@ import Web3 from 'web3'
 import _ from 'lodash' // eslint-disable-line
 import { WEB3, CONTRACTS } from '@/constant'
 export default class extends BaseService {
-
+  // acctions
+  async approve (_amount) {
+    let store = this.store.getState()
+    let methods = store.contracts.ntfToken.methods
+    let wallet = store.user.wallet
+    let _to = CONTRACTS.NtfPool.address
+    return await methods.approve(_to, _amount.toString()).send({ from: wallet })
+  }
+  // load datas
   async loadMyNtfBalance () {
     const store = this.store.getState()
     let wallet = store.user.wallet

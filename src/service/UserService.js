@@ -66,7 +66,8 @@ export default class extends BaseService {
   async metaMaskLogin (address) {
     const userRedux = this.store.getRedux('user')
     const contractsRedux = this.store.getRedux('contracts')
-    let web3 = new Web3(new Web3.providers.HttpProvider(WEB3.HTTP))
+    // let web3 = new Web3(new Web3.providers.HttpProvider(WEB3.HTTP))
+    let web3 = new Web3(window.ethereum)
 
     const contract = {
       NtfToken: new web3.eth.Contract(CONTRACTS.NtfToken.abi, CONTRACTS.NtfToken.address),
@@ -74,7 +75,7 @@ export default class extends BaseService {
     }
 
     web3.eth.defaultAccount = address
-
+    console.log('test')
     await this.dispatch(userRedux.actions.is_login_update(true))
     await this.dispatch(userRedux.actions.wallet_update(address))
     await this.dispatch(userRedux.actions.web3_update(web3))
@@ -82,6 +83,14 @@ export default class extends BaseService {
     await this.dispatch(contractsRedux.actions.ntfPool_update(contract.NtfPool))
 
     return true
+  }
+
+  async loadBlockNumber () {
+    const userRedux = this.store.getRedux('user')
+    const storeUser = this.store.getState().user
+    let { web3 } = storeUser
+    const _blockNumber = await web3.eth.getBlockNumber()
+    await this.dispatch(userRedux.actions.blockNumber_update(_blockNumber))
   }
 
   async getBalance () {

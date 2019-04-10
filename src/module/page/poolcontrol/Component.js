@@ -7,7 +7,7 @@ import web3 from 'web3'
 
 import './style.scss'
 
-import { Col, Row, Icon, Form, Breadcrumb } from 'antd' // eslint-disable-line
+import { Col, Row, Icon, Button, Breadcrumb, Input } from 'antd' // eslint-disable-line
 
 const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
@@ -47,70 +47,122 @@ export default class extends LoggedInPage {
         <div className="ebp-page">
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
+
             <Row>
               <Col span={6}>
-                Pool Address:
+                            pool address:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.poolAddress}
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
-                Wallet:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.wallet}
+                {this.props.address}
               </Col>
             </Row>
-            <Row style={{ 'marginTop': '15px' }}>
+
+            <Row>
               <Col span={6}>
-                Balance:
+                            signer address:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {weiToEther(this.props.balance)} NTY
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
-                Holding:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {weiToEther(this.props.myNtfBalance)} NTF
+                {this.props.signer}
               </Col>
             </Row>
-            <Row style={{ 'marginTop': '15px' }}>
+
+            <Row>
               <Col span={6}>
-                Deposited:
+                            owner:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {weiToEther(this.props.myNtfDeposited)} NTF
+              <Col span={6}>
+                {this.props.owner}
               </Col>
             </Row>
-            <Row style={{ 'marginTop': '15px' }}>
+
+            <Row>
+              <Col span={6}>
+                            owner's balance:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.ownerBalance)} NTY
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
+                            fund:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.fund)} NTY
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
+                NTY Balance:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.poolNtyBalance)} NTY
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
+                NTF Balance:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.poolNtfBalance)} NTF
+              </Col>
+            </Row>
+
+            <Row>
               <Col span={6}>
                 Status:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.isLocking ? 'locked' : 'not locked'}
+              <Col span={6}>
+                {this.getStatus(Number(this.props.poolStatus))}
               </Col>
             </Row>
-            {this.props.isLocking && 
-            <Row style={{ 'marginTop': '15px' }}>
+            <Row>
               <Col span={6}>
-                UnlockTime:
+                Unlock / cur. Block:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
+              <Col span={6}>
+                {this.props.unlockHeight} / {this.props.blockNumber}
+              </Col>
+            </Row>
+            <Row>
+              <Col span={6}>
+                Signer
+              </Col>
               <Col span={18}>
-                {this.props.myUnlockTime}
+                <Input
+                  value={this.state.signer}
+                  onChange={this.onSignerChange.bind(this)}
+                />
               </Col>
-            </Row>}
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.joinGov.bind(this)} type="primary" className="btn-margin-top submit-button">Join Gov</Button>
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.leaveGov.bind(this)} type="primary" className="btn-margin-top submit-button">Leave Gov</Button>
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.tokenPoolWithdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Pool's Token Withdraw</Button>
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={24}>
+                <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
+              </Col>
+            </Row>
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>
           </div>
@@ -126,5 +178,31 @@ export default class extends LoggedInPage {
         <Breadcrumb.Item>Pool's Control</Breadcrumb.Item>
       </Breadcrumb>
     )
+  }
+
+  onSignerChange (e) {
+    this.setState({
+      signer: e.target.value
+    })
+  }
+
+  claimFund () {
+    this.props.claimFund()
+  }
+
+  joinGov () {
+    this.props.joinGov(this.state.signer)
+  }
+
+  leaveGov () {
+    this.props.leaveGov()
+  }
+
+  tokenPoolWithdraw () {
+    this.props.tokenPoolWithdraw()
+  }
+
+  virtuellMining () {
+    this.props.virtuellMining()
   }
 }

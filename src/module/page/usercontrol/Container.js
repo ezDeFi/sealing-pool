@@ -9,21 +9,31 @@ export default createContainer(Component, (state) => {
   const userService = new UserService()
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
-  if (state.user.wallet !== curWallet && !curWallet) {
-    curWallet = state.user.wallet
+  async function load () {
     userService.getBalance()
 
     ntfTokenService.loadMyNtfBalance()
 
+    ntfPoolService.loadMyRewardBalance()
+    ntfPoolService.loadMyDepositedNtf()
     ntfPoolService.loadPoolAddress()
     ntfPoolService.loadUnlockTime()
     ntfPoolService.loadIsLocking()
+  }
+
+  if (state.user.wallet !== curWallet && !curWallet) {
+    curWallet = state.user.wallet
+    load()
+    setInterval(() => {
+      load()
+    }, 5000)
   }
 
   return {
     wallet: state.user.wallet,
     balance: state.user.balance,
     myNtfBalance: state.user.ntfBalance,
+    myRewardBalance: state.user.rewardBalance,
     myNtfDeposited: state.user.ntfDeposited,
     myUnlockTime: state.user.unlockTime,
 
@@ -31,17 +41,22 @@ export default createContainer(Component, (state) => {
     isLocking: state.user.isLocking
   }
 }, () => {
-  // const ntfTokenService = new NTFToken()
-  // const nextyManagerService = new NextyManager()
   const userService = new UserService()
+  const ntfTokenService = new NtfTokenService()
+  const ntfPoolService = new NtfPoolService()
 
   return {
-
-    getWallet () {
-      userService.getWallet()
+    async approve (_amount) {
+      return await ntfTokenService.approve(_amount)
     },
-    async getBalance () {
-      await userService.getBalance()
+    async deposit (_amount) {
+      return await ntfPoolService.deposit(_amount)
+    },
+    async withdraw (_amount) {
+      return await ntfPoolService.withdraw(_amount)
+    },
+    async claim () {
+      return await ntfPoolService.claim()
     }
   }
 })

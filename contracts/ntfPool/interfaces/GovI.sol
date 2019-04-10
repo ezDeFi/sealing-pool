@@ -5,9 +5,10 @@ interface GovI {
   function join(address _signer) external returns (bool);
   function leave() external returns (bool);
   function withdraw() external returns (bool);
-  // function getStatus(address _address) external view returns(uint256);
-  // function getBalance(address _address) external view returns(uint256);
-  // function getCoinbase(address _address) external view returns(address);
-  // function getUnlockHeight(address _address) external view returns(uint256);
-  // function isWithdrawable(address _address) external view returns(bool);
+  
+  function getStatus(address _address) external view returns(uint256);
+  function getBalance(address _address) external view returns(uint256);
+  function getCoinbase(address _address) external view returns(address);
+  function getUnlockHeight(address _address) external view returns(uint256);
+  function isWithdrawable(address _address) external view returns(bool);
 }

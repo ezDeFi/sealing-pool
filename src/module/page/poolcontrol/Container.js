@@ -9,39 +9,63 @@ export default createContainer(Component, (state) => {
   const userService = new UserService()
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
-  if (state.user.wallet !== curWallet && !curWallet) {
-    curWallet = state.user.wallet
-    userService.getBalance()
 
-    ntfTokenService.loadMyNtfBalance()
+  async function load () {
+    userService.loadBlockNumber()
 
     ntfPoolService.loadPoolAddress()
-    ntfPoolService.loadUnlockTime()
-    ntfPoolService.loadIsLocking()
+    ntfPoolService.loadOwner()
+    ntfPoolService.loadFund()
+    ntfPoolService.loadPoolNtfBalance()
+    ntfPoolService.loadPoolNtyBalance()
+
+    ntfPoolService.loadPoolIsWithdrawable()
+    ntfPoolService.loadPoolUnlockHeight()
+    ntfPoolService.loadPoolDeposited()
+    ntfPoolService.loadPoolStatus()
+    ntfPoolService.loadPoolSigner()
+  }
+
+  if (state.user.wallet !== curWallet && !curWallet) {
+    curWallet = state.user.wallet
+    load()
+    setInterval(() => {
+      load()
+    }, 5000)
   }
 
   return {
-    wallet: state.user.wallet,
-    balance: state.user.balance,
-    myNtfBalance: state.user.ntfBalance,
-    myNtfDeposited: state.user.ntfDeposited,
-    myUnlockTime: state.user.unlockTime,
-
-    poolAddress: state.pool.address,
-    isLocking: state.user.isLocking
+    address: state.pool.address,
+    owner: state.pool.owner,
+    ownerBalance: state.pool.ownerBalance,
+    fund: state.pool.fund,
+    poolNtfBalance: state.pool.poolNtfBalance,
+    poolNtyBalance: state.pool.poolNtyBalance,
+    poolStatus: state.pool.status,
+    signer: state.pool.signer,
+    unlockHeight: state.pool.unlockHeight,
+    blockNumber: state.user.blockNumber
   }
 }, () => {
-  // const ntfTokenService = new NTFToken()
-  // const nextyManagerService = new NextyManager()
   const userService = new UserService()
+  const ntfTokenService = new NtfTokenService()
+  const ntfPoolService = new NtfPoolService()
 
   return {
-
-    getWallet () {
-      userService.getWallet()
+    async virtuellMining () {
+      await ntfPoolService.virtuellMining()
     },
-    async getBalance () {
-      await userService.getBalance()
+    async claimFund () {
+      await ntfPoolService.claimFund()
+    },
+    async joinGov (_signer) {
+      await ntfPoolService.joinGov(_signer)
+    },
+    async leaveGov () {
+      await ntfPoolService.leaveGov()
+    },
+    async tokenPoolWithdraw () {
+      await ntfPoolService.tokenPoolWithdraw()
     }
   }
 })

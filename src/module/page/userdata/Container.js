@@ -15,6 +15,7 @@ export default createContainer(Component, (state) => {
 
     ntfTokenService.loadMyNtfBalance()
 
+    ntfPoolService.loadMyDepositedNtf()
     ntfPoolService.loadPoolAddress()
     ntfPoolService.loadUnlockTime()
     ntfPoolService.loadIsLocking()

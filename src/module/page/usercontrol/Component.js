@@ -7,7 +7,7 @@ import web3 from 'web3'
 
 import './style.scss'
 
-import { Col, Row, Icon, Form, Breadcrumb } from 'antd' // eslint-disable-line
+import { Col, Row, Icon, InputNumber, Breadcrumb, Button } from 'antd' // eslint-disable-line
 
 const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
@@ -42,36 +42,17 @@ export default class extends LoggedInPage {
     return (
       <div className="">
         <div className="ebp-header-divider">
-        </div>
 
+        </div>
         <div className="ebp-page">
-          <h3 className="text-center">User's Control</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
+          <h3 className="text-center">NTF Deposit</h3>
+          <div className="ant-col-md-18 ant-col-md-offset-3" style={{ 'textAlign': 'left' }}>
             <Row>
               <Col span={6}>
-                Pool Address:
+                            Balance:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.poolAddress}
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
-                Wallet:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.wallet}
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                Balance:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {weiToEther(this.props.balance)} NTY
+                {weiToEther(this.props.myNtfBalance)} NTF
               </Col>
             </Row>
             <Row style={{ 'marginTop': '15px' }}>
@@ -85,13 +66,13 @@ export default class extends LoggedInPage {
             </Row>
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
-                Deposited:
+                            Deposited:
               </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
+              <Col span={6}>
                 {weiToEther(this.props.myNtfDeposited)} NTF
               </Col>
             </Row>
+            <hr />
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
                 Status:
@@ -101,7 +82,7 @@ export default class extends LoggedInPage {
                 {this.props.isLocking ? 'locked' : 'not locked'}
               </Col>
             </Row>
-            {this.props.isLocking && 
+            {this.props.isLocking &&
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
                 UnlockTime:
@@ -111,8 +92,52 @@ export default class extends LoggedInPage {
                 {this.props.myUnlockTime}
               </Col>
             </Row>}
-            <div className="ebp-header-divider dashboard-rate-margin">
-            </div>
+
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={6}>
+                            Reward Balance:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.myRewardBalance)} NTY
+              </Col>
+              <Col span={6}>
+                <Button onClick={this.claim.bind(this)} type="primary" className="btn-margin-top submit-button">Claim reward</Button>
+              </Col>
+            </Row>
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={6}>
+                Amount(NTF):
+              </Col>
+              <Col span={6}>
+
+                <InputNumber
+                  defaultValue={0}
+                  value={this.state.depositAmount}
+                  onChange={this.onDepositAmountChange.bind(this)}
+                />
+              </Col>
+              <Col span={6}>
+                <Button onClick={this.deposit.bind(this)} type="primary" className="btn-margin-top submit-button">Deposit</Button>
+              </Col>
+            </Row>
+
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={6}>
+                  Amount(NTF):
+              </Col>
+              <Col span={6}>
+
+                <InputNumber
+                  defaultValue={0}
+                  value={this.state.withdrawAmount}
+                  onChange={this.onWithdrawAmountChange.bind(this)}
+                />
+              </Col>
+
+              <Col span={6}>
+                <Button onClick={this.withdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Withdraw</Button>
+              </Col>
+            </Row>
           </div>
         </div>
       </div>
@@ -126,5 +151,30 @@ export default class extends LoggedInPage {
         <Breadcrumb.Item>User's control</Breadcrumb.Item>
       </Breadcrumb>
     )
+  }
+
+  onDepositAmountChange (value) {
+    this.setState({
+      depositAmount: value
+    })
+  }
+
+  onWithdrawAmountChange (value) {
+    this.setState({
+      withdrawAmount: value
+    })
+  }
+
+  async deposit () {
+    await this.props.approve(this.state.depositAmount * 1e18)
+    await this.props.deposit(this.state.depositAmount * 1e18)
+  }
+
+  async withdraw () {
+    await this.props.withdraw(this.state.withdrawAmount * 1e18)
+  }
+
+  async claim () {
+    await this.props.claim()
   }
 }

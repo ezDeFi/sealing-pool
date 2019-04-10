@@ -77,7 +77,7 @@ function setupWeb3 () {
                   await store.dispatch(contractsRedux.actions.ntfPool_update(contract.NtfPool))
                   await store.dispatch(userRedux.actions.web3_update(web3))
                   await userService.metaMaskLogin(accounts[0])
-                  userService.path.push('/userdata')
+                  userService.path.push('/usercontrol')
                 }
                 isLogined = true
             } else if (!isLogined) {

@@ -156,6 +156,46 @@ contract NtfPool is CoinShare, Ownable, Lockable {
     // function getUnlockTime(address _member) public view returns(uint256)
     // function isLocking(address _member) public view returns(bool)
 
+    function getStatus()
+        public 
+        view 
+        returns(uint256)
+    {
+        return gov.getStatus(address(this));
+    }
+
+    function getBalance()
+        public
+        view
+        returns(uint256)
+    {
+        return gov.getBalance(address(this));
+    }
+
+    function getCoinbase()
+        public
+        view
+        returns(address)
+    {
+        return gov.getCoinbase(address(this));
+    }
+
+    function getUnlockHeight()
+        public
+        view
+        returns(uint256)
+    {
+        return gov.getUnlockHeight(address(this));
+    }
+
+    function isWithdrawable()
+        external
+        view
+        returns(bool)
+    {
+        return gov.isWithdrawable(address(this));
+    }
+
 /*
     TEST TEST TEST TEST TEST TEST TEST TEST TEST 
 */
