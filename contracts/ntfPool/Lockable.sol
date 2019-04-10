@@ -45,6 +45,14 @@ contract Lockable {
         return unlockTime[_member];
     }
 
+    function getLockDuration()
+        public
+        view
+        returns(uint256)
+    {
+        return lockDuration;
+    }
+
     function isLocking(
         address _member
     )

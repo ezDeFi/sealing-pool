@@ -9,8 +9,8 @@ import "./interfaces/NtfTokenI.sol";
 
 contract NtfPool is CoinShare, Ownable, Lockable {
     // nty per pool token
-    uint256 constant public MAX_LOCK_DURATION = 30 days;
-    uint256 constant public OWNER_ACTION_DELAY = 7 days;
+    uint256 constant public MAX_LOCK_DURATION = 60; //30 days;
+    uint256 constant public OWNER_ACTION_DELAY = 30; //7 days;
 
     uint256 lastActionTime;
     uint256 public npt;
@@ -155,6 +155,7 @@ contract NtfPool is CoinShare, Ownable, Lockable {
     // Lockable contract
     // function getUnlockTime(address _member) public view returns(uint256)
     // function isLocking(address _member) public view returns(bool)
+    // function getLockDuration() public view returns(uint256)
 
     function getStatus()
         public 
