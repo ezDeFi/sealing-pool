@@ -7,6 +7,7 @@ class PoolRedux extends BaseRedux {
 
   defineDefaultState () {
     return {
+      address: null
     }
   }
 }

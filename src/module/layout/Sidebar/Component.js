@@ -103,8 +103,17 @@ export default class extends BaseComponent {
           <Menu.Item key="transfer">
             <Icon type="credit-card" /> {I18N.get('0016')}
           </Menu.Item> */}
-          <Menu.Item key="dashboard">
+          <Menu.Item key="userdata">
+            <Icon type="credit-card" /> {I18N.get('0001')}
+          </Menu.Item>
+          <Menu.Item key="usercontrol">
+            <Icon type="credit-card" /> {I18N.get('0002')}
+          </Menu.Item>
+          <Menu.Item key="pooldata">
             <Icon type="credit-card" /> {I18N.get('0003')}
+          </Menu.Item>
+          <Menu.Item key="poolcontrol">
+            <Icon type="credit-card" /> {I18N.get('0004')}
           </Menu.Item>
         </Menu>
       </Sider>
@@ -115,7 +124,10 @@ export default class extends BaseComponent {
     const key = e.key
     if (_.includes([
       'home',
-      'dashboard'
+      'userdata',
+      'usercontrol',
+      'pooldata',
+      'poolcontrol'
     ], key)) {
       this.props.history.push('/' + e.key)
     } else if (key === 'logout') {
@@ -138,11 +150,15 @@ export default class extends BaseComponent {
     let url = window.location.pathname
 
     let sidebar = [
-      'dashboard'
+      'home',
+      'userdata',
+      'usercontrol',
+      'pooldata',
+      'poolcontrol'
     ]
 
     if (!url) {
-      return ['dashboard']
+      return ['userdata']
     }
 
     for (var menu in sidebar) {

@@ -1,4 +1,8 @@
-import DashboardPage from '@/module/page/dashboard/Container'
+import UserControlPage from '@/module/page/usercontrol/Container'
+import UserDataPage from '@/module/page/userdata/Container'
+
+import PoolControlPage from '@/module/page/poolcontrol/Container'
+import PoolDataPage from '@/module/page/pooldata/Container'
 
 import LoginPage from '@/module/page/login/Container'
 
@@ -14,8 +18,20 @@ export default [
     page: LoginPage
   },
   {
-    path: '/dashboard',
-    page: DashboardPage
+    path: '/userdata',
+    page: UserDataPage
+  },
+  {
+    path: '/usercontrol',
+    page: UserControlPage
+  },
+  {
+    path: '/pooldata',
+    page: PoolDataPage
+  },
+  {
+    path: '/poolcontrol',
+    page: PoolControlPage
   },
   {
     path: '/login',

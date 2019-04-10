@@ -1,5 +1,8 @@
 import NTFToken from './../deployed/NtfToken.json'
 import NTFPool from './../build/contracts/NTFPool.json'
+
+const NetId = '111111'
+
 export const USER_ROLE = {
   MEMBER: 'MEMBER',
   LEADER: 'LEADER',
@@ -12,12 +15,14 @@ export const CONTRACTS =
     'NtfToken':
       {
         'abi': NTFToken.abi,
-        'address': '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
+        'address': '0x8ebda672a038189dfea16f34c6b060f6a498d32a'
+        // 'address': '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
       },
     'NtfPool':
       {
         'abi': NTFPool.abi,
-        'address': '0x0000000000000000000000000000000000012345'
+        'address': NTFPool.networks[NetId].address
+        // 'address': '0x0000000000000000000000000000000000012345'
       }
   }
 
@@ -25,7 +30,7 @@ export const WEB3 = {
   HTTP: 'http://108.61.148.72:8545', // testnet
   // HTTP: 'http://13.228.68.50:8545', // mainnet
   // HTTP: 'http://localhost:8545', // localhost
-  NETWORK_ID: '111111' // testnet
+  NETWORK_ID: NetId // testnet
 }
 
 // To change WEB3 ABI ADDRESS

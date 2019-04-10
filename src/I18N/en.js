@@ -1,9 +1,9 @@
 export default {
   // Header
-  '0001': 'Bounty Programs',
-  '0002': 'Home',
-  '0003': 'Dashboard',
-  '0004': 'Account',
+  '0001': 'User',
+  '0002': 'User Control',
+  '0003': 'Pool',
+  '0004': 'Pool Control',
   '0005': 'Teams',
   '0006': 'Tasks',
   '0007': 'Nexty Management',
