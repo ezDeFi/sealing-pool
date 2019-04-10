@@ -76,7 +76,7 @@ export default class extends BaseService {
     await this.dispatch(poolRedux.actions.address_update(CONTRACTS.NtfPool.address))
   }
 
-  async loadStakeRequire () {
+/*   async loadStakeRequire () {
     const store = this.store.getState()
     console.log('contracts', store.contracts)
     let methods = store.contracts.nextyGovernance.methods
@@ -85,7 +85,7 @@ export default class extends BaseService {
     let _stakeRequire = await methods.stakeRequire().call()
     await this.dispatch(poolRedux.actions.stakeRequire_update(_stakeRequire))
     return await _stakeRequire
-  }
+  } */
 
   async loadMaxLockDuration () {
     const store = this.store.getState()

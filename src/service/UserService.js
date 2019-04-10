@@ -76,7 +76,6 @@ export default class extends BaseService {
     }
 
     web3.eth.defaultAccount = address
-    console.log('test')
     await this.dispatch(userRedux.actions.is_login_update(true))
     await this.dispatch(userRedux.actions.wallet_update(address))
     await this.dispatch(userRedux.actions.web3_update(web3))
