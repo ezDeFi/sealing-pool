@@ -15,14 +15,13 @@ export const CONTRACTS =
     'NtfToken':
       {
         'abi': NTFToken.abi,
-        'address': '0x8ebda672a038189dfea16f34c6b060f6a498d32a'
-        // 'address': '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
+        // 'address': '0x8ebda672a038189dfea16f34c6b060f6a498d32a'
+        'address': '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
       },
     'NtfPool':
       {
         'abi': NTFPool.abi,
         'address': NTFPool.networks[NetId].address
-        // 'address': '0x0000000000000000000000000000000000012345'
       }
   }
 
