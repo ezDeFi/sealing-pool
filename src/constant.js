@@ -1,4 +1,5 @@
 import NTFToken from './../deployed/NtfToken.json'
+import NextyGovernanceABI from './../deployed/NextyGovernance.json'
 import NTFPool from './../build/contracts/NTFPool.json'
 
 const NetId = '111111'
@@ -22,7 +23,12 @@ export const CONTRACTS =
       {
         'abi': NTFPool.abi,
         'address': NTFPool.networks[NetId].address
-      }
+      },
+    'NextyGovernance':
+      {
+        'abi': NextyGovernanceABI,
+        'address': '0x0000000000000000000000000000000000012345'
+      },
   }
 
 export const WEB3 = {

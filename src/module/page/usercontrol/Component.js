@@ -52,7 +52,7 @@ export default class extends LoggedInPage {
                             Balance:
               </Col>
               <Col span={6}>
-                {weiToEther(this.props.myNtfBalance)} NTF
+                {weiToEther(this.props.balance)} NTF
               </Col>
             </Row>
             <Row style={{ 'marginTop': '15px' }}>

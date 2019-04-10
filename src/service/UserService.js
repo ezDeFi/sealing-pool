@@ -69,9 +69,10 @@ export default class extends BaseService {
     // let web3 = new Web3(new Web3.providers.HttpProvider(WEB3.HTTP))
     let web3 = new Web3(window.ethereum)
 
-    const contract = {
+    const contracts = {
       NtfToken: new web3.eth.Contract(CONTRACTS.NtfToken.abi, CONTRACTS.NtfToken.address),
-      NtfPool: new web3.eth.Contract(CONTRACTS.NtfPool.abi, CONTRACTS.NtfPool.address)
+      NtfPool: new web3.eth.Contract(CONTRACTS.NtfPool.abi, CONTRACTS.NtfPool.address),
+      // NextyGovernance: new web3.eth.Contract(CONTRACTS.NextyGovernance.abi, CONTRACTS.NextyGovernance.address)
     }
 
     web3.eth.defaultAccount = address
@@ -79,8 +80,9 @@ export default class extends BaseService {
     await this.dispatch(userRedux.actions.is_login_update(true))
     await this.dispatch(userRedux.actions.wallet_update(address))
     await this.dispatch(userRedux.actions.web3_update(web3))
-    await this.dispatch(contractsRedux.actions.ntfToken_update(contract.NtfToken))
-    await this.dispatch(contractsRedux.actions.ntfPool_update(contract.NtfPool))
+    await this.dispatch(contractsRedux.actions.ntfToken_update(contracts.NtfToken))
+    await this.dispatch(contractsRedux.actions.ntfPool_update(contracts.NtfPool))
+    // await this.dispatch(contractsRedux.actions.nextyGovernance_update(contracts.NextyGovernance))
 
     return true
   }

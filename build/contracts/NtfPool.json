@@ -9811,12 +9811,12 @@
         }
       },
       "links": {},
-      "address": "0xfB4Eb108020d56B43C6876572364Ef0ad8cF1b1D",
-      "transactionHash": "0x60c5e43bce61b7bd206a1a7f24007462381de2c87917110429967e553bd1bf0d"
+      "address": "0xA9368d1fcBd47aB7a9741ed64f19Fa2DD64eFEe1",
+      "transactionHash": "0x7ddac02b82fb8ee4413047a6a92efff261598c1d1a7285178968c9ccc0553fb1"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-10T08:19:12.011Z",
+  "updatedAt": "2019-04-10T08:56:52.661Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

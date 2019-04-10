@@ -54,7 +54,8 @@ export default createContainer(Component, (state) => {
     blockNumber: state.user.blockNumber,
     lockDuration: state.pool.lockDuration,
     maxLockDuration: state.pool.maxLockDuration,
-    ownerDelay: state.pool.ownerDelay
+    ownerDelay: state.pool.ownerDelay,
+    stakeRequire: state.pool.stakeRequire
   }
 }, () => {
   const userService = new UserService()

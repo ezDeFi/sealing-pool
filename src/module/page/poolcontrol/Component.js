@@ -131,6 +131,15 @@ export default class extends LoggedInPage {
 
             <Row>
               <Col span={6}>
+                Stake require:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.stakeRequire)} NTF
+              </Col>
+            </Row>
+
+            <Row>
+              <Col span={6}>
                 Status:
               </Col>
               <Col span={6}>

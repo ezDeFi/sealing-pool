@@ -14,8 +14,9 @@ export default class extends BaseService {
   async joinGov (_signer) {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
+    let stakeRequire = 500 * 1e18
     let wallet = store.user.wallet
-    return await methods.join(10e18.toString(), _signer).send({from: wallet})
+    return await methods.join(stakeRequire.toString(), _signer).send({from: wallet})
   }
 
   async leaveGov () {
@@ -44,6 +45,7 @@ export default class extends BaseService {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
+    console.log('deposit', _amount)
     return await methods.tokenDeposit(_amount.toString()).send({from: wallet})
   }
 
@@ -72,6 +74,17 @@ export default class extends BaseService {
   async loadPoolAddress () {
     const poolRedux = this.store.getRedux('pool')
     await this.dispatch(poolRedux.actions.address_update(CONTRACTS.NtfPool.address))
+  }
+
+  async loadStakeRequire () {
+    const store = this.store.getState()
+    console.log('contracts', store.contracts)
+    let methods = store.contracts.nextyGovernance.methods
+    console.log('contracts', store.contracts)
+    const poolRedux = this.store.getRedux('pool')
+    let _stakeRequire = await methods.stakeRequire().call()
+    await this.dispatch(poolRedux.actions.stakeRequire_update(_stakeRequire))
+    return await _stakeRequire
   }
 
   async loadMaxLockDuration () {

@@ -7,6 +7,7 @@ export default class extends BaseService {
   async approve (_amount) {
     let store = this.store.getState()
     let methods = store.contracts.ntfToken.methods
+    console.log('ntfToken contract', store.contracts.ntfToken._address)
     let wallet = store.user.wallet
     let _to = CONTRACTS.NtfPool.address
     return await methods.approve(_to, _amount.toString()).send({ from: wallet })

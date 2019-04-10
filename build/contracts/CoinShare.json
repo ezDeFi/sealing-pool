@@ -9137,7 +9137,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-10T08:18:39.658Z",
+  "updatedAt": "2019-04-10T08:56:17.757Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {
