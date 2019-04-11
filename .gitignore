@@ -1,13 +1,4 @@
 node_modules/
-dist/**
-jest/**
-migrations/**
-nginx/**
-public/**
-scripts/**
-webpack/**
-.idea/
-coverage/
 
 # disable dist due to the aws server performance is too low to build dist.
 #dist/
