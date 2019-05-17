@@ -99,9 +99,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\r\n\r\ninterface NtfTokenI {\r\n  function approve(address _spender, uint256 _value) external returns(bool);\r\n  function transferFrom(address _from, address _to, uint256 _value) external returns (bool);\r\n  function transfer(address _to, uint256 _value) external returns (bool);\r\n\r\n  function balanceOf(address _address) external view returns(uint256);\r\n}",
-  "sourcePath": "C:\\Users\\bestb\\Desktop\\Nexty\\private\\sealing-pool\\contracts\\ntfPool\\interfaces\\NtfTokenI.sol",
+  "sourcePath": "C:\\Users\\bestb\\Desktop\\workshop\\sealing-pool\\contracts\\ntfPool\\interfaces\\NtfTokenI.sol",
   "ast": {
-    "absolutePath": "/C/Users/bestb/Desktop/Nexty/private/sealing-pool/contracts/ntfPool/interfaces/NtfTokenI.sol",
+    "absolutePath": "/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/interfaces/NtfTokenI.sol",
     "exportedSymbols": {
       "NtfTokenI": [
         943
@@ -575,7 +575,7 @@
     "src": "0:372:5"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/bestb/Desktop/Nexty/private/sealing-pool/contracts/ntfPool/interfaces/NtfTokenI.sol",
+    "absolutePath": "/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/interfaces/NtfTokenI.sol",
     "exportedSymbols": {
       "NtfTokenI": [
         943
@@ -1054,7 +1054,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-04-10T08:56:17.738Z",
+  "updatedAt": "2019-05-17T07:56:58.750Z",
   "devdoc": {
     "methods": {}
   },
