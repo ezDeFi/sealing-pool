@@ -12,7 +12,7 @@ var mainEndPoint = 'https://rpc.nexty.io'
 
 module.exports = {
     networks: {
-        local: {
+        localhost: {
             provider: () => new HDWalletProvider(localPKey, localEndPoint),
             network_id: 111111
         },

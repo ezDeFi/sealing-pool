@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Dapp Nexty Management",
   "scripts": {
+    "deploy:local": "truffle migrate --reset --network localhost",
+    "deploy:dev": "truffle migrate --reset --network development",
     "compile": "truffle compile",
     "parser": "babel-eslint",
     "pretest": "eslint --ignore-path .gitignore .",
