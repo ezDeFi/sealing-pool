@@ -5,6 +5,11 @@ var NtfPool = artifacts.require('./ntfPool/NtfPool.sol');
 // var Lockable = artifacts.require('./ntfPool/Lockable.sol');
 // var Ownable = artifacts.require('openzeppelin-eth/contracts/ownership/Ownable.sol');
 
+const ONE_DAY = 24 * 60 * 60
+const _TAX_PERCENT = 10
+const _MAX_LOCK_DURATION = 30 * ONE_DAY
+const _OWNER_ACTION_DELAY = 7 * ONE_DAY
+
 module.exports = function (deployer) {
     const _owner = '0x95e2fcBa1EB33dc4b8c6DCBfCC6352f0a253285d'
     const ntfAddress = '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
@@ -25,6 +30,17 @@ module.exports = function (deployer) {
     // await deployer.link(Ownable, NtfPool);
     // await deployer.link(Lockable, NtfPool);
 
-     deployer.deploy(NtfPool, _owner, ntfAddress, govAddress, 'tName', 'tSymbol', 18).then(async function () {
+    await deployer.deploy(
+        NtfPool,
+        _owner,
+        ntfAddress,
+        govAddress,
+        'tName',
+        'tSymbol',
+        18,
+        _TAX_PERCENT,
+        _MAX_LOCK_DURATION,
+        _OWNER_ACTION_DELAY
+    ).then(async function () {
     })
 }

@@ -9,7 +9,7 @@ contract CoinShare is ERC20, ERC20Detailed{
 
     //CPT ZOOMED
     uint256 constant public CPT_ZOOM = 1000;
-    uint256 constant public TAX_PERCENT = 10;
+    uint256 public TAX_PERCENT;
 
     mapping(address => int256) private credit;
 
