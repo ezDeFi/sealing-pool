@@ -1,6 +1,7 @@
 import NTFToken from './../deployed/NtfToken.json'
 import NextyGovernanceABI from './../deployed/NextyGovernance.json'
 import NTFPool from './../build/contracts/NTFPool.json'
+import PoolMaker from './../build/contracts/PoolMaker.json'
 
 const NetId = '111111'
 
@@ -28,6 +29,11 @@ export const CONTRACTS =
       {
         'abi': NextyGovernanceABI,
         'address': '0x0000000000000000000000000000000000012345'
+      },
+    'PoolMaker':
+      {
+        'abi': PoolMaker.abi,
+        'address': PoolMaker.networks[NetId].address
       },
   }
 

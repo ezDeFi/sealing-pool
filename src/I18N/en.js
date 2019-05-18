@@ -4,7 +4,7 @@ export default {
   '0002': 'User Control',
   '0003': 'Pool',
   '0004': 'Pool Control',
-  '0005': 'Teams',
+  '0005': 'Pool Maker',
   '0006': 'Tasks',
   '0007': 'Nexty Management',
   '0008': 'About',
@@ -16,6 +16,7 @@ export default {
   '0014': 'Withdraw',
   '0015': 'Manage',
   '0016': 'Transfer',
+  '0017': 'Pool Maker',
 
   '0100': 'Developer',
   '0101': 'Social',

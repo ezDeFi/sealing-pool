@@ -10,6 +10,7 @@ class ContractRedux extends BaseRedux {
       web3: null,
       ntfToken: null,
       ntfPool: null,
+      poolMaker: null,
       nextyGovernance: null
     }
   }

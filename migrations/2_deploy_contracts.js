@@ -1,4 +1,5 @@
 var NtfPool = artifacts.require('./ntfPool/NtfPool.sol');
+var PoolMaker = artifacts.require('./PoolMaker.sol');
 // var NtfTokenI = artifacts.require('./ntfPool/interfaces/NtfTokenI.sol');
 // var GovI = artifacts.require('./ntfPool/interfaces/GovI.sol');
 // var Coinshare = artifacts.require('./ntfPool/CoinShare.sol');
@@ -30,7 +31,7 @@ module.exports = function (deployer) {
     // await deployer.link(Ownable, NtfPool);
     // await deployer.link(Lockable, NtfPool);
 
-    await deployer.deploy(
+/*     await deployer.deploy(
         NtfPool,
         _owner,
         ntfAddress,
@@ -41,6 +42,13 @@ module.exports = function (deployer) {
         _TAX_PERCENT,
         _MAX_LOCK_DURATION,
         _OWNER_ACTION_DELAY
+    ).then(async function () {
+    }) */
+
+    deployer.deploy(
+        PoolMaker,
+        ntfAddress,
+        govAddress,
     ).then(async function () {
     })
 }

@@ -68,13 +68,15 @@ function setupWeb3 () {
 
                 const contract = {
                   NtfToken: new web3.eth.Contract(CONTRACTS.NtfToken.abi, CONTRACTS.NtfToken.address),
-                  NtfPool: new web3.eth.Contract(CONTRACTS.NtfPool.abi, CONTRACTS.NtfPool.address)
+                  NtfPool: new web3.eth.Contract(CONTRACTS.NtfPool.abi, CONTRACTS.NtfPool.address),
+                  PoolMaker: new web3.eth.Contract(CONTRACTS.PoolMaker.abi, CONTRACTS.PoolMaker.address)
                 }
 
                 if (!isLogined) {
                   await store.dispatch(userRedux.actions.loginMetamask_update(true))
                   await store.dispatch(contractsRedux.actions.ntfToken_update(contract.NtfToken))
                   await store.dispatch(contractsRedux.actions.ntfPool_update(contract.NtfPool))
+                  await store.dispatch(contractsRedux.actions.poolMaker_update(contract.PoolMaker))
                   await store.dispatch(userRedux.actions.web3_update(web3))
                   await userService.metaMaskLogin(accounts[0])
                   userService.path.push('/usercontrol')

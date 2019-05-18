@@ -3,6 +3,31 @@ import Web3 from 'web3'
 import _ from 'lodash' // eslint-disable-line
 import { WEB3, CONTRACTS } from '@/constant'
 export default class extends BaseService {
+  async createPool (owner, taxPercent, maxLock, delay) {
+    const store = this.store.getState()
+    let methods = store.contracts.poolMaker.methods
+    let wallet = store.user.wallet
+    let res = await methods.createPool(owner, taxPercent, maxLock, delay).send({from: wallet})
+    await console.log('new contract', res)
+    return await res
+  }
+
+  async getPools () {
+    console.log('loading Pools')
+    const store = this.store.getState()
+    let methods = store.contracts.poolMaker.methods
+    let poolCount = await methods.getPoolCount().call()
+    console.log('poolCount', poolCount)
+    let pools = [];
+    for (let i = 0; i < poolCount; i++) {
+      let pool = await methods.getPool(i).call()
+      await console.log('pool ' + i, pool)
+      // await pools.push(pool)
+    }
+    const poolRedux = this.store.getRedux('pool')
+    await this.dispatch(poolRedux.actions.pools_update(pools))
+    return await pools
+  }
   // pool's owner acctions
   async claimFund () {
     const store = this.store.getState()
