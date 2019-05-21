@@ -41,14 +41,15 @@ export default class extends LoggedInPage {
 
   handleChange (value) {
     console.log(`selected ${value}`);
+    this.props.selectPool(value)
   }
 
   poolsRender () {
-    const data = this.props.myPools ? this.props.myPools : []
-    
+    let source = this.props.myPools ? this.props.myPools : []
+    //console.log('data', Object.keys(source).length)
     return (
-      <Select defaultValue={this.props.address} style={{ width: 120 }} onChange={this.handleChange}>
-        {data.length > 0 && data.map((d, key) => (
+      <Select defaultValue={this.props.address} style={{ width: 120 }} onChange={this.handleChange.bind(this)}>
+        {Object.keys(source).length > 0 && Object.values(source).map((d) => (
           <Option value={d}>{d}</Option>
         ))}
       </Select>

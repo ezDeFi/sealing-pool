@@ -37,17 +37,18 @@ export default class extends BaseService {
     for (let i = 0; i < poolCount; i++) {
       let pool = await methods.getPool(i).call()
       let poolOwner = await pool[1]
+      let poolAddress = await pool[0]
       await console.log('owner', poolOwner)
-      await console.log('pool ' + i, pool)
+      await console.log('pool ' + i, 'address', poolAddress, 'owner', poolOwner)
       if (wallet.toLowerCase() === await poolOwner.toLowerCase()) {
         await console.log('You are owner of this pool')
-        await myPools.push(pool)
+        await myPools.push(poolAddress)
       }
-      await pools.push(pool)
+      await pools.push(poolAddress)
     }
     const poolRedux = this.store.getRedux('pool')
     if (store.pool.selectedPool === null && myPools.length > 0) {
-      let firstPoolAddress = await myPools[0][0]
+      let firstPoolAddress = await myPools[0]
       console.log('selectedPool = ', firstPoolAddress)
       await this.selectPool(firstPoolAddress)
     }

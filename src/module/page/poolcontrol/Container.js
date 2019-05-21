@@ -74,6 +74,9 @@ export default createContainer(Component, (state) => {
   const ntfPoolService = new NtfPoolService()
 
   return {
+    async selectPool(_address) {
+      await ntfPoolService.selectPool(_address)
+    },
     async virtuellMining () {
       await ntfPoolService.virtuellMining()
     },
