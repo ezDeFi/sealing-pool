@@ -22,7 +22,11 @@ contract PoolMaker {
         address _owner,
         uint256 _COMPRATE,
         uint256 _MAX_LOCK_DURATION,
-        uint256 _OWNER_ACTION_DELAY
+        uint256 _OWNER_ACTION_DELAY,
+        string memory _name,
+        string memory _website,
+        string memory _location,
+        string memory _profile
     )
         public
         returns (address)
@@ -33,7 +37,11 @@ contract PoolMaker {
             govAddress,
             _COMPRATE,
             _MAX_LOCK_DURATION,
-            _OWNER_ACTION_DELAY
+            _OWNER_ACTION_DELAY,
+            _name,
+            _website,
+            _location,
+            _profile
         );
         pools.push(address(ntfPool));
         poolOwner[address(ntfPool)] = _owner;

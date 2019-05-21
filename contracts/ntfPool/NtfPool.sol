@@ -7,7 +7,27 @@ import "./Lockable.sol";
 import "./interfaces/GovI.sol";
 import "./interfaces/NtfTokenI.sol";
 
-contract NtfPool is CoinShare, Ownable, Lockable {
+contract PoolDesc {
+    string public name;
+    string public website;
+    string public location;
+    string public email;
+    string public profile;
+
+    constructor (
+        string memory _name,
+        string memory _website,
+        string memory _location,
+        string memory _profile
+    ) public {
+        name = _name;
+        website = _website;
+        location = _location;
+        profile = _profile;
+    }
+}
+
+contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
     // nty per pool token
     uint256 public MAX_LOCK_DURATION; // = 30 days;
     uint256 public OWNER_ACTION_DELAY; // = 7 days;
@@ -37,13 +57,18 @@ contract NtfPool is CoinShare, Ownable, Lockable {
         address _govAddress,
         uint256 _COMPRATE,
         uint256 _MAX_LOCK_DURATION,
-        uint256 _OWNER_ACTION_DELAY
+        uint256 _OWNER_ACTION_DELAY,
+        string memory _name,
+        string memory _website,
+        string memory _location,
+        string memory _profile
     )
         public
+        PoolDesc(_name, _website, _location, _profile)
     {
         ntfToken = NtfTokenI(_ntfAddress);
         gov = GovI(_govAddress);
-        require(_COMPRATE >= 0 && _COMPRATE <= 100, "invalid tax percent");
+        require(_COMPRATE >= 0 && _COMPRATE <= 100, "invalid compensation rate");
         COMPRATE = _COMPRATE;
         MAX_LOCK_DURATION = _MAX_LOCK_DURATION;
         OWNER_ACTION_DELAY = _OWNER_ACTION_DELAY;
