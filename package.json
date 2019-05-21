@@ -1,10 +1,10 @@
 {
-  "name": "nextygovernance",
+  "name": "poolmaster",
   "version": "1.0.0",
-  "description": "Dapp Nexty Management",
+  "description": "Dapp Nexty PoolMaster",
   "scripts": {
-    "deploy:local": "truffle migrate --reset --network localhost",
     "deploy:dev": "truffle migrate --reset --network development",
+    "deploy:pro": "truffle migrate --reset --network production",
     "compile": "truffle compile",
     "parser": "babel-eslint",
     "pretest": "eslint --ignore-path .gitignore .",

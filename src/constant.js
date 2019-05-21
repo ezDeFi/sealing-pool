@@ -3,7 +3,8 @@ import NextyGovernanceABI from './../deployed/NextyGovernance.json'
 import NTFPool from './../build/contracts/NTFPool.json'
 import PoolMaker from './../build/contracts/PoolMaker.json'
 
-const NetId = '111111'
+const TEST_MODE = true
+const NetId = TEST_MODE ? '111111' '66666'
 
 export const USER_ROLE = {
   MEMBER: 'MEMBER',
@@ -17,7 +18,6 @@ export const CONTRACTS =
     'NtfToken':
       {
         'abi': NTFToken.abi,
-        // 'address': '0x8ebda672a038189dfea16f34c6b060f6a498d32a'
         'address': '0x2c783ad80ff980ec75468477e3dd9f86123ecbda'
       },
     'NtfPool':
@@ -38,10 +38,8 @@ export const CONTRACTS =
   }
 
 export const WEB3 = {
-  HTTP: 'http://108.61.148.72:8545', // testnet
-  // HTTP: 'http://13.228.68.50:8545', // mainnet
-  // HTTP: 'http://localhost:8545', // localhost
-  NETWORK_ID: NetId // testnet
+  HTTP: TEST_MODE ? 'http://108.61.148.72:8545' : 'http://13.228.68.50:8545', // mainnet
+  NETWORK_ID: NetId
 }
 
 // To change WEB3 ABI ADDRESS
