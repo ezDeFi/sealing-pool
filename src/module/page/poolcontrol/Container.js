@@ -5,21 +5,25 @@ import NtfTokenService from '@/service/contracts/NtfTokenService'
 import NtfPoolService from '@/service/contracts/NtfPoolService'
 import UserService from '@/service/UserService'
 var curWallet = null
+const oneHour = 60*60
+const oneDay = 24 * oneHour
+
 export default createContainer(Component, (state) => {
   const userService = new UserService()
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
 
   async function loadOnInit () {
-    ntfPoolService.loadLockDuration()
-    ntfPoolService.loadMaxLockDuration()
-    ntfPoolService.loadOwnerDelay()
+    // ntfPoolService.loadLockDuration()
+    // ntfPoolService.loadMaxLockDuration()
+    // ntfPoolService.loadOwnerDelay()
+    ntfPoolService.loadPoolInfo()
     load()
   }
 
   async function load () {
     userService.loadBlockNumber()
-
+    ntfPoolService.getPools()
     ntfPoolService.loadPoolAddress()
     ntfPoolService.loadOwner()
     ntfPoolService.loadFund()
@@ -42,7 +46,14 @@ export default createContainer(Component, (state) => {
   }
 
   return {
-    address: state.pool.address,
+    address: state.pool.selectedPool,
+    myPools: state.pool.myPools,
+    pools: state.pool.pools,
+    name: state.pool.name,
+    compRate: state.pool.compRate,
+    website: state.pool.website,
+    location: state.pool.location,
+    description: state.pool.description,
     owner: state.pool.owner,
     ownerBalance: state.pool.ownerBalance,
     fund: state.pool.fund,
@@ -53,8 +64,8 @@ export default createContainer(Component, (state) => {
     unlockHeight: state.pool.unlockHeight,
     blockNumber: state.user.blockNumber,
     lockDuration: state.pool.lockDuration,
-    maxLockDuration: state.pool.maxLockDuration,
-    ownerDelay: state.pool.ownerDelay,
+    maxLockDuration: Number(state.pool.maxLockDuration) / oneDay,
+    ownerDelay: Number(state.pool.ownerDelay) / oneHour,
     stakeRequire: state.pool.stakeRequire
   }
 }, () => {

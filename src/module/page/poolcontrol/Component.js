@@ -7,7 +7,8 @@ import web3 from 'web3'
 
 import './style.scss'
 
-import { Col, Row, Icon, Button, Breadcrumb, Input, InputNumber } from 'antd' // eslint-disable-line
+import { Col, Row, Icon, Button, Breadcrumb, Input, InputNumber, Select } from 'antd' // eslint-disable-line
+const Option = Select.Option;
 
 const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
@@ -38,6 +39,237 @@ export default class extends LoggedInPage {
     }
   }
 
+  handleChange (value) {
+    console.log(`selected ${value}`);
+  }
+
+  poolsRender () {
+    const data = this.props.myPools ? this.props.myPools : []
+    
+    return (
+      <Select defaultValue={this.props.address} style={{ width: 120 }} onChange={this.handleChange}>
+        {data.length > 0 && data.map((d, key) => (
+          <Option value={d}>{d}</Option>
+        ))}
+      </Select>
+    )
+  }
+
+  mainContentRender () {
+    return (
+      <div>
+        {this.poolsRender()}
+        <Row>
+          <Col span={6}>
+                        Pool's address:
+          </Col>
+          <Col span={6}>
+            {this.props.address}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Pool's name:
+          </Col>
+          <Col span={6}>
+            {this.props.name}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Pool's compRate:
+          </Col>
+          <Col span={6}>
+            {this.props.compRate}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Pool's website:
+          </Col>
+          <Col span={6}>
+            {this.props.website}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Pool's location:
+          </Col>
+          <Col span={6}>
+            {this.props.location}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Pool's description:
+          </Col>
+          <Col span={6}>
+            {this.props.description}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        signer address:
+          </Col>
+          <Col span={6}>
+            {this.props.signer}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        owner:
+          </Col>
+          <Col span={6}>
+            {this.props.owner}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        owner's balance:
+          </Col>
+          <Col span={6}>
+            {weiToEther(this.props.ownerBalance)} NTY
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        lockDuration / MAX:
+          </Col>
+          <Col span={6}>
+            {this.props.lockDuration} / {this.props.maxLockDuration} Day(s)
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Owner's actionDelay:
+          </Col>
+          <Col span={6}>
+            {this.props.ownerDelay} Hour(s)
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        fund:
+          </Col>
+          <Col span={6}>
+            {weiToEther(this.props.fund)} NTY
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            NTY Balance:
+          </Col>
+          <Col span={6}>
+            {weiToEther(this.props.poolNtyBalance)} NTY
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            NTF Balance:
+          </Col>
+          <Col span={6}>
+            {weiToEther(this.props.poolNtfBalance)} NTF
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Stake require:
+          </Col>
+          <Col span={6}>
+            {weiToEther(this.props.stakeRequire)} NTF
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Status:
+          </Col>
+          <Col span={6}>
+            {this.getStatus(Number(this.props.poolStatus))}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            Unlock / cur. Block:
+          </Col>
+          <Col span={6}>
+            {this.props.unlockHeight} / {this.props.blockNumber}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={6}>
+            Signer
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.signer}
+              onChange={this.onSignerChange.bind(this)}
+            />
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.joinGov.bind(this)} type="primary" className="btn-margin-top submit-button">Join Gov</Button>
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.leaveGov.bind(this)} type="primary" className="btn-margin-top submit-button">Leave Gov</Button>
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.tokenPoolWithdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Pool's Token Withdraw</Button>
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={6}>
+            _lockDuration
+          </Col>
+          <Col span={18}>
+            <InputNumber
+              style = {{'width' : '100%'}}
+              defaultValue = {0}
+              value={this.state.lockDuration}
+              onChange={this.onLockDurationChange.bind(this)}
+            />
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.setLockDuration.bind(this)} type="primary" className="btn-margin-top submit-button">Set lockDuration</Button>
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
@@ -47,169 +279,13 @@ export default class extends LoggedInPage {
         <div className="ebp-page">
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
-
-            <Row>
-              <Col span={6}>
-                            pool address:
-              </Col>
-              <Col span={6}>
-                {this.props.address}
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            signer address:
-              </Col>
-              <Col span={6}>
-                {this.props.signer}
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            owner:
-              </Col>
-              <Col span={6}>
-                {this.props.owner}
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            owner's balance:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.ownerBalance)} NTY
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            lockDuration / MAX:
-              </Col>
-              <Col span={6}>
-                {this.props.lockDuration} / {this.props.maxLockDuration} second(s)
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            Owner's actionDelay:
-              </Col>
-              <Col span={6}>
-                {this.props.ownerDelay} second(s)
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                            fund:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.fund)} NTY
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                NTY Balance:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.poolNtyBalance)} NTY
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                NTF Balance:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.poolNtfBalance)} NTF
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                Stake require:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.stakeRequire)} NTF
-              </Col>
-            </Row>
-
-            <Row>
-              <Col span={6}>
-                Status:
-              </Col>
-              <Col span={6}>
-                {this.getStatus(Number(this.props.poolStatus))}
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                Unlock / cur. Block:
-              </Col>
-              <Col span={6}>
-                {this.props.unlockHeight} / {this.props.blockNumber}
-              </Col>
-            </Row>
-            <Row>
-              <Col span={6}>
-                Signer
-              </Col>
-              <Col span={18}>
-                <Input
-                  value={this.state.signer}
-                  onChange={this.onSignerChange.bind(this)}
-                />
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.joinGov.bind(this)} type="primary" className="btn-margin-top submit-button">Join Gov</Button>
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.leaveGov.bind(this)} type="primary" className="btn-margin-top submit-button">Leave Gov</Button>
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.tokenPoolWithdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Pool's Token Withdraw</Button>
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
-              </Col>
-            </Row>
-
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                _lockDuration
-              </Col>
-              <Col span={18}>
-                <InputNumber
-                  style = {{'width' : '100%'}}
-                  defaultValue = {0}
-                  value={this.state.lockDuration}
-                  onChange={this.onLockDurationChange.bind(this)}
-                />
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.setLockDuration.bind(this)} type="primary" className="btn-margin-top submit-button">Set lockDuration</Button>
-              </Col>
-            </Row>
-
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={24}>
-                <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
-              </Col>
-            </Row>
+            {this.props.address ? this.mainContentRender() : (
+              <div>
+                <p>
+                  You are not owner of any pool!
+                </p>
+              </div>
+            )}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>
           </div>

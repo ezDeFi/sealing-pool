@@ -12,9 +12,7 @@ export default createContainer(Component, (state) => {
 
   async function loadOnInit () {
     console.log('loadOnInit')
-    // ntfPoolService.loadLockDuration()
-    // ntfPoolService.loadMaxLockDuration()
-    // ntfPoolService.loadOwnerDelay()
+
     ntfPoolService.getPools()
     load()
   }

@@ -8,25 +8,51 @@ export default class extends BaseService {
     let methods = store.contracts.poolMaker.methods
     let wallet = store.user.wallet
     console.log(owner, compRate, maxLock, delay, name, website, location, description)
-    let res = await methods.createPool(owner, compRate.toString(), maxLock.toString(), delay.toString(), name, website, location, description).send({from: wallet, gasPrice: '0' })
-    await console.log('new contract', res)
-    return await res
+    methods.createPool(owner, compRate.toString(), maxLock.toString(), delay.toString(), name, website, location, description).send({from: wallet, gasPrice: '0' })
+  }
+
+  async selectPool (_address) {
+    const store = this.store.getState()
+    let contractsRedux = this.store.getRedux('contracts')
+    let poolRedux = this.store.getRedux('pool')
+    await this.dispatch(poolRedux.actions.selectedPool_update(_address))
+    await this.dispatch(poolRedux.actions.address_update(_address))
+    let web3 = store.user.web3
+    let selectedNtfPool = new web3.eth.Contract(CONTRACTS.NtfPool.abi, _address)
+    await this.dispatch(contractsRedux.actions.ntfPool_update(selectedNtfPool))
+    this.loadLockDuration()
+    this.loadMaxLockDuration()
+    this.loadOwnerDelay()
   }
 
   async getPools () {
     console.log('loading Pools')
     const store = this.store.getState()
+    let wallet = store.user.wallet
     let methods = store.contracts.poolMaker.methods
     let poolCount = await methods.getPoolCount().call()
     console.log('poolCount', poolCount)
-    let pools = [];
+    let pools = []
+    let myPools = []
     for (let i = 0; i < poolCount; i++) {
       let pool = await methods.getPool(i).call()
+      let poolOwner = await pool[1]
+      await console.log('owner', poolOwner)
       await console.log('pool ' + i, pool)
-      // await pools.push(pool)
+      if (wallet.toLowerCase() === await poolOwner.toLowerCase()) {
+        await console.log('You are owner of this pool')
+        await myPools.push(pool)
+      }
+      await pools.push(pool)
     }
     const poolRedux = this.store.getRedux('pool')
+    if (store.pool.selectedPool === null && myPools.length > 0) {
+      let firstPoolAddress = await myPools[0][0]
+      console.log('selectedPool = ', firstPoolAddress)
+      await this.selectPool(firstPoolAddress)
+    }
     await this.dispatch(poolRedux.actions.pools_update(pools))
+    await this.dispatch(poolRedux.actions.myPools_update(myPools))
     return await pools
   }
   // pool's owner acctions
@@ -98,8 +124,27 @@ export default class extends BaseService {
   // load pool's datas
 
   async loadPoolAddress () {
+    const store = this.store.getState()
     const poolRedux = this.store.getRedux('pool')
-    await this.dispatch(poolRedux.actions.address_update(CONTRACTS.NtfPool.address))
+    let selectedPool = store.pool.selectedPool
+    console.log('xxxx', selectedPool)
+    await this.dispatch(poolRedux.actions.address_update(selectedPool))
+  }
+
+  async loadPoolInfo () {
+    const store = this.store.getState()
+    const poolRedux = this.store.getRedux('pool')
+    let methods = store.contracts.ntfPool.methods
+    let name = await methods.name().call()
+    await this.dispatch(poolRedux.actions.name_update(name))
+    let compRate = await methods.COMPRATE().call()
+    await this.dispatch(poolRedux.actions.compRate_update(compRate))
+    let website = await methods.website().call()
+    await this.dispatch(poolRedux.actions.website_update(website))
+    let location = await methods.location().call()
+    await this.dispatch(poolRedux.actions.location_update(location))
+    let description = await methods.profile().call()
+    await this.dispatch(poolRedux.actions.description_update(description))
   }
 
 /*   async loadStakeRequire () {
