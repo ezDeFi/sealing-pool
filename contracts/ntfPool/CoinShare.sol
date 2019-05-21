@@ -8,7 +8,7 @@ contract CoinShare is ERC20{
 
     //CPT ZOOMED
     uint256 constant public CPT_ZOOM = 1000;
-    uint256 public TAX_PERCENT;
+    uint256 public COMPRATE;
 
     mapping(address => int256) private credit;
 
@@ -84,7 +84,7 @@ contract CoinShare is ERC20{
         returns(uint256, uint256)
     {
         uint256 _addedBalance = address(this).balance.sub(lastBalance);
-        uint256 _addedFund = _addedBalance * TAX_PERCENT / 100;
+        uint256 _addedFund = _addedBalance * COMPRATE / 100;
         if (totalSupply() == 0) {
             return (fund.add(_addedBalance), 0);
         }

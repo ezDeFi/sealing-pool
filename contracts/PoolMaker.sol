@@ -20,7 +20,7 @@ contract PoolMaker {
 
     function createPool(
         address _owner,
-        uint256 _TAX_PERCENT,
+        uint256 _COMPRATE,
         uint256 _MAX_LOCK_DURATION,
         uint256 _OWNER_ACTION_DELAY
     )
@@ -31,7 +31,7 @@ contract PoolMaker {
             _owner,
             ntfAddress,
             govAddress,
-            _TAX_PERCENT,
+            _COMPRATE,
             _MAX_LOCK_DURATION,
             _OWNER_ACTION_DELAY
         );

@@ -35,7 +35,7 @@ contract NtfPool is CoinShare, Ownable, Lockable {
         address _owner,
         address _ntfAddress,
         address _govAddress,
-        uint256 _TAX_PERCENT,
+        uint256 _COMPRATE,
         uint256 _MAX_LOCK_DURATION,
         uint256 _OWNER_ACTION_DELAY
     )
@@ -43,8 +43,8 @@ contract NtfPool is CoinShare, Ownable, Lockable {
     {
         ntfToken = NtfTokenI(_ntfAddress);
         gov = GovI(_govAddress);
-        require(_TAX_PERCENT >= 0 && _TAX_PERCENT <= 100, "invalid tax percent");
-        TAX_PERCENT = _TAX_PERCENT;
+        require(_COMPRATE >= 0 && _COMPRATE <= 100, "invalid tax percent");
+        COMPRATE = _COMPRATE;
         MAX_LOCK_DURATION = _MAX_LOCK_DURATION;
         OWNER_ACTION_DELAY = _OWNER_ACTION_DELAY;
         initialize(_owner);
