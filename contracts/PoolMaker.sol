@@ -31,9 +31,6 @@ contract PoolMaker {
             _owner,
             ntfAddress,
             govAddress,
-            "test",
-            "test",
-            18,
             _TAX_PERCENT,
             _MAX_LOCK_DURATION,
             _OWNER_ACTION_DELAY

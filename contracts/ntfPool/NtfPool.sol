@@ -35,19 +35,15 @@ contract NtfPool is CoinShare, Ownable, Lockable {
         address _owner,
         address _ntfAddress,
         address _govAddress,
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals,
         uint256 _TAX_PERCENT,
         uint256 _MAX_LOCK_DURATION,
         uint256 _OWNER_ACTION_DELAY
     )
         public
-        CoinShare(_name, _symbol, _decimals)
     {
         ntfToken = NtfTokenI(_ntfAddress);
         gov = GovI(_govAddress);
-        require(_TAX_PERCENT >= 0 && _TAX_PERCENT < 100, "invalid tax percent");
+        require(_TAX_PERCENT >= 0 && _TAX_PERCENT <= 100, "invalid tax percent");
         TAX_PERCENT = _TAX_PERCENT;
         MAX_LOCK_DURATION = _MAX_LOCK_DURATION;
         OWNER_ACTION_DELAY = _OWNER_ACTION_DELAY;
@@ -63,7 +59,7 @@ contract NtfPool is CoinShare, Ownable, Lockable {
     function join(
         uint256 _amount,
         address _signer
-    ) 
+    )
         public
         onlyOwner()
     {
@@ -165,8 +161,8 @@ contract NtfPool is CoinShare, Ownable, Lockable {
     // function getLockDuration() public view returns(uint256)
 
     function getStatus()
-        public 
-        view 
+        public
+        view
         returns(uint256)
     {
         return gov.getStatus(address(this));

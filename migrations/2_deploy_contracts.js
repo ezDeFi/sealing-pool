@@ -31,19 +31,19 @@ module.exports = function (deployer) {
     // await deployer.link(Ownable, NtfPool);
     // await deployer.link(Lockable, NtfPool);
 
-/*     await deployer.deploy(
-        NtfPool,
-        _owner,
-        ntfAddress,
-        govAddress,
-        'tName',
-        'tSymbol',
-        18,
-        _TAX_PERCENT,
-        _MAX_LOCK_DURATION,
-        _OWNER_ACTION_DELAY
-    ).then(async function () {
-    }) */
+    // deployer.deploy(
+    //     NtfPool,
+    //     _owner,
+    //     ntfAddress,
+    //     govAddress,
+    //     'tName',
+    //     'tSymbol',
+    //     18,
+    //     _TAX_PERCENT,
+    //     _MAX_LOCK_DURATION,
+    //     _OWNER_ACTION_DELAY
+    // ).then(async function () {
+    // })
 
     deployer.deploy(
         PoolMaker,

@@ -1,10 +1,9 @@
 pragma solidity ^0.5.0;
 
-import "./tokens/ERC20Detailed.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
-contract CoinShare is ERC20, ERC20Detailed{
+contract CoinShare is ERC20{
     using SafeMath for uint256;
 
     //CPT ZOOMED
@@ -17,17 +16,6 @@ contract CoinShare is ERC20, ERC20Detailed{
     uint256 private cpt;
     uint256 private fund;
     uint256 private lastBalance;
-
-    constructor
-    (
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals
-    )
-        public
-        ERC20Detailed(_name, _symbol, _decimals)
-    {
-    }
 
     // Pooltokens are not transferable
     // overwrite ERC20
