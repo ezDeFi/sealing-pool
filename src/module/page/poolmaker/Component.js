@@ -15,6 +15,17 @@ const weiToEther = (wei) => {
 
 export default class extends LoggedInPage {
   componentDidMount () {
+    this.setState({
+      owner: this.props.wallet,
+      name: 'name',
+      website: 'website',
+      location: 'location',
+      description: 'description',
+      compRate: 50,
+      maxLock: 7,
+      delay: 24,
+      newPool: false
+    })
     this.loadData()
   }
 
@@ -38,6 +49,120 @@ export default class extends LoggedInPage {
     }
   }
 
+  poolCreateRender () {
+    return (
+      <div>
+        <Row>
+          <Col span={6}>
+            Owner
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.owner}
+              onChange={this.onOwnerChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Pool's Name
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.name}
+              onChange={this.onNameChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Pool's Website
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.website}
+              onChange={this.onWebsiteChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Pool's Location
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.location}
+              onChange={this.onLocationChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+            Pool's Description
+          </Col>
+          <Col span={18}>
+            <Input
+              value={this.state.description}
+              onChange={this.onDescriptionChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={6}>
+            CompRate (0..100):
+          </Col>
+          <Col span={18}>
+
+            <InputNumber
+              defaultValue={0}
+              value={this.state.compRate}
+              onChange={this.onCompRateChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={6}>
+              Max Lock Duration (days):
+          </Col>
+          <Col span={18}>
+
+            <InputNumber
+              defaultValue={0}
+              value={this.state.maxLock}
+              onChange={this.onMaxLockChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={6}>
+              Owner's actions delay(hours):
+          </Col>
+          <Col span={18}>
+
+            <InputNumber
+              defaultValue={0}
+              value={this.state.delay}
+              onChange={this.onDelayChange.bind(this)}
+            />
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={24}>
+            <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">createPool</Button>
+          </Col>
+        </Row>
+      </div>
+    )
+  }
+
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
@@ -46,67 +171,9 @@ export default class extends LoggedInPage {
 
         <div className="ebp-page">
           <h3 className="text-center">Pool's Maker</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
+          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>  
+            {!this.state.newPool && this.poolCreateRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
-              <Row>
-                <Col span={6}>
-                  Owner
-                </Col>
-                <Col span={18}>
-                  <Input
-                    value={this.state.owner}
-                    onChange={this.onOwnerChange.bind(this)}
-                  />
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Tax Percent:
-                </Col>
-                <Col span={18}>
-
-                  <InputNumber
-                    defaultValue={0}
-                    value={this.state.taxPercent}
-                    onChange={this.onTaxPercentChange.bind(this)}
-                  />
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Max Lock Duration:
-                </Col>
-                <Col span={18}>
-
-                  <InputNumber
-                    defaultValue={0}
-                    value={this.state.maxLock}
-                    onChange={this.onMaxLockChange.bind(this)}
-                  />
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Owner's actions delay:
-                </Col>
-                <Col span={18}>
-
-                  <InputNumber
-                    defaultValue={0}
-                    value={this.state.delay}
-                    onChange={this.onDelayChange.bind(this)}
-                  />
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={24}>
-                  <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">createPool</Button>
-                </Col>
-              </Row>
             </div>
           </div>
         </div>
@@ -123,13 +190,22 @@ export default class extends LoggedInPage {
     )
   }
 
-  createPool () {
-    this.props.createPool(
+  async createPool () {
+    let oneHour = 60 * 60
+    let oneDay = 24 * oneHour
+    let newPool = await this.props.createPool(
       this.state.owner,
-      this.state.taxPercent,
-      this.state.maxLock,
-      this.state.delay
+      this.state.compRate,
+      Number(this.state.maxLock) * oneDay,
+      Number(this.state.delay) * oneHour,
+      this.state.name,
+      this.state.website,
+      this.state.location,
+      this.state.description
     )
+    await this.setState({
+      newPool: newPool
+    })
   }
 
   onOwnerChange (e) {
@@ -138,9 +214,33 @@ export default class extends LoggedInPage {
     })
   }
 
-  onTaxPercentChange (value) {
+  onNameChange (e) {
     this.setState({
-      taxPercent: value
+      name: e.target.value
+    })
+  }
+
+  onWebsiteChange (e) {
+    this.setState({
+      website: e.target.value
+    })
+  }
+
+  onLocationChange (e) {
+    this.setState({
+      location: e.target.value
+    })
+  }
+
+  onDescriptionChange (e) {
+    this.setState({
+      description: e.target.value
+    })
+  }
+
+  onCompRateChange (value) {
+    this.setState({
+      compRate: value
     })
   }
 
@@ -155,5 +255,4 @@ export default class extends LoggedInPage {
       delay: value
     })
   }
-
 }

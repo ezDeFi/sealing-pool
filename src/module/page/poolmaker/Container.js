@@ -46,6 +46,7 @@ export default createContainer(Component, (state) => {
   }
 
   return {
+    wallet: state.user.wallet,
     address: state.pool.address,
     owner: state.pool.owner,
     ownerBalance: state.pool.ownerBalance,
@@ -68,8 +69,8 @@ export default createContainer(Component, (state) => {
   const ntfPoolService = new NtfPoolService()
 
   return {
-    async createPool (owner, taxPercent, maxLock, delay) {
-      await ntfPoolService.createPool(owner, taxPercent, maxLock, delay)
+    async createPool (owner, compRate, maxLock, delay, name, website, location, description) {
+      return await ntfPoolService.createPool(owner, compRate, maxLock, delay, name, website, location, description)
     },
     async getPools () {
       await ntfPoolService.getPools()

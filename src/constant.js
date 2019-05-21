@@ -4,7 +4,7 @@ import NTFPool from './../build/contracts/NTFPool.json'
 import PoolMaker from './../build/contracts/PoolMaker.json'
 
 const TEST_MODE = true
-const NetId = TEST_MODE ? '111111' '66666'
+const NetId = TEST_MODE ? '111111' : '66666'
 
 export const USER_ROLE = {
   MEMBER: 'MEMBER',

@@ -7,7 +7,7 @@ var PoolMaker = artifacts.require('./PoolMaker.sol');
 // var Ownable = artifacts.require('openzeppelin-eth/contracts/ownership/Ownable.sol');
 
 const ONE_DAY = 24 * 60 * 60
-const _TAX_PERCENT = 10
+const _COMPRATE = 10
 const _MAX_LOCK_DURATION = 30 * ONE_DAY
 const _OWNER_ACTION_DELAY = 7 * ONE_DAY
 
@@ -31,19 +31,21 @@ module.exports = function (deployer) {
     // await deployer.link(Ownable, NtfPool);
     // await deployer.link(Lockable, NtfPool);
 
-    // deployer.deploy(
-    //     NtfPool,
-    //     _owner,
-    //     ntfAddress,
-    //     govAddress,
-    //     'tName',
-    //     'tSymbol',
-    //     18,
-    //     _TAX_PERCENT,
-    //     _MAX_LOCK_DURATION,
-    //     _OWNER_ACTION_DELAY
-    // ).then(async function () {
-    // })
+    deployer.deploy(
+        NtfPool,
+        _owner,
+        ntfAddress,
+        govAddress,
+        _COMPRATE,
+        _MAX_LOCK_DURATION,
+        _OWNER_ACTION_DELAY,
+        'Demo Pool',
+        'https://demo.pool.nexty.io',
+        'Ha Noi',
+        'Demo Pool Profile'
+
+    ).then(async function () {
+    })
 
     deployer.deploy(
         PoolMaker,
