@@ -100,6 +100,17 @@ function setupWeb3 () {
 }
 
 if (window.ethereum) {
+    setInterval(() => {
+      console.log('checking account update')
+      window.web3.eth.getAccounts(async(err, accounts) => {
+        console.log('metamask accounts', accounts)
+        let userState = store.getState('user').user
+        console.log('userState.wallet', userState.wallet)
+        if (userState.wallet && userState.wallet.toLowerCase() !== accounts[0].toLowerCase()) {
+          window.location.reload()
+        }
+      })
+    }, 5000)
     setupWeb3()
 
     window.web3.currentProvider.publicConfigStore.on('update', async () => {

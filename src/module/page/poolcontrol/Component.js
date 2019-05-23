@@ -4,6 +4,7 @@ import Footer from '@/module/layout/Footer/Container' // eslint-disable-line
 import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
 import web3 from 'web3'
+import { cutString } from '@/service/Help'
 
 import './style.scss'
 
@@ -48,11 +49,19 @@ export default class extends LoggedInPage {
     let source = this.props.myPools ? this.props.myPools : []
     //console.log('data', Object.keys(source).length)
     return (
-      <Select defaultValue={this.props.address} style={{ width: 120 }} onChange={this.handleChange.bind(this)}>
-        {Object.keys(source).length > 0 && Object.values(source).map((d) => (
-          <Option value={d}>{d}</Option>
-        ))}
-      </Select>
+      <Row style={{ 'marginTop': '15px' }}>
+        <Col span={6}>
+          SelectedPool:
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
+        <Col span={18}>
+          <Select defaultValue={this.props.mySelectedPool} className='maxWidth' onChange={this.handleChange.bind(this)}>
+            {Object.keys(source).length > 0 && Object.values(source).map((d, key) => (
+              <Option key={key} value={d}>{this.props.getName(d)} - {cutString(d)}</Option>
+            ))}
+          </Select>
+        </Col>
+      </Row>
     )
   }
 
@@ -123,14 +132,14 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        {/* <Row>
           <Col span={6}>
                         owner:
           </Col>
           <Col span={6}>
             {this.props.owner}
           </Col>
-        </Row>
+        </Row> */}
 
         <Row>
           <Col span={6}>
@@ -280,7 +289,7 @@ export default class extends LoggedInPage {
         <div className="ebp-page">
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
-            {this.props.address ? this.mainContentRender() : (
+            {this.props.mySelectedPool ? this.mainContentRender() : (
               <div>
                 <p>
                   You are not owner of any pool!

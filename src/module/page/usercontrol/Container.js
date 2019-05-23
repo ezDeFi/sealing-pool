@@ -10,13 +10,13 @@ export default createContainer(Component, (state) => {
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
   async function load () {
+    ntfPoolService.getPools(false)
     userService.getBalance()
 
     ntfTokenService.loadMyNtfBalance()
 
     ntfPoolService.loadMyRewardBalance()
     ntfPoolService.loadMyDepositedNtf()
-    ntfPoolService.loadPoolAddress()
     ntfPoolService.loadUnlockTime()
     ntfPoolService.loadIsLocking()
   }
@@ -30,6 +30,8 @@ export default createContainer(Component, (state) => {
   }
 
   return {
+    pools: state.pool.pools,
+    selectedPool: state.pool.selectedPool,
     wallet: state.user.wallet,
     balance: state.user.balance,
     myNtfBalance: state.user.ntfBalance,
@@ -37,7 +39,6 @@ export default createContainer(Component, (state) => {
     myNtfDeposited: state.user.ntfDeposited,
     myUnlockTime: state.user.unlockTime,
 
-    poolAddress: state.pool.address,
     isLocking: state.user.isLocking
   }
 }, () => {
@@ -46,6 +47,12 @@ export default createContainer(Component, (state) => {
   const ntfPoolService = new NtfPoolService()
 
   return {
+    getName (_address) {
+      return ntfPoolService.getName(_address)
+    },
+    async selectPool (_address) {
+      return await ntfPoolService.selectPool(_address)
+    },
     async approve (_amount) {
       return await ntfTokenService.approve(_amount)
     },

@@ -9,8 +9,9 @@ export default class extends BaseService {
     let methods = store.contracts.ntfToken.methods
     console.log('ntfToken contract', store.contracts.ntfToken._address)
     let wallet = store.user.wallet
-    let _to = CONTRACTS.NtfPool.address
-    return await methods.approve(_to, _amount.toString()).send({ from: wallet })
+    //let _to = CONTRACTS.NtfPool.address
+    let _to = store.pool.selectedPool
+    return await methods.approve(_to.toString(), _amount.toString()).send({ from: wallet })
   }
   // load datas
   async loadMyNtfBalance () {

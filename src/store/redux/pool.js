@@ -7,15 +7,17 @@ class PoolRedux extends BaseRedux {
 
   defineDefaultState () {
     return {
-      address: null,
       name: null,
       compRate: null,
       website: null,
       location: null,
       description: null,
+      poolNames: [],
       myPools: [],
       pools: [],
+      poolCount: 0,
       selectedPool: null,
+      mySelectedPool: null,
       poolNtyBalance: 0,
       poolNtfBalance: 0,
       lockDuration: 0,

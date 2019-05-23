@@ -16,16 +16,14 @@ export default createContainer(Component, (state) => {
   async function loadOnInit () {
     // ntfPoolService.loadLockDuration()
     // ntfPoolService.loadMaxLockDuration()
-    // ntfPoolService.loadOwnerDelay()
+    ntfPoolService.loadMyCurrentPool()
     ntfPoolService.loadPoolInfo()
     load()
   }
 
   async function load () {
-    userService.loadBlockNumber()
-    ntfPoolService.getPools()
-    ntfPoolService.loadPoolAddress()
-    ntfPoolService.loadOwner()
+    let _selectedPool = await ntfPoolService.getPools(true)
+    if (await !_selectedPool) return
     ntfPoolService.loadFund()
     ntfPoolService.loadPoolNtfBalance()
     ntfPoolService.loadPoolNtyBalance()
@@ -33,7 +31,7 @@ export default createContainer(Component, (state) => {
     ntfPoolService.loadPoolIsWithdrawable()
     ntfPoolService.loadPoolUnlockHeight()
     ntfPoolService.loadPoolDeposited()
-    ntfPoolService.loadPoolStatus()
+    ntfPoolService.loadPoolInfo()
     ntfPoolService.loadPoolSigner()
   }
 
@@ -46,7 +44,7 @@ export default createContainer(Component, (state) => {
   }
 
   return {
-    address: state.pool.selectedPool,
+    mySelectedPool: state.pool.mySelectedPool,
     myPools: state.pool.myPools,
     pools: state.pool.pools,
     name: state.pool.name,
@@ -74,7 +72,10 @@ export default createContainer(Component, (state) => {
   const ntfPoolService = new NtfPoolService()
 
   return {
-    async selectPool(_address) {
+    getName (_address) {
+      return ntfPoolService.getName(_address)
+    },
+    async selectPool (_address) {
       await ntfPoolService.selectPool(_address)
     },
     async virtuellMining () {
