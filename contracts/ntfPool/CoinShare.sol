@@ -7,7 +7,7 @@ contract CoinShare is ERC20{
     using SafeMath for uint256;
 
     //CPT ZOOMED
-    uint256 constant public CPT_ZOOM = 1000;
+    uint256 constant public CPT_ZOOM = 2**40;
     uint256 public COMPRATE;
 
     mapping(address => int256) private credit;

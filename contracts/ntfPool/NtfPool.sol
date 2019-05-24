@@ -33,7 +33,6 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
     uint256 public OWNER_ACTION_DELAY; // = 7 days;
 
     uint256 lastActionTime;
-    uint256 public npt;
 
     NtfTokenI public ntfToken;
     GovI public gov;
@@ -49,7 +48,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
     }
 
     function () external payable {}
-    
+
     constructor
     (
         address _owner,
@@ -193,7 +192,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         return gov.getStatus(address(this));
     }
 
-    function getBalance()
+    function getPoolGovBalance()
         public
         view
         returns(uint256)

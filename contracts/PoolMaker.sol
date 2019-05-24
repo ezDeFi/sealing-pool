@@ -3,7 +3,9 @@ pragma solidity ^0.5.0;
 import "./ntfPool/NtfPool.sol";
 
 interface NtfPoolI {
-  function name() external view returns (string memory);
+    function name() external view returns (string memory);
+    function getPoolNtfBalance() external view returns(uint256);
+    function getPoolGovBalance() external view returns(uint256);
 }
 
 contract PoolMaker {
@@ -65,11 +67,15 @@ contract PoolMaker {
     function getPool(uint256 i)
         public
         view
-        returns(address, address, string memory)
+        returns(address, address, string memory, uint256, uint256)
     {
         address _pAddress = pools[i];
         address _owner = poolOwner[_pAddress];
         string memory _name = NtfPoolI(_pAddress).name();
-        return(_pAddress, _owner, _name);
+        // avaiable balance
+        uint256 _poolNtfBalance = NtfPoolI(_pAddress).getPoolNtfBalance();
+        // in Gov Ntf balance
+        uint256 _poolGovBalance = NtfPoolI(_pAddress).getPoolGovBalance();
+        return(_pAddress, _owner, _name, _poolNtfBalance, _poolGovBalance);
     }
 }
