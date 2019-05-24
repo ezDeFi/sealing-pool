@@ -20,6 +20,7 @@ class PoolRedux extends BaseRedux {
       mySelectedPool: null,
       poolNtyBalance: 0,
       poolNtfBalance: 0,
+      poolGovBalance: 0,
       lockDuration: 0,
       maxLockDuration: 0,
       ownerDelay: 0,

@@ -71,8 +71,9 @@ export default class extends LoggedInPage {
 
         </div>
         <div className="ebp-page">
-          <h3 className="text-center">NTF Deposit</h3>
+          <h3 className="text-center">NTF Pools</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3" style={{ 'textAlign': 'left' }}>
+            {this.props.selectedPool && this.poolsRender()}
             <Row>
               <Col span={6}>
                   Coin Balance:
@@ -90,7 +91,7 @@ export default class extends LoggedInPage {
                 {weiToEther(this.props.myNtfBalance)} NTF
               </Col>
             </Row>
-            {this.props.selectedPool && this.poolsRender()}
+            <h3>Private Informations</h3>
             {this.props.selectedPool &&
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
@@ -139,6 +140,79 @@ export default class extends LoggedInPage {
                   <Button onClick={this.claim.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Claim reward</Button>
                 </Col>
               </Row>
+              <h3>Current Pool's Informations</h3>
+{/*               <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Pool's Owner:
+                </Col>
+                <Col span={18}>
+                  {this.props.owner}
+                </Col>
+              </Row> */}
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Pool's Website:
+                </Col>
+                <Col span={18}>
+                  {this.props.website}
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Pool's Location:
+                </Col>
+                <Col span={18}>
+                  {this.props.location}
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    compRate:
+                </Col>
+                <Col span={18}>
+                  {this.props.compRate}
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Description:
+                </Col>
+                <Col span={18}>
+                  {this.props.description}
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Status:
+                </Col>
+                <Col span={18}>
+                  {this.props.poolStatus}
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Holding Ntf Balance:
+                </Col>
+                <Col span={18}>
+                  {weiToEther(this.props.poolNtfBalance)} NTF
+                </Col>
+              </Row>
+
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={6}>
+                    Holding Nty Balance:
+                </Col>
+                <Col span={18}>
+                  {weiToEther(this.props.poolNtyBalance)} NTY
+                </Col>
+              </Row>
+
               <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
                   Amount(NTF):
@@ -173,6 +247,11 @@ export default class extends LoggedInPage {
 
                 <Col span={24} style={{ 'marginTop': '15px' }}>
                   <Button onClick={this.withdraw.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw</Button>
+                </Col>
+              </Row>
+              <Row style={{ 'marginTop': '15px' }}>
+                <Col span={24}>
+                  <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
                 </Col>
               </Row>
             </div>
@@ -216,5 +295,9 @@ export default class extends LoggedInPage {
 
   async claim () {
     await this.props.claim()
+  }
+
+  virtuellMining () {
+    this.props.virtuellMining()
   }
 }

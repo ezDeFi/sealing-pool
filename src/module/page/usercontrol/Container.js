@@ -19,6 +19,9 @@ export default createContainer(Component, (state) => {
     ntfPoolService.loadMyDepositedNtf()
     ntfPoolService.loadUnlockTime()
     ntfPoolService.loadIsLocking()
+    ntfPoolService.loadPoolNtfBalance()
+    ntfPoolService.loadPoolNtyBalance()
+    ntfPoolService.loadPoolStatus()
   }
 
   if (state.user.wallet !== curWallet && !curWallet) {
@@ -38,8 +41,16 @@ export default createContainer(Component, (state) => {
     myRewardBalance: state.user.rewardBalance,
     myNtfDeposited: state.user.ntfDeposited,
     myUnlockTime: state.user.unlockTime,
-
-    isLocking: state.user.isLocking
+    poolNtfBalance: state.pool.poolNtfBalance,
+    poolNtyBalance: state.pool.poolNtyBalance,
+    isLocking: state.user.isLocking,
+    poolStatus: state.pool.status,
+    name: state.pool.name,
+    compRate: state.pool.compRate,
+    website: state.pool.website,
+    location: state.pool.location,
+    description: state.pool.description,
+    owner: state.pool.owner
   }
 }, () => {
   const userService = new UserService()
@@ -64,6 +75,9 @@ export default createContainer(Component, (state) => {
     },
     async claim () {
       return await ntfPoolService.claim()
+    },
+    async virtuellMining () {
+      await ntfPoolService.virtuellMining()
     }
   }
 })
