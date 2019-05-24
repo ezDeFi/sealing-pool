@@ -11,7 +11,7 @@ class PoolRedux extends BaseRedux {
       compRate: null,
       website: null,
       location: null,
-      description: null,
+      logo: null,
       poolNames: [],
       myPools: [],
       pools: [],

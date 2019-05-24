@@ -3,12 +3,12 @@ import Web3 from 'web3'
 import _ from 'lodash' // eslint-disable-line
 import { WEB3, CONTRACTS } from '@/constant'
 export default class extends BaseService {
-  async createPool (owner, compRate, maxLock, delay, name, website, location, description) {
+  async createPool (owner, compRate, maxLock, delay, name, website, location, logo) {
     const store = this.store.getState()
     let methods = store.contracts.poolMaker.methods
     let wallet = store.user.wallet
-    console.log(owner, compRate, maxLock, delay, name, website, location, description)
-    let res = await methods.createPool(owner, compRate.toString(), maxLock.toString(), delay.toString(), name, website, location, description).send({from: wallet, gasPrice: '0' })
+    console.log(owner, compRate, maxLock, delay, name, website, location, logo)
+    let res = await methods.createPool(owner, compRate.toString(), maxLock.toString(), delay.toString(), name, website, location, logo).send({from: wallet, gasPrice: '0' })
     await console.log(res)
   }
 
@@ -179,8 +179,8 @@ export default class extends BaseService {
     await this.dispatch(poolRedux.actions.website_update(website))
     let location = await methods.location().call()
     await this.dispatch(poolRedux.actions.location_update(location))
-    let description = await methods.profile().call()
-    await this.dispatch(poolRedux.actions.description_update(description))
+    let logo = await methods.logo().call()
+    await this.dispatch(poolRedux.actions.logo_update(logo))
     let _maxLockDuration = await methods.MAX_LOCK_DURATION().call()
     await this.dispatch(poolRedux.actions.maxLockDuration_update(_maxLockDuration))
     let _delay = await methods.OWNER_ACTION_DELAY().call()

@@ -67,8 +67,8 @@ export default createContainer(Component, (state) => {
   const ntfPoolService = new NtfPoolService()
 
   return {
-    async createPool (owner, compRate, maxLock, delay, name, website, location, description) {
-      return await ntfPoolService.createPool(owner, compRate, maxLock, delay, name, website, location, description)
+    async createPool (owner, compRate, maxLock, delay, name, website, location, logo) {
+      return await ntfPoolService.createPool(owner, compRate, maxLock, delay, name, website, location, logo)
     },
     async getPools () {
       await ntfPoolService.getPools()

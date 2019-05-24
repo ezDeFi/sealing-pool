@@ -20,7 +20,7 @@ export default class extends LoggedInPage {
       name: 'name',
       website: 'website',
       location: 'location',
-      description: 'description',
+      logo: 'logo',
       compRate: 50,
       maxLock: 7,
       delay: 24,
@@ -102,12 +102,12 @@ export default class extends LoggedInPage {
 
         <Row>
           <Col span={6}>
-            Pool's Description
+            Pool's logo
           </Col>
           <Col span={18}>
             <Input
-              value={this.state.description}
-              onChange={this.onDescriptionChange.bind(this)}
+              value={this.state.logo}
+              onChange={this.onlogoChange.bind(this)}
             />
           </Col>
         </Row>
@@ -201,7 +201,7 @@ export default class extends LoggedInPage {
       this.state.name,
       this.state.website,
       this.state.location,
-      this.state.description
+      this.state.logo
     )
     await this.setState({
       newPool: newPool
@@ -232,9 +232,9 @@ export default class extends LoggedInPage {
     })
   }
 
-  onDescriptionChange (e) {
+  onlogoChange (e) {
     this.setState({
-      description: e.target.value
+      logo: e.target.value
     })
   }
 

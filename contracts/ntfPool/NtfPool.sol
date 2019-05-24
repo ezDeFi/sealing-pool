@@ -12,18 +12,18 @@ contract PoolDesc {
     string public website;
     string public location;
     string public email;
-    string public profile;
+    string public logo;
 
     constructor (
         string memory _name,
         string memory _website,
         string memory _location,
-        string memory _profile
+        string memory _logo
     ) public {
         name = _name;
         website = _website;
         location = _location;
-        profile = _profile;
+        logo = _logo;
     }
 }
 
@@ -60,10 +60,10 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         string memory _name,
         string memory _website,
         string memory _location,
-        string memory _profile
+        string memory _logo
     )
         public
-        PoolDesc(_name, _website, _location, _profile)
+        PoolDesc(_name, _website, _location, _logo)
     {
         ntfToken = NtfTokenI(_ntfAddress);
         gov = GovI(_govAddress);

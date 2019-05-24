@@ -49,7 +49,7 @@ export default createContainer(Component, (state) => {
     compRate: state.pool.compRate,
     website: state.pool.website,
     location: state.pool.location,
-    description: state.pool.description,
+    logo: state.pool.logo,
     owner: state.pool.owner
   }
 }, () => {

@@ -51,7 +51,7 @@ export default class extends LoggedInPage {
     return (
       <Row style={{ 'marginTop': '15px' }}>
         <Col span={6}>
-          SelectedPool:
+          SelectedPool: <img width={24} height={24} src={this.props.logo} />
         </Col>
         <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
         <Col span={18}>
@@ -101,7 +101,7 @@ export default class extends LoggedInPage {
                         Pool's website:
           </Col>
           <Col span={6}>
-            {this.props.website}
+            <a href={this.props.website} target='_'>{this.props.website}</a>
           </Col>
         </Row>
 
@@ -116,10 +116,10 @@ export default class extends LoggedInPage {
 
         <Row>
           <Col span={6}>
-                        Pool's description:
+                        Pool's logo:
           </Col>
           <Col span={6}>
-            {this.props.description}
+            {this.props.logo}
           </Col>
         </Row>
 
