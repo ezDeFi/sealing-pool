@@ -141,14 +141,15 @@ export default class extends LoggedInPage {
                 </Col>
               </Row>
               <h3>Current Pool's Informations</h3>
-{/*               <Row style={{ 'marginTop': '15px' }}>
+              <p><strong> In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed </strong></p>
+              <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
                     Pool's Owner:
                 </Col>
                 <Col span={18}>
                   {this.props.owner}
                 </Col>
-              </Row> */}
+              </Row>
 
               <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
