@@ -1,7 +1,7 @@
 import BaseService from '../../model/BaseService'
 import Web3 from 'web3'
 import _ from 'lodash' // eslint-disable-line
-import { WEB3, CONTRACTS } from '@/constant'
+import { WEB3, CONTRACTS, MIN_POOL_NTF } from '@/constant'
 export default class extends BaseService {
   async createPool (owner, compRate, maxLock, delay, name, website, location, logo) {
     const store = this.store.getState()
@@ -54,10 +54,6 @@ export default class extends BaseService {
     let poolRedux = this.store.getRedux('pool')
 
     let poolCount = await methods.getPoolCount().call()
-    // if (Number(poolCount) <= store.pool.poolCount) {
-    //   console.log('all pools up to date')
-    //   return store.pool.selectedPool
-    // }
     console.log('loading Pools')
     await this.dispatch(poolRedux.actions.poolCount_update(Number(poolCount)))
     console.log('poolCount', poolCount)
@@ -65,9 +61,15 @@ export default class extends BaseService {
     let myPools = []
     for (let i = 0; i < poolCount; i++) {
       let pool = await methods.getPool(i).call()
-      let poolOwner = await pool[1]
       let poolAddress = await pool[0]
+      let poolOwner = await pool[1]
       let poolName = await pool[2]
+      let poolNtfBalance = await pool[3]
+      let poolGovBalance = await pool[4]
+      if (((Number(poolNtfBalance) + Number(poolNtfBalance) < MIN_POOL_NTF * 1e18) && (wallet.toLowerCase() !== await poolOwner.toLowerCase()))) {
+        continue
+      }
+      await console.log('poolGovBalance', poolGovBalance)
       console.log('poolName', poolName)
       if (!store.pool.poolNames[poolAddress]) {
         let _poolNames = store.pool.poolNames
@@ -283,7 +285,7 @@ export default class extends BaseService {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     const poolRedux = this.store.getRedux('pool')
-    let _deposited = await methods.getBalance().call()
+    let _deposited = await methods.getPoolGovBalance().call()
     await this.dispatch(poolRedux.actions.poolDeposited_update(_deposited))
     return await _deposited
   }

@@ -220,6 +220,26 @@ export default class extends LoggedInPage {
             {this.props.unlockHeight} / {this.props.blockNumber}
           </Col>
         </Row>
+        <p><strong> In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed </strong></p>
+        <p><strong> Current: >= 1 NTF or owner of pool </strong></p>
+        <Row style={{ 'marginTop': '15px' }}>
+          <Col span={6}>
+            Amount(NTF):
+          </Col>
+          <Col span={18}>
+
+            <InputNumber
+              className = "maxWidth"
+              defaultValue={0}
+              value={this.state.depositAmount}
+              onChange={this.onDepositAmountChange.bind(this)}
+            />
+          </Col>
+          <Col span={24} style={{ 'marginTop': '15px' }}>
+            <Button onClick={this.deposit.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Deposit</Button>
+          </Col>
+        </Row>
+
         <Row>
           <Col span={6}>
             Signer
@@ -311,6 +331,17 @@ export default class extends LoggedInPage {
         <Breadcrumb.Item>Pool's Control</Breadcrumb.Item>
       </Breadcrumb>
     )
+  }
+
+  async deposit () {
+    await this.props.approve(this.state.depositAmount * 1e18)
+    await this.props.deposit(this.state.depositAmount * 1e18)
+  }
+
+  onDepositAmountChange (value) {
+    this.setState({
+      depositAmount: value
+    })
   }
 
   onSignerChange (e) {
