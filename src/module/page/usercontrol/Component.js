@@ -5,6 +5,7 @@ import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
 import web3 from 'web3'
 import { cutString } from '@/service/Help'
+import moment from 'moment'
 
 import './style.scss'
 
@@ -13,6 +14,11 @@ const Option = Select.Option
 
 const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
+}
+
+const toTime = (value) => {
+  var dateString = moment.unix(value).format('DD/MM/YYYY')
+  return dateString
 }
 
 export default class extends LoggedInPage {
@@ -103,6 +109,20 @@ export default class extends LoggedInPage {
             </Row>
             }
             <hr />
+            <Row style={{ 'marginTop': '15px' }}>
+              <Col span={6}>
+                Pending out:
+              </Col>
+              <Col span={6}>
+                {weiToEther(this.props.myPendingOutAmount)} NTF
+              </Col>
+              {!this.props.isLocking &&
+              <Col span={24} style={{ 'marginTop': '15px' }}>
+                <Button onClick={this.withdraw.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw</Button>
+              </Col>
+              }
+            </Row>
+            <hr />
             {this.props.selectedPool &&
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
@@ -121,7 +141,7 @@ export default class extends LoggedInPage {
               </Col>
               <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
               <Col span={18}>
-                {this.props.myUnlockTime}
+                {toTime(this.props.myUnlockTime)}
               </Col>
             </Row>}
             {!this.props.selectedPool &&
@@ -140,6 +160,7 @@ export default class extends LoggedInPage {
                   <Button onClick={this.claim.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Claim reward</Button>
                 </Col>
               </Row>
+
               <h3>Current Pool's Informations</h3>
               <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
@@ -240,13 +261,13 @@ export default class extends LoggedInPage {
                   <InputNumber
                     className = "maxWidth"
                     defaultValue={0}
-                    value={this.state.withdrawAmount}
-                    onChange={this.onWithdrawAmountChange.bind(this)}
+                    value={this.state.requestOutAmount}
+                    onChange={this.onRequestOutAmountChange.bind(this)}
                   />
                 </Col>
 
                 <Col span={24} style={{ 'marginTop': '15px' }}>
-                  <Button onClick={this.withdraw.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw</Button>
+                  <Button onClick={this.requestOut.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw Request</Button>
                 </Col>
               </Row>
               <Row style={{ 'marginTop': '15px' }}>
@@ -277,9 +298,9 @@ export default class extends LoggedInPage {
     })
   }
 
-  onWithdrawAmountChange (value) {
+  onRequestOutAmountChange (value) {
     this.setState({
-      withdrawAmount: value
+      requestOutAmount: value
     })
   }
 
@@ -289,7 +310,11 @@ export default class extends LoggedInPage {
   }
 
   async withdraw () {
-    await this.props.withdraw(this.state.withdrawAmount * 1e18)
+    await this.props.withdraw()
+  }
+
+  async requestOut () {
+    await this.props.requestOut(this.state.requestOutAmount * 1e18)
   }
 
   async claim () {

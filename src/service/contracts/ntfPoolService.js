@@ -147,11 +147,18 @@ export default class extends BaseService {
     return await methods.tokenDeposit(_amount.toString()).send({from: wallet})
   }
 
-  async withdraw (_amount) {
+  async requestOut (_amount) {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
-    return await methods.tokenMemberWithdraw(_amount.toString()).send({from: wallet})
+    return await methods.requestOut(_amount.toString()).send({from: wallet})
+  }
+
+  async withdraw () {
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    let wallet = store.user.wallet
+    return await methods.tokenMemberWithdraw().send({from: wallet})
   }
 
   async claim () {
@@ -316,6 +323,15 @@ export default class extends BaseService {
     let wallet = store.user.wallet
     let rewardBalance = await methods.getCoinOf(wallet).call()
     await this.dispatch(userRedux.actions.rewardBalance_update(rewardBalance))
+  }
+
+  async loadMyPendingOutAmount () {
+    let userRedux = this.store.getRedux('user')
+    let store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    let wallet = store.user.wallet
+    let pendingOut = await methods.pendingOut(wallet).call()
+    await this.dispatch(userRedux.actions.myPendingOutAmount_update(pendingOut))
   }
 
   async loadIsLocking () {

@@ -8713,7 +8713,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-27T03:41:19.644Z",
+  "updatedAt": "2019-05-27T04:49:40.952Z",
   "devdoc": {
     "methods": {
       "allowance(address,address)": {

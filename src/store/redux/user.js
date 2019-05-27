@@ -24,7 +24,8 @@ class UserRedux extends BaseRedux {
       rewardBalance: 0,
       isLocking: false,
       unlockTime: 0,
-      loginMetamask: true
+      loginMetamask: true,
+      myPendingOutAmount: 0
     }
   }
 }

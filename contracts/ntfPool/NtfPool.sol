@@ -63,7 +63,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         require(_COMPRATE >= 0 && _COMPRATE <= 100, "invalid compensation rate");
         COMPRATE = _COMPRATE;
         MAX_LOCK_DURATION = _MAX_LOCK_DURATION;
-        _setLockDuration(_MAX_LOCK_DURATION);
+        _setLockDuration(60);
         OWNER_ACTION_DELAY = _OWNER_ACTION_DELAY;
         initialize(_owner);
     }

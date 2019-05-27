@@ -22,6 +22,7 @@ export default createContainer(Component, (state) => {
     ntfPoolService.loadPoolNtfBalance()
     ntfPoolService.loadPoolNtyBalance()
     ntfPoolService.loadPoolStatus()
+    ntfPoolService.loadMyPendingOutAmount()
   }
 
   if (state.user.wallet !== curWallet && !curWallet) {
@@ -50,7 +51,8 @@ export default createContainer(Component, (state) => {
     website: state.pool.website,
     location: state.pool.location,
     logo: state.pool.logo,
-    owner: state.pool.owner
+    owner: state.pool.owner,
+    myPendingOutAmount: state.user.myPendingOutAmount
   }
 }, () => {
   const userService = new UserService()
@@ -70,11 +72,14 @@ export default createContainer(Component, (state) => {
     async deposit (_amount) {
       return await ntfPoolService.deposit(_amount)
     },
-    async withdraw (_amount) {
-      return await ntfPoolService.withdraw(_amount)
+    async requestOut (_amount) {
+      return await ntfPoolService.requestOut(_amount)
     },
     async claim () {
       return await ntfPoolService.claim()
+    },
+    async withdraw () {
+      return await ntfPoolService.withdraw()
     },
     async virtuellMining () {
       await ntfPoolService.virtuellMining()
