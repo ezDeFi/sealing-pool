@@ -61,7 +61,7 @@ export default createContainer(Component, (state) => {
     signer: state.pool.signer,
     unlockHeight: state.pool.unlockHeight,
     blockNumber: state.user.blockNumber,
-    lockDuration: state.pool.lockDuration,
+    lockDuration: Number(state.pool.lockDuration) / oneDay,
     maxLockDuration: Number(state.pool.maxLockDuration) / oneDay,
     ownerDelay: Number(state.pool.ownerDelay) / oneHour,
     stakeRequire: state.pool.stakeRequire

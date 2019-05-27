@@ -2,7 +2,7 @@ pragma solidity ^0.5.0;
 
 import "./../../node_modules/openzeppelin-eth/contracts/ownership/Ownable.sol";
 import "./CoinShare.sol";
-import "./Lockable.sol";
+import "./Request.sol";
 
 import "./interfaces/GovI.sol";
 import "./interfaces/NtfTokenI.sol";
@@ -27,9 +27,7 @@ contract PoolDesc {
     }
 }
 
-contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
-    // nty per pool token
-    uint256 public MAX_LOCK_DURATION; // = 30 days;
+contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     uint256 public OWNER_ACTION_DELAY; // = 7 days;
 
     uint256 lastActionTime;
@@ -39,11 +37,6 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
 
     modifier delayPast() {
         require(block.timestamp > lastActionTime + OWNER_ACTION_DELAY, "dont change to quick");
-        _;
-    }
-
-    modifier validLockDuration(uint256 _lockDuration) {
-        require(_lockDuration <= MAX_LOCK_DURATION, "dont lock too long");
         _;
     }
 
@@ -70,6 +63,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         require(_COMPRATE >= 0 && _COMPRATE <= 100, "invalid compensation rate");
         COMPRATE = _COMPRATE;
         MAX_LOCK_DURATION = _MAX_LOCK_DURATION;
+        _setLockDuration(_MAX_LOCK_DURATION);
         OWNER_ACTION_DELAY = _OWNER_ACTION_DELAY;
         initialize(_owner);
     }
@@ -87,21 +81,28 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         public
         onlyOwner()
     {
+        require(_amount.add(pendingOutSum) <= getPoolNtfBalance(), "not enough to join");
         ntfToken.approve(address(gov), _amount);
         gov.deposit(_amount);
         gov.join(_signer);
+    }
+
+    function _leave()
+        internal
+    {
+        gov.leave();
     }
 
     function leave()
         public
         onlyOwner()
     {
-        gov.leave();
+        _leave();
     }
 
     function tokenPoolWithdraw()
         public
-        onlyOwner()
+        //onlyOwner()
     {
         gov.withdraw();
     }
@@ -121,13 +122,25 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         public
         onlyOwner()
         delayPast()
-        validLockDuration(_lockDuration)
     {
         lastActionTime = block.timestamp;
         _setLockDuration(_lockDuration);
     }
 
     // members function
+    function requestOut(
+        uint256 _amount
+    )
+        public
+    {
+        _updateFundCpt();
+        address payable _sender = msg.sender;
+        _coinWithdraw(_sender);
+        uint256 _added = _requestOut(_sender, _amount);
+        _burn(_sender, _added);
+        _updateCredit(_sender, 0);
+    }
+
     function tokenDeposit(
         uint256 _amount
     )
@@ -139,21 +152,21 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Lockable {
         ntfToken.transferFrom(_sender, address(this), _amount);
         _mint(_sender, _amount);
         _updateCredit(_sender, _coinBalance);
-        _lock(_sender);
     }
 
     function tokenMemberWithdraw(
-        uint256 _amount
     )
         public
         notLocking()
     {
-        _updateFundCpt();
         address _sender = msg.sender;
-        uint256 _coinBalance = coinOf(_sender);
-        _burn(_sender, _amount);
+        uint256 _amount = pendingOut[_sender];
+        if (_amount > getPoolNtfBalance()) {
+            _leave();
+            return;
+        }
         ntfToken.transfer(_sender, _amount);
-        _updateCredit(_sender, _coinBalance);
+        _removeRequest(_sender);
     }
 
     function coinWithdraw()

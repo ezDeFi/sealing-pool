@@ -3,9 +3,15 @@ pragma solidity ^0.5.0;
 contract Lockable {
     mapping(address => uint256) internal unlockTime;
     uint256 internal lockDuration;
+    uint256 public MAX_LOCK_DURATION; // = 30 days;
 
     modifier notLocking() {
         require(!isLocking(msg.sender), "still locking");
+        _;
+    }
+
+    modifier validLockDuration(uint256 _lockDuration) {
+        require(_lockDuration <= MAX_LOCK_DURATION, "dont lock too long");
         _;
     }
 
@@ -13,11 +19,12 @@ contract Lockable {
         uint256 _lockDuration
     )
         internal
+        validLockDuration(_lockDuration)
     {
         lockDuration = _lockDuration;
     }
 
-    function _lock(
+    function _setLock(
         address _member
     )
         internal
@@ -25,7 +32,7 @@ contract Lockable {
         unlockTime[_member] = block.timestamp + lockDuration;
     }
 
-    function _unlock(
+    function _relock(
         address _member
     )
         internal
@@ -60,6 +67,6 @@ contract Lockable {
         view
         returns(bool)
     {
-        return unlockTime[_member] != 0 && unlockTime[_member] > block.timestamp;
+        return unlockTime[_member] > block.timestamp;
     }
 }

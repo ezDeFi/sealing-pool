@@ -81,7 +81,7 @@
         "id": 59,
         "nodeType": "ImportDirective",
         "scope": 231,
-        "sourceUnit": 1069,
+        "sourceUnit": 1113,
         "src": "27:31:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -268,7 +268,7 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1068
+          1112
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -618,7 +618,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_NtfPool_$1068",
+                        "typeIdentifier": "t_contract$_NtfPool_$1112",
                         "typeString": "contract NtfPool"
                       },
                       "typeName": {
@@ -626,10 +626,10 @@
                         "id": 123,
                         "name": "NtfPool",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1068,
+                        "referencedDeclaration": 1112,
                         "src": "982:7:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_NtfPool_$1068",
+                          "typeIdentifier": "t_contract$_NtfPool_$1112",
                           "typeString": "contract NtfPool"
                         }
                       },
@@ -823,7 +823,7 @@
                       "nodeType": "NewExpression",
                       "src": "1000:11:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$_t_contract$_NtfPool_$1068_$",
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$_t_contract$_NtfPool_$1112_$",
                         "typeString": "function (address,address,address,uint256,uint256,uint256,string memory,string memory,string memory,string memory) returns (contract NtfPool)"
                       },
                       "typeName": {
@@ -831,10 +831,10 @@
                         "id": 125,
                         "name": "NtfPool",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1068,
+                        "referencedDeclaration": 1112,
                         "src": "1004:7:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_NtfPool_$1068",
+                          "typeIdentifier": "t_contract$_NtfPool_$1112",
                           "typeString": "contract NtfPool"
                         }
                       }
@@ -849,7 +849,7 @@
                     "nodeType": "FunctionCall",
                     "src": "1000:274:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_NtfPool_$1068",
+                      "typeIdentifier": "t_contract$_NtfPool_$1112",
                       "typeString": "contract NtfPool"
                     }
                   },
@@ -872,7 +872,7 @@
                             "referencedDeclaration": 124,
                             "src": "1304:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -880,7 +880,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -1000,7 +1000,7 @@
                             "referencedDeclaration": 124,
                             "src": "1342:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -1008,7 +1008,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -1091,7 +1091,7 @@
                             "referencedDeclaration": 124,
                             "src": "1387:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -1099,7 +1099,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -2335,7 +2335,7 @@
         "id": 59,
         "nodeType": "ImportDirective",
         "scope": 231,
-        "sourceUnit": 1069,
+        "sourceUnit": 1113,
         "src": "27:31:1",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2522,7 +2522,7 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1068
+          1112
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -2872,7 +2872,7 @@
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_NtfPool_$1068",
+                        "typeIdentifier": "t_contract$_NtfPool_$1112",
                         "typeString": "contract NtfPool"
                       },
                       "typeName": {
@@ -2880,10 +2880,10 @@
                         "id": 123,
                         "name": "NtfPool",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1068,
+                        "referencedDeclaration": 1112,
                         "src": "982:7:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_NtfPool_$1068",
+                          "typeIdentifier": "t_contract$_NtfPool_$1112",
                           "typeString": "contract NtfPool"
                         }
                       },
@@ -3077,7 +3077,7 @@
                       "nodeType": "NewExpression",
                       "src": "1000:11:1",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$_t_contract$_NtfPool_$1068_$",
+                        "typeIdentifier": "t_function_creation_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$_t_uint256_$_t_uint256_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$_t_contract$_NtfPool_$1112_$",
                         "typeString": "function (address,address,address,uint256,uint256,uint256,string memory,string memory,string memory,string memory) returns (contract NtfPool)"
                       },
                       "typeName": {
@@ -3085,10 +3085,10 @@
                         "id": 125,
                         "name": "NtfPool",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 1068,
+                        "referencedDeclaration": 1112,
                         "src": "1004:7:1",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_NtfPool_$1068",
+                          "typeIdentifier": "t_contract$_NtfPool_$1112",
                           "typeString": "contract NtfPool"
                         }
                       }
@@ -3103,7 +3103,7 @@
                     "nodeType": "FunctionCall",
                     "src": "1000:274:1",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_NtfPool_$1068",
+                      "typeIdentifier": "t_contract$_NtfPool_$1112",
                       "typeString": "contract NtfPool"
                     }
                   },
@@ -3126,7 +3126,7 @@
                             "referencedDeclaration": 124,
                             "src": "1304:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -3134,7 +3134,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -3254,7 +3254,7 @@
                             "referencedDeclaration": 124,
                             "src": "1342:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -3262,7 +3262,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -3345,7 +3345,7 @@
                             "referencedDeclaration": 124,
                             "src": "1387:7:1",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           }
@@ -3353,7 +3353,7 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_NtfPool_$1068",
+                              "typeIdentifier": "t_contract$_NtfPool_$1112",
                               "typeString": "contract NtfPool"
                             }
                           ],
@@ -4565,7 +4565,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-24T05:01:33.885Z",
+  "updatedAt": "2019-05-27T03:41:19.633Z",
   "devdoc": {
     "methods": {}
   },

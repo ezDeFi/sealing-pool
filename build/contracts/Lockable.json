@@ -3,6 +3,20 @@
   "abi": [
     {
       "constant": true,
+      "inputs": [],
+      "name": "MAX_LOCK_DURATION",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [
         {
           "name": "_member",
@@ -54,21 +68,21 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"_member\",\"type\":\"address\"}],\"name\":\"isLocking\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_member\",\"type\":\"address\"}],\"name\":\"getUnlockTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLockDuration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol\":\"Lockable\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol\":{\"keccak256\":\"0x13c413e217808ac3c0df0d693e5193b181d06d01892dc936483a7114bfcf1c03\",\"urls\":[\"bzzr://f04394e325ff75b04fb96deecf239b4bb54e2bc77fcdeec9570696579df485f9\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b50610267806100206000396000f3fe608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d12c33b71461005c578063dbed1e88146100c5578063e239c4001461012a575b600080fd5b34801561006857600080fd5b506100ab6004803603602081101561007f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610155565b604051808215151515815260200191505060405180910390f35b3480156100d157600080fd5b50610114600480360360208110156100e857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101e9565b6040518082815260200191505060405180910390f35b34801561013657600080fd5b5061013f610231565b6040518082815260200191505060405180910390f35b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054141580156101e25750426000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054115b9050919050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600060015490509056fea165627a7a72305820f7fa88be21288957f86ff3423bc01260d34bee7abe241ac3621fad473e8b77c80029",
-  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063d12c33b71461005c578063dbed1e88146100c5578063e239c4001461012a575b600080fd5b34801561006857600080fd5b506100ab6004803603602081101561007f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610155565b604051808215151515815260200191505060405180910390f35b3480156100d157600080fd5b50610114600480360360208110156100e857600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101e9565b6040518082815260200191505060405180910390f35b34801561013657600080fd5b5061013f610231565b6040518082815260200191505060405180910390f35b6000806000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054141580156101e25750426000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054115b9050919050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600060015490509056fea165627a7a72305820f7fa88be21288957f86ff3423bc01260d34bee7abe241ac3621fad473e8b77c80029",
-  "sourceMap": "27:1175:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:1175:3;;;;;;;",
-  "deployedSourceMap": "27:1175:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;998:201;;8:9:-1;5:2;;;30:1;27;20:12;5:2;998:201:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;998:201:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;694:162;;8:9:-1;5:2;;;30:1;27;20:12;5:2;694:162:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;694:162:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;864:126;;8:9:-1;5:2;;;30:1;27;20:12;5:2;864:126:3;;;;;;;;;;;;;;;;;;;;;;;998:201;1097:4;1149:1;1126:10;:19;1137:7;1126:19;;;;;;;;;;;;;;;;:24;;:65;;;;;1176:15;1154:10;:19;1165:7;1154:19;;;;;;;;;;;;;;;;:37;1126:65;1119:72;;998:201;;;:::o;694:162::-;797:7;829:10;:19;840:7;829:19;;;;;;;;;;;;;;;;822:26;;694:162;;;:::o;864:126::-;938:7;970:12;;963:19;;864:126;:::o",
-  "source": "pragma solidity ^0.5.0;\r\n\r\ncontract Lockable {\r\n    mapping(address => uint256) internal unlockTime;\r\n    uint256 internal lockDuration;\r\n\r\n    modifier notLocking() {\r\n        require(!isLocking(msg.sender), \"still locking\");\r\n        _;\r\n    }\r\n\r\n    function _setLockDuration(\r\n        uint256 _lockDuration\r\n    )\r\n        internal\r\n    {\r\n        lockDuration = _lockDuration;\r\n    }\r\n\r\n    function _lock(\r\n        address _member\r\n    )\r\n        internal\r\n    {\r\n        unlockTime[_member] = block.timestamp + lockDuration;\r\n    }\r\n\r\n    function _unlock(\r\n        address _member\r\n    )\r\n        internal\r\n    {\r\n        unlockTime[_member] = 0;\r\n    }\r\n\r\n    // Read Functions\r\n\r\n    function getUnlockTime(\r\n        address _member\r\n    )\r\n        public\r\n        view\r\n        returns(uint256)\r\n    {\r\n        return unlockTime[_member];\r\n    }\r\n\r\n    function getLockDuration()\r\n        public\r\n        view\r\n        returns(uint256)\r\n    {\r\n        return lockDuration;\r\n    }\r\n\r\n    function isLocking(\r\n        address _member\r\n    )\r\n        public\r\n        view\r\n        returns(bool)\r\n    {\r\n        return unlockTime[_member] != 0 && unlockTime[_member] > block.timestamp;\r\n    }\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.0+commit.1d4f565a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[],\"name\":\"MAX_LOCK_DURATION\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_member\",\"type\":\"address\"}],\"name\":\"isLocking\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"_member\",\"type\":\"address\"}],\"name\":\"getUnlockTime\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getLockDuration\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol\":\"Lockable\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol\":{\"keccak256\":\"0xa05889f12cd33b72aee092b01c33a73fc3a073cfb409078ee15fc438a0353107\",\"urls\":[\"bzzr://c64f118c3dc7024b28056a587118d61013fed6b593a8b7fcbeab4bec3f6f9f9a\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610259806100206000396000f3fe608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634f1bfc9e14610067578063d12c33b714610092578063dbed1e88146100fb578063e239c40014610160575b600080fd5b34801561007357600080fd5b5061007c61018b565b6040518082815260200191505060405180910390f35b34801561009e57600080fd5b506100e1600480360360208110156100b557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610191565b604051808215151515815260200191505060405180910390f35b34801561010757600080fd5b5061014a6004803603602081101561011e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101db565b6040518082815260200191505060405180910390f35b34801561016c57600080fd5b50610175610223565b6040518082815260200191505060405180910390f35b60025481565b6000426000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054119050919050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600060015490509056fea165627a7a72305820626251c5cdb96ad2af618e81113c5806d0127c45b8296a04e3d32a2318f602a30029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680634f1bfc9e14610067578063d12c33b714610092578063dbed1e88146100fb578063e239c40014610160575b600080fd5b34801561007357600080fd5b5061007c61018b565b6040518082815260200191505060405180910390f35b34801561009e57600080fd5b506100e1600480360360208110156100b557600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610191565b604051808215151515815260200191505060405180910390f35b34801561010757600080fd5b5061014a6004803603602081101561011e57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101db565b6040518082815260200191505060405180910390f35b34801561016c57600080fd5b50610175610223565b6040518082815260200191505060405180910390f35b60025481565b6000426000808473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002054119050919050565b60008060008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020549050919050565b600060015490509056fea165627a7a72305820626251c5cdb96ad2af618e81113c5806d0127c45b8296a04e3d32a2318f602a30029",
+  "sourceMap": "27:1399:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:1399:3;;;;;;;",
+  "deployedSourceMap": "27:1399:3:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;142:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;142:32:3;;;;;;;;;;;;;;;;;;;;;;;1250:173;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1250:173:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1250:173:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;946:162;;8:9:-1;5:2;;;30:1;27;20:12;5:2;946:162:3;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;946:162:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1116:126;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1116:126:3;;;;;;;;;;;;;;;;;;;;;;;142:32;;;;:::o;1250:173::-;1349:4;1400:15;1378:10;:19;1389:7;1378:19;;;;;;;;;;;;;;;;:37;1371:44;;1250:173;;;:::o;946:162::-;1049:7;1081:10;:19;1092:7;1081:19;;;;;;;;;;;;;;;;1074:26;;946:162;;;:::o;1116:126::-;1190:7;1222:12;;1215:19;;1116:126;:::o",
+  "source": "pragma solidity ^0.5.0;\r\n\r\ncontract Lockable {\r\n    mapping(address => uint256) internal unlockTime;\r\n    uint256 internal lockDuration;\r\n    uint256 public MAX_LOCK_DURATION; // = 30 days;\r\n\r\n    modifier notLocking() {\r\n        require(!isLocking(msg.sender), \"still locking\");\r\n        _;\r\n    }\r\n\r\n    modifier validLockDuration(uint256 _lockDuration) {\r\n        require(_lockDuration <= MAX_LOCK_DURATION, \"dont lock too long\");\r\n        _;\r\n    }\r\n\r\n    function _setLockDuration(\r\n        uint256 _lockDuration\r\n    )\r\n        internal\r\n        validLockDuration(_lockDuration)\r\n    {\r\n        lockDuration = _lockDuration;\r\n    }\r\n\r\n    function _setLock(\r\n        address _member\r\n    )\r\n        internal\r\n    {\r\n        unlockTime[_member] = block.timestamp + lockDuration;\r\n    }\r\n\r\n    function _relock(\r\n        address _member\r\n    )\r\n        internal\r\n    {\r\n        unlockTime[_member] = 0;\r\n    }\r\n\r\n    // Read Functions\r\n\r\n    function getUnlockTime(\r\n        address _member\r\n    )\r\n        public\r\n        view\r\n        returns(uint256)\r\n    {\r\n        return unlockTime[_member];\r\n    }\r\n\r\n    function getLockDuration()\r\n        public\r\n        view\r\n        returns(uint256)\r\n    {\r\n        return lockDuration;\r\n    }\r\n\r\n    function isLocking(\r\n        address _member\r\n    )\r\n        public\r\n        view\r\n        returns(bool)\r\n    {\r\n        return unlockTime[_member] > block.timestamp;\r\n    }\r\n}",
   "sourcePath": "C:\\Users\\bestb\\Desktop\\workshop\\sealing-pool\\contracts\\ntfPool\\Lockable.sol",
   "ast": {
     "absolutePath": "/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol",
     "exportedSymbols": {
       "Lockable": [
-        638
+        650
       ]
     },
-    "id": 639,
+    "id": 651,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -88,9 +102,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 638,
+        "id": 650,
         "linearizedBaseContracts": [
-          638
+          650
         ],
         "name": "Lockable",
         "nodeType": "ContractDefinition",
@@ -100,7 +114,7 @@
             "id": 544,
             "name": "unlockTime",
             "nodeType": "VariableDeclaration",
-            "scope": 638,
+            "scope": 650,
             "src": "52:47:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -145,7 +159,7 @@
             "id": 546,
             "name": "lockDuration",
             "nodeType": "VariableDeclaration",
-            "scope": 638,
+            "scope": 650,
             "src": "106:29:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -167,10 +181,36 @@
             "visibility": "internal"
           },
           {
+            "constant": false,
+            "id": 548,
+            "name": "MAX_LOCK_DURATION",
+            "nodeType": "VariableDeclaration",
+            "scope": 650,
+            "src": "142:32:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 547,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "142:7:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
             "body": {
-              "id": 558,
+              "id": 560,
               "nodeType": "Block",
-              "src": "166:79:3",
+              "src": "219:79:3",
               "statements": [
                 {
                   "expression": {
@@ -178,7 +218,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 553,
+                        "id": 555,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -186,7 +226,7 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "185:22:3",
+                        "src": "238:22:3",
                         "subExpression": {
                           "argumentTypes": null,
                           "arguments": [
@@ -194,18 +234,18 @@
                               "argumentTypes": null,
                               "expression": {
                                 "argumentTypes": null,
-                                "id": 550,
+                                "id": 552,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2043,
-                                "src": "196:3:3",
+                                "referencedDeclaration": 2164,
+                                "src": "249:3:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 551,
+                              "id": 553,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -213,7 +253,7 @@
                               "memberName": "sender",
                               "nodeType": "MemberAccess",
                               "referencedDeclaration": null,
-                              "src": "196:10:3",
+                              "src": "249:10:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address_payable",
                                 "typeString": "address payable"
@@ -227,18 +267,18 @@
                                 "typeString": "address payable"
                               }
                             ],
-                            "id": 549,
+                            "id": 551,
                             "name": "isLocking",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 637,
-                            "src": "186:9:3",
+                            "referencedDeclaration": 649,
+                            "src": "239:9:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                               "typeString": "function (address) view returns (bool)"
                             }
                           },
-                          "id": 552,
+                          "id": 554,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -246,7 +286,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "186:21:3",
+                          "src": "239:21:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -260,14 +300,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7374696c6c206c6f636b696e67",
-                        "id": 554,
+                        "id": 556,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "209:15:3",
+                        "src": "262:15:3",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_b8e3fda0137d281ba2f9679d14ab7bb7e6d17456633311619cbca52f44350a4c",
@@ -287,21 +327,21 @@
                           "typeString": "literal_string \"still locking\""
                         }
                       ],
-                      "id": 548,
+                      "id": 550,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2046,
-                        2047
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2047,
-                      "src": "177:7:3",
+                      "referencedDeclaration": 2168,
+                      "src": "230:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 555,
+                    "id": 557,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -309,108 +349,175 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "177:48:3",
+                    "src": "230:48:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 556,
+                  "id": 558,
                   "nodeType": "ExpressionStatement",
-                  "src": "177:48:3"
+                  "src": "230:48:3"
                 },
                 {
-                  "id": 557,
+                  "id": 559,
                   "nodeType": "PlaceholderStatement",
-                  "src": "236:1:3"
+                  "src": "289:1:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 559,
+            "id": 561,
             "name": "notLocking",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 547,
+              "id": 549,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "163:2:3"
+              "src": "216:2:3"
             },
-            "src": "144:101:3",
+            "src": "197:101:3",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 568,
+              "id": 573,
               "nodeType": "Block",
-              "src": "341:47:3",
+              "src": "356:96:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 566,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 568,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 566,
+                          "name": "_lockDuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 563,
+                          "src": "375:13:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 567,
+                          "name": "MAX_LOCK_DURATION",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 548,
+                          "src": "392:17:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "375:34:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "646f6e74206c6f636b20746f6f206c6f6e67",
+                        "id": 569,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "411:20:3",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e91afd4d08ac7b82a8bb399d0fce8265cde619b8e8446bd0bf7ad1c01474efbc",
+                          "typeString": "literal_string \"dont lock too long\""
+                        },
+                        "value": "dont lock too long"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_e91afd4d08ac7b82a8bb399d0fce8265cde619b8e8446bd0bf7ad1c01474efbc",
+                          "typeString": "literal_string \"dont lock too long\""
+                        }
+                      ],
+                      "id": 565,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2167,
+                        2168
+                      ],
+                      "referencedDeclaration": 2168,
+                      "src": "367:7:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 570,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
+                    "kind": "functionCall",
                     "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 564,
-                      "name": "lockDuration",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 546,
-                      "src": "352:12:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 565,
-                      "name": "_lockDuration",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 561,
-                      "src": "367:13:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "352:28:3",
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "367:65:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
                     }
                   },
-                  "id": 567,
+                  "id": 571,
                   "nodeType": "ExpressionStatement",
-                  "src": "352:28:3"
+                  "src": "367:65:3"
+                },
+                {
+                  "id": 572,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "443:1:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 569,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "_setLockDuration",
-            "nodeType": "FunctionDefinition",
+            "id": 574,
+            "name": "validLockDuration",
+            "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 562,
+              "id": 564,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 561,
+                  "id": 563,
                   "name": "_lockDuration",
                   "nodeType": "VariableDeclaration",
-                  "scope": 569,
-                  "src": "289:21:3",
+                  "scope": 574,
+                  "src": "333:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -418,10 +525,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 560,
+                    "id": 562,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "289:7:3",
+                    "src": "333:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -431,30 +538,161 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "278:39:3"
+              "src": "332:23:3"
+            },
+            "src": "306:146:3",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 586,
+              "nodeType": "Block",
+              "src": "590:47:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 584,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 582,
+                      "name": "lockDuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 546,
+                      "src": "601:12:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 583,
+                      "name": "_lockDuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 576,
+                      "src": "616:13:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "601:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 585,
+                  "nodeType": "ExpressionStatement",
+                  "src": "601:28:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 587,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 579,
+                    "name": "_lockDuration",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 576,
+                    "src": "570:13:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 580,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 578,
+                  "name": "validLockDuration",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 574,
+                  "src": "552:17:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$_t_uint256_$",
+                    "typeString": "modifier (uint256)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "552:32:3"
+              }
+            ],
+            "name": "_setLockDuration",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 577,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 576,
+                  "name": "_lockDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 587,
+                  "src": "496:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 575,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "496:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "485:39:3"
             },
             "returnParameters": {
-              "id": 563,
+              "id": 581,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "341:0:3"
+              "src": "590:0:3"
             },
-            "scope": 638,
-            "src": "253:135:3",
+            "scope": 650,
+            "src": "460:177:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 583,
+              "id": 601,
               "nodeType": "Block",
-              "src": "467:71:3",
+              "src": "719:71:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 581,
+                    "id": 599,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -463,26 +701,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 574,
+                        "id": 592,
                         "name": "unlockTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 544,
-                        "src": "478:10:3",
+                        "src": "730:10:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 576,
+                      "id": 594,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 575,
+                        "id": 593,
                         "name": "_member",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 571,
-                        "src": "489:7:3",
+                        "referencedDeclaration": 589,
+                        "src": "741:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -493,7 +731,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "478:19:3",
+                      "src": "730:19:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -507,7 +745,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 580,
+                      "id": 598,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -516,18 +754,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 577,
+                          "id": 595,
                           "name": "block",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2033,
-                          "src": "500:5:3",
+                          "referencedDeclaration": 2154,
+                          "src": "752:5:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_block",
                             "typeString": "block"
                           }
                         },
-                        "id": 578,
+                        "id": 596,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -535,7 +773,7 @@
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "500:15:3",
+                        "src": "752:15:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -545,53 +783,53 @@
                       "operator": "+",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 579,
+                        "id": 597,
                         "name": "lockDuration",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 546,
-                        "src": "518:12:3",
+                        "src": "770:12:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       },
-                      "src": "500:30:3",
+                      "src": "752:30:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "478:52:3",
+                    "src": "730:52:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 582,
+                  "id": 600,
                   "nodeType": "ExpressionStatement",
-                  "src": "478:52:3"
+                  "src": "730:52:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 584,
+            "id": 602,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_lock",
+            "name": "_setLock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 572,
+              "id": 590,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 571,
+                  "id": 589,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 584,
-                  "src": "421:15:3",
+                  "scope": 602,
+                  "src": "673:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -599,10 +837,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 570,
+                    "id": 588,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "421:7:3",
+                    "src": "673:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -613,30 +851,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "410:33:3"
+              "src": "662:33:3"
             },
             "returnParameters": {
-              "id": 573,
+              "id": 591,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "467:0:3"
+              "src": "719:0:3"
             },
-            "scope": 638,
-            "src": "396:142:3",
+            "scope": 650,
+            "src": "645:145:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 595,
+              "id": 613,
               "nodeType": "Block",
-              "src": "619:42:3",
+              "src": "871:42:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 593,
+                    "id": 611,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -645,26 +883,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 589,
+                        "id": 607,
                         "name": "unlockTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 544,
-                        "src": "630:10:3",
+                        "src": "882:10:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 591,
+                      "id": 609,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 590,
+                        "id": 608,
                         "name": "_member",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 586,
-                        "src": "641:7:3",
+                        "referencedDeclaration": 604,
+                        "src": "893:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -675,7 +913,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "630:19:3",
+                      "src": "882:19:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -686,14 +924,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 592,
+                      "id": 610,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "652:1:3",
+                      "src": "904:1:3",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -701,36 +939,36 @@
                       },
                       "value": "0"
                     },
-                    "src": "630:23:3",
+                    "src": "882:23:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 594,
+                  "id": 612,
                   "nodeType": "ExpressionStatement",
-                  "src": "630:23:3"
+                  "src": "882:23:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 596,
+            "id": 614,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_unlock",
+            "name": "_relock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 587,
+              "id": 605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 586,
+                  "id": 604,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 596,
-                  "src": "573:15:3",
+                  "scope": 614,
+                  "src": "825:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -738,10 +976,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 585,
+                    "id": 603,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "573:7:3",
+                    "src": "825:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -752,51 +990,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "562:33:3"
+              "src": "814:33:3"
             },
             "returnParameters": {
-              "id": 588,
+              "id": 606,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "619:0:3"
+              "src": "871:0:3"
             },
-            "scope": 638,
-            "src": "546:115:3",
+            "scope": 650,
+            "src": "798:115:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 607,
+              "id": 625,
               "nodeType": "Block",
-              "src": "811:45:3",
+              "src": "1063:45:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 603,
+                      "id": 621,
                       "name": "unlockTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 544,
-                      "src": "829:10:3",
+                      "src": "1081:10:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 605,
+                    "id": 623,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 604,
+                      "id": 622,
                       "name": "_member",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 598,
-                      "src": "840:7:3",
+                      "referencedDeclaration": 616,
+                      "src": "1092:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -807,37 +1045,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "829:19:3",
+                    "src": "1081:19:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 602,
-                  "id": 606,
+                  "functionReturnParameters": 620,
+                  "id": 624,
                   "nodeType": "Return",
-                  "src": "822:26:3"
+                  "src": "1074:26:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 608,
+            "id": 626,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getUnlockTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 599,
+              "id": 617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 598,
+                  "id": 616,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "727:15:3",
+                  "scope": 626,
+                  "src": "979:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -845,10 +1083,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 597,
+                    "id": 615,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "727:7:3",
+                    "src": "979:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -859,19 +1097,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "716:33:3"
+              "src": "968:33:3"
             },
             "returnParameters": {
-              "id": 602,
+              "id": 620,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 601,
+                  "id": 619,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "797:7:3",
+                  "scope": 626,
+                  "src": "1049:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -879,10 +1117,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 600,
+                    "id": 618,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "797:7:3",
+                    "src": "1049:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -892,65 +1130,65 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "796:9:3"
+              "src": "1048:9:3"
             },
-            "scope": 638,
-            "src": "694:162:3",
+            "scope": 650,
+            "src": "946:162:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 615,
+              "id": 633,
               "nodeType": "Block",
-              "src": "952:38:3",
+              "src": "1204:38:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 613,
+                    "id": 631,
                     "name": "lockDuration",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 546,
-                    "src": "970:12:3",
+                    "src": "1222:12:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 612,
-                  "id": 614,
+                  "functionReturnParameters": 630,
+                  "id": 632,
                   "nodeType": "Return",
-                  "src": "963:19:3"
+                  "src": "1215:19:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 616,
+            "id": 634,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getLockDuration",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 609,
+              "id": 627,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "888:2:3"
+              "src": "1140:2:3"
             },
             "returnParameters": {
-              "id": 612,
+              "id": 630,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 611,
+                  "id": 629,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 616,
-                  "src": "938:7:3",
+                  "scope": 634,
+                  "src": "1190:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -958,10 +1196,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 610,
+                    "id": 628,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "938:7:3",
+                    "src": "1190:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -971,230 +1209,134 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "937:9:3"
+              "src": "1189:9:3"
             },
-            "scope": 638,
-            "src": "864:126:3",
+            "scope": 650,
+            "src": "1116:126:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 636,
+              "id": 648,
               "nodeType": "Block",
-              "src": "1108:91:3",
+              "src": "1360:63:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "commonType": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     },
-                    "id": 634,
+                    "id": 646,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "commonType": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      },
-                      "id": 627,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "leftExpression": {
+                      "baseExpression": {
                         "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 623,
-                          "name": "unlockTime",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 544,
-                          "src": "1126:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                            "typeString": "mapping(address => uint256)"
-                          }
-                        },
-                        "id": 625,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 624,
-                          "name": "_member",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 618,
-                          "src": "1137:7:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "1126:19:3",
+                        "id": 641,
+                        "name": "unlockTime",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 544,
+                        "src": "1378:10:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "nodeType": "BinaryOperation",
-                      "operator": "!=",
-                      "rightExpression": {
+                      "id": 643,
+                      "indexExpression": {
                         "argumentTypes": null,
-                        "hexValue": "30",
-                        "id": 626,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "number",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1149:1:3",
-                        "subdenomination": null,
+                        "id": 642,
+                        "name": "_member",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 636,
+                        "src": "1389:7:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_rational_0_by_1",
-                          "typeString": "int_const 0"
-                        },
-                        "value": "0"
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
                       },
-                      "src": "1126:24:3",
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1378:19:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
                       }
                     },
                     "nodeType": "BinaryOperation",
-                    "operator": "&&",
+                    "operator": ">",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "commonType": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 644,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2154,
+                        "src": "1400:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
                       },
-                      "id": 633,
+                      "id": 645,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "leftExpression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 628,
-                          "name": "unlockTime",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 544,
-                          "src": "1154:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                            "typeString": "mapping(address => uint256)"
-                          }
-                        },
-                        "id": 630,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 629,
-                          "name": "_member",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 618,
-                          "src": "1165:7:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "1154:19:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      "nodeType": "BinaryOperation",
-                      "operator": ">",
-                      "rightExpression": {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 631,
-                          "name": "block",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 2033,
-                          "src": "1176:5:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_block",
-                            "typeString": "block"
-                          }
-                        },
-                        "id": 632,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "timestamp",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": null,
-                        "src": "1176:15:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      "src": "1154:37:3",
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1400:15:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
                       }
                     },
-                    "src": "1126:65:3",
+                    "src": "1378:37:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 622,
-                  "id": 635,
+                  "functionReturnParameters": 640,
+                  "id": 647,
                   "nodeType": "Return",
-                  "src": "1119:72:3"
+                  "src": "1371:44:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 637,
+            "id": 649,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isLocking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 619,
+              "id": 637,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 618,
+                  "id": 636,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1027:15:3",
+                  "scope": 649,
+                  "src": "1279:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1202,10 +1344,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 617,
+                    "id": 635,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1027:7:3",
+                    "src": "1279:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1216,19 +1358,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1016:33:3"
+              "src": "1268:33:3"
             },
             "returnParameters": {
-              "id": 622,
+              "id": 640,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 621,
+                  "id": 639,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1097:4:3",
+                  "scope": 649,
+                  "src": "1349:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1236,10 +1378,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 620,
+                    "id": 638,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1097:4:3",
+                    "src": "1349:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1249,29 +1391,29 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1096:6:3"
+              "src": "1348:6:3"
             },
-            "scope": 638,
-            "src": "998:201:3",
+            "scope": 650,
+            "src": "1250:173:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "27:1175:3"
+        "scope": 651,
+        "src": "27:1399:3"
       }
     ],
-    "src": "0:1202:3"
+    "src": "0:1426:3"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/bestb/Desktop/workshop/sealing-pool/contracts/ntfPool/Lockable.sol",
     "exportedSymbols": {
       "Lockable": [
-        638
+        650
       ]
     },
-    "id": 639,
+    "id": 651,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -1291,9 +1433,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 638,
+        "id": 650,
         "linearizedBaseContracts": [
-          638
+          650
         ],
         "name": "Lockable",
         "nodeType": "ContractDefinition",
@@ -1303,7 +1445,7 @@
             "id": 544,
             "name": "unlockTime",
             "nodeType": "VariableDeclaration",
-            "scope": 638,
+            "scope": 650,
             "src": "52:47:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1348,7 +1490,7 @@
             "id": 546,
             "name": "lockDuration",
             "nodeType": "VariableDeclaration",
-            "scope": 638,
+            "scope": 650,
             "src": "106:29:3",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1370,10 +1512,36 @@
             "visibility": "internal"
           },
           {
+            "constant": false,
+            "id": 548,
+            "name": "MAX_LOCK_DURATION",
+            "nodeType": "VariableDeclaration",
+            "scope": 650,
+            "src": "142:32:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 547,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "142:7:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
             "body": {
-              "id": 558,
+              "id": 560,
               "nodeType": "Block",
-              "src": "166:79:3",
+              "src": "219:79:3",
               "statements": [
                 {
                   "expression": {
@@ -1381,7 +1549,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 553,
+                        "id": 555,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1389,7 +1557,7 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "185:22:3",
+                        "src": "238:22:3",
                         "subExpression": {
                           "argumentTypes": null,
                           "arguments": [
@@ -1397,18 +1565,18 @@
                               "argumentTypes": null,
                               "expression": {
                                 "argumentTypes": null,
-                                "id": 550,
+                                "id": 552,
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2043,
-                                "src": "196:3:3",
+                                "referencedDeclaration": 2164,
+                                "src": "249:3:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
                                   "typeString": "msg"
                                 }
                               },
-                              "id": 551,
+                              "id": 553,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -1416,7 +1584,7 @@
                               "memberName": "sender",
                               "nodeType": "MemberAccess",
                               "referencedDeclaration": null,
-                              "src": "196:10:3",
+                              "src": "249:10:3",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_address_payable",
                                 "typeString": "address payable"
@@ -1430,18 +1598,18 @@
                                 "typeString": "address payable"
                               }
                             ],
-                            "id": 549,
+                            "id": 551,
                             "name": "isLocking",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 637,
-                            "src": "186:9:3",
+                            "referencedDeclaration": 649,
+                            "src": "239:9:3",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_view$_t_address_$returns$_t_bool_$",
                               "typeString": "function (address) view returns (bool)"
                             }
                           },
-                          "id": 552,
+                          "id": 554,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1449,7 +1617,7 @@
                           "lValueRequested": false,
                           "names": [],
                           "nodeType": "FunctionCall",
-                          "src": "186:21:3",
+                          "src": "239:21:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -1463,14 +1631,14 @@
                       {
                         "argumentTypes": null,
                         "hexValue": "7374696c6c206c6f636b696e67",
-                        "id": 554,
+                        "id": 556,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
                         "kind": "string",
                         "lValueRequested": false,
                         "nodeType": "Literal",
-                        "src": "209:15:3",
+                        "src": "262:15:3",
                         "subdenomination": null,
                         "typeDescriptions": {
                           "typeIdentifier": "t_stringliteral_b8e3fda0137d281ba2f9679d14ab7bb7e6d17456633311619cbca52f44350a4c",
@@ -1490,21 +1658,21 @@
                           "typeString": "literal_string \"still locking\""
                         }
                       ],
-                      "id": 548,
+                      "id": 550,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2046,
-                        2047
+                        2167,
+                        2168
                       ],
-                      "referencedDeclaration": 2047,
-                      "src": "177:7:3",
+                      "referencedDeclaration": 2168,
+                      "src": "230:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
                         "typeString": "function (bool,string memory) pure"
                       }
                     },
-                    "id": 555,
+                    "id": 557,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1512,108 +1680,175 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "177:48:3",
+                    "src": "230:48:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 556,
+                  "id": 558,
                   "nodeType": "ExpressionStatement",
-                  "src": "177:48:3"
+                  "src": "230:48:3"
                 },
                 {
-                  "id": 557,
+                  "id": 559,
                   "nodeType": "PlaceholderStatement",
-                  "src": "236:1:3"
+                  "src": "289:1:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 559,
+            "id": 561,
             "name": "notLocking",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 547,
+              "id": 549,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "163:2:3"
+              "src": "216:2:3"
             },
-            "src": "144:101:3",
+            "src": "197:101:3",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 568,
+              "id": 573,
               "nodeType": "Block",
-              "src": "341:47:3",
+              "src": "356:96:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 566,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 568,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "id": 566,
+                          "name": "_lockDuration",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 563,
+                          "src": "375:13:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 567,
+                          "name": "MAX_LOCK_DURATION",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 548,
+                          "src": "392:17:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "375:34:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "646f6e74206c6f636b20746f6f206c6f6e67",
+                        "id": 569,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "411:20:3",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_e91afd4d08ac7b82a8bb399d0fce8265cde619b8e8446bd0bf7ad1c01474efbc",
+                          "typeString": "literal_string \"dont lock too long\""
+                        },
+                        "value": "dont lock too long"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_e91afd4d08ac7b82a8bb399d0fce8265cde619b8e8446bd0bf7ad1c01474efbc",
+                          "typeString": "literal_string \"dont lock too long\""
+                        }
+                      ],
+                      "id": 565,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2167,
+                        2168
+                      ],
+                      "referencedDeclaration": 2168,
+                      "src": "367:7:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 570,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
+                    "kind": "functionCall",
                     "lValueRequested": false,
-                    "leftHandSide": {
-                      "argumentTypes": null,
-                      "id": 564,
-                      "name": "lockDuration",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 546,
-                      "src": "352:12:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "nodeType": "Assignment",
-                    "operator": "=",
-                    "rightHandSide": {
-                      "argumentTypes": null,
-                      "id": 565,
-                      "name": "_lockDuration",
-                      "nodeType": "Identifier",
-                      "overloadedDeclarations": [],
-                      "referencedDeclaration": 561,
-                      "src": "367:13:3",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      }
-                    },
-                    "src": "352:28:3",
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "367:65:3",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
                     }
                   },
-                  "id": 567,
+                  "id": 571,
                   "nodeType": "ExpressionStatement",
-                  "src": "352:28:3"
+                  "src": "367:65:3"
+                },
+                {
+                  "id": 572,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "443:1:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 569,
-            "implemented": true,
-            "kind": "function",
-            "modifiers": [],
-            "name": "_setLockDuration",
-            "nodeType": "FunctionDefinition",
+            "id": 574,
+            "name": "validLockDuration",
+            "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 562,
+              "id": 564,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 561,
+                  "id": 563,
                   "name": "_lockDuration",
                   "nodeType": "VariableDeclaration",
-                  "scope": 569,
-                  "src": "289:21:3",
+                  "scope": 574,
+                  "src": "333:21:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1621,10 +1856,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 560,
+                    "id": 562,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "289:7:3",
+                    "src": "333:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1634,30 +1869,161 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "278:39:3"
+              "src": "332:23:3"
+            },
+            "src": "306:146:3",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 586,
+              "nodeType": "Block",
+              "src": "590:47:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 584,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 582,
+                      "name": "lockDuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 546,
+                      "src": "601:12:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 583,
+                      "name": "_lockDuration",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 576,
+                      "src": "616:13:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "601:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 585,
+                  "nodeType": "ExpressionStatement",
+                  "src": "601:28:3"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 587,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 579,
+                    "name": "_lockDuration",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 576,
+                    "src": "570:13:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                ],
+                "id": 580,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 578,
+                  "name": "validLockDuration",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 574,
+                  "src": "552:17:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$_t_uint256_$",
+                    "typeString": "modifier (uint256)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "552:32:3"
+              }
+            ],
+            "name": "_setLockDuration",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 577,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 576,
+                  "name": "_lockDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 587,
+                  "src": "496:21:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 575,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "496:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "485:39:3"
             },
             "returnParameters": {
-              "id": 563,
+              "id": 581,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "341:0:3"
+              "src": "590:0:3"
             },
-            "scope": 638,
-            "src": "253:135:3",
+            "scope": 650,
+            "src": "460:177:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 583,
+              "id": 601,
               "nodeType": "Block",
-              "src": "467:71:3",
+              "src": "719:71:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 581,
+                    "id": 599,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1666,26 +2032,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 574,
+                        "id": 592,
                         "name": "unlockTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 544,
-                        "src": "478:10:3",
+                        "src": "730:10:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 576,
+                      "id": 594,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 575,
+                        "id": 593,
                         "name": "_member",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 571,
-                        "src": "489:7:3",
+                        "referencedDeclaration": 589,
+                        "src": "741:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1696,7 +2062,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "478:19:3",
+                      "src": "730:19:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1710,7 +2076,7 @@
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       },
-                      "id": 580,
+                      "id": 598,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1719,18 +2085,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 577,
+                          "id": 595,
                           "name": "block",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2033,
-                          "src": "500:5:3",
+                          "referencedDeclaration": 2154,
+                          "src": "752:5:3",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_block",
                             "typeString": "block"
                           }
                         },
-                        "id": 578,
+                        "id": 596,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1738,7 +2104,7 @@
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
                         "referencedDeclaration": null,
-                        "src": "500:15:3",
+                        "src": "752:15:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
@@ -1748,53 +2114,53 @@
                       "operator": "+",
                       "rightExpression": {
                         "argumentTypes": null,
-                        "id": 579,
+                        "id": 597,
                         "name": "lockDuration",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 546,
-                        "src": "518:12:3",
+                        "src": "770:12:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         }
                       },
-                      "src": "500:30:3",
+                      "src": "752:30:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
                       }
                     },
-                    "src": "478:52:3",
+                    "src": "730:52:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 582,
+                  "id": 600,
                   "nodeType": "ExpressionStatement",
-                  "src": "478:52:3"
+                  "src": "730:52:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 584,
+            "id": 602,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_lock",
+            "name": "_setLock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 572,
+              "id": 590,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 571,
+                  "id": 589,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 584,
-                  "src": "421:15:3",
+                  "scope": 602,
+                  "src": "673:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1802,10 +2168,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 570,
+                    "id": 588,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "421:7:3",
+                    "src": "673:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1816,30 +2182,30 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "410:33:3"
+              "src": "662:33:3"
             },
             "returnParameters": {
-              "id": 573,
+              "id": 591,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "467:0:3"
+              "src": "719:0:3"
             },
-            "scope": 638,
-            "src": "396:142:3",
+            "scope": 650,
+            "src": "645:145:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 595,
+              "id": 613,
               "nodeType": "Block",
-              "src": "619:42:3",
+              "src": "871:42:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 593,
+                    "id": 611,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1848,26 +2214,26 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 589,
+                        "id": 607,
                         "name": "unlockTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 544,
-                        "src": "630:10:3",
+                        "src": "882:10:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                           "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "id": 591,
+                      "id": 609,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 590,
+                        "id": 608,
                         "name": "_member",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 586,
-                        "src": "641:7:3",
+                        "referencedDeclaration": 604,
+                        "src": "893:7:3",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
@@ -1878,7 +2244,7 @@
                       "isPure": false,
                       "lValueRequested": true,
                       "nodeType": "IndexAccess",
-                      "src": "630:19:3",
+                      "src": "882:19:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -1889,14 +2255,14 @@
                     "rightHandSide": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 592,
+                      "id": 610,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "652:1:3",
+                      "src": "904:1:3",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -1904,36 +2270,36 @@
                       },
                       "value": "0"
                     },
-                    "src": "630:23:3",
+                    "src": "882:23:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 594,
+                  "id": 612,
                   "nodeType": "ExpressionStatement",
-                  "src": "630:23:3"
+                  "src": "882:23:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 596,
+            "id": 614,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
-            "name": "_unlock",
+            "name": "_relock",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 587,
+              "id": 605,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 586,
+                  "id": 604,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 596,
-                  "src": "573:15:3",
+                  "scope": 614,
+                  "src": "825:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1941,10 +2307,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 585,
+                    "id": 603,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "573:7:3",
+                    "src": "825:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1955,51 +2321,51 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "562:33:3"
+              "src": "814:33:3"
             },
             "returnParameters": {
-              "id": 588,
+              "id": 606,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "619:0:3"
+              "src": "871:0:3"
             },
-            "scope": 638,
-            "src": "546:115:3",
+            "scope": 650,
+            "src": "798:115:3",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 607,
+              "id": 625,
               "nodeType": "Block",
-              "src": "811:45:3",
+              "src": "1063:45:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
-                      "id": 603,
+                      "id": 621,
                       "name": "unlockTime",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 544,
-                      "src": "829:10:3",
+                      "src": "1081:10:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                         "typeString": "mapping(address => uint256)"
                       }
                     },
-                    "id": 605,
+                    "id": 623,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 604,
+                      "id": 622,
                       "name": "_member",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 598,
-                      "src": "840:7:3",
+                      "referencedDeclaration": 616,
+                      "src": "1092:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -2010,37 +2376,37 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "829:19:3",
+                    "src": "1081:19:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 602,
-                  "id": 606,
+                  "functionReturnParameters": 620,
+                  "id": 624,
                   "nodeType": "Return",
-                  "src": "822:26:3"
+                  "src": "1074:26:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 608,
+            "id": 626,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getUnlockTime",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 599,
+              "id": 617,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 598,
+                  "id": 616,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "727:15:3",
+                  "scope": 626,
+                  "src": "979:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2048,10 +2414,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 597,
+                    "id": 615,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "727:7:3",
+                    "src": "979:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2062,19 +2428,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "716:33:3"
+              "src": "968:33:3"
             },
             "returnParameters": {
-              "id": 602,
+              "id": 620,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 601,
+                  "id": 619,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 608,
-                  "src": "797:7:3",
+                  "scope": 626,
+                  "src": "1049:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2082,10 +2448,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 600,
+                    "id": 618,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "797:7:3",
+                    "src": "1049:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2095,65 +2461,65 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "796:9:3"
+              "src": "1048:9:3"
             },
-            "scope": 638,
-            "src": "694:162:3",
+            "scope": 650,
+            "src": "946:162:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 615,
+              "id": 633,
               "nodeType": "Block",
-              "src": "952:38:3",
+              "src": "1204:38:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 613,
+                    "id": 631,
                     "name": "lockDuration",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 546,
-                    "src": "970:12:3",
+                    "src": "1222:12:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 612,
-                  "id": 614,
+                  "functionReturnParameters": 630,
+                  "id": 632,
                   "nodeType": "Return",
-                  "src": "963:19:3"
+                  "src": "1215:19:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 616,
+            "id": 634,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getLockDuration",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 609,
+              "id": 627,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "888:2:3"
+              "src": "1140:2:3"
             },
             "returnParameters": {
-              "id": 612,
+              "id": 630,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 611,
+                  "id": 629,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 616,
-                  "src": "938:7:3",
+                  "scope": 634,
+                  "src": "1190:7:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2161,10 +2527,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 610,
+                    "id": 628,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "938:7:3",
+                    "src": "1190:7:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -2174,230 +2540,134 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "937:9:3"
+              "src": "1189:9:3"
             },
-            "scope": 638,
-            "src": "864:126:3",
+            "scope": 650,
+            "src": "1116:126:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 636,
+              "id": 648,
               "nodeType": "Block",
-              "src": "1108:91:3",
+              "src": "1360:63:3",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
                     "commonType": {
-                      "typeIdentifier": "t_bool",
-                      "typeString": "bool"
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
                     },
-                    "id": 634,
+                    "id": 646,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "commonType": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
-                      },
-                      "id": 627,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": false,
-                      "lValueRequested": false,
-                      "leftExpression": {
+                      "baseExpression": {
                         "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 623,
-                          "name": "unlockTime",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 544,
-                          "src": "1126:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                            "typeString": "mapping(address => uint256)"
-                          }
-                        },
-                        "id": 625,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 624,
-                          "name": "_member",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 618,
-                          "src": "1137:7:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "1126:19:3",
+                        "id": 641,
+                        "name": "unlockTime",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 544,
+                        "src": "1378:10:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
+                          "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                          "typeString": "mapping(address => uint256)"
                         }
                       },
-                      "nodeType": "BinaryOperation",
-                      "operator": "!=",
-                      "rightExpression": {
+                      "id": 643,
+                      "indexExpression": {
                         "argumentTypes": null,
-                        "hexValue": "30",
-                        "id": 626,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": true,
-                        "kind": "number",
-                        "lValueRequested": false,
-                        "nodeType": "Literal",
-                        "src": "1149:1:3",
-                        "subdenomination": null,
+                        "id": 642,
+                        "name": "_member",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 636,
+                        "src": "1389:7:3",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_rational_0_by_1",
-                          "typeString": "int_const 0"
-                        },
-                        "value": "0"
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
                       },
-                      "src": "1126:24:3",
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "nodeType": "IndexAccess",
+                      "src": "1378:19:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
                       }
                     },
                     "nodeType": "BinaryOperation",
-                    "operator": "&&",
+                    "operator": ">",
                     "rightExpression": {
                       "argumentTypes": null,
-                      "commonType": {
-                        "typeIdentifier": "t_uint256",
-                        "typeString": "uint256"
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 644,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 2154,
+                        "src": "1400:5:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
                       },
-                      "id": 633,
+                      "id": 645,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
-                      "leftExpression": {
-                        "argumentTypes": null,
-                        "baseExpression": {
-                          "argumentTypes": null,
-                          "id": 628,
-                          "name": "unlockTime",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 544,
-                          "src": "1154:10:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
-                            "typeString": "mapping(address => uint256)"
-                          }
-                        },
-                        "id": 630,
-                        "indexExpression": {
-                          "argumentTypes": null,
-                          "id": 629,
-                          "name": "_member",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 618,
-                          "src": "1165:7:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_address",
-                            "typeString": "address"
-                          }
-                        },
-                        "isConstant": false,
-                        "isLValue": true,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "nodeType": "IndexAccess",
-                        "src": "1154:19:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      "nodeType": "BinaryOperation",
-                      "operator": ">",
-                      "rightExpression": {
-                        "argumentTypes": null,
-                        "expression": {
-                          "argumentTypes": null,
-                          "id": 631,
-                          "name": "block",
-                          "nodeType": "Identifier",
-                          "overloadedDeclarations": [],
-                          "referencedDeclaration": 2033,
-                          "src": "1176:5:3",
-                          "typeDescriptions": {
-                            "typeIdentifier": "t_magic_block",
-                            "typeString": "block"
-                          }
-                        },
-                        "id": 632,
-                        "isConstant": false,
-                        "isLValue": false,
-                        "isPure": false,
-                        "lValueRequested": false,
-                        "memberName": "timestamp",
-                        "nodeType": "MemberAccess",
-                        "referencedDeclaration": null,
-                        "src": "1176:15:3",
-                        "typeDescriptions": {
-                          "typeIdentifier": "t_uint256",
-                          "typeString": "uint256"
-                        }
-                      },
-                      "src": "1154:37:3",
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "1400:15:3",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_bool",
-                        "typeString": "bool"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
                       }
                     },
-                    "src": "1126:65:3",
+                    "src": "1378:37:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 622,
-                  "id": 635,
+                  "functionReturnParameters": 640,
+                  "id": 647,
                   "nodeType": "Return",
-                  "src": "1119:72:3"
+                  "src": "1371:44:3"
                 }
               ]
             },
             "documentation": null,
-            "id": 637,
+            "id": 649,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "isLocking",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 619,
+              "id": 637,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 618,
+                  "id": 636,
                   "name": "_member",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1027:15:3",
+                  "scope": 649,
+                  "src": "1279:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2405,10 +2675,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 617,
+                    "id": 635,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1027:7:3",
+                    "src": "1279:7:3",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2419,19 +2689,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1016:33:3"
+              "src": "1268:33:3"
             },
             "returnParameters": {
-              "id": 622,
+              "id": 640,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 621,
+                  "id": 639,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 637,
-                  "src": "1097:4:3",
+                  "scope": 649,
+                  "src": "1349:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2439,10 +2709,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 620,
+                    "id": 638,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1097:4:3",
+                    "src": "1349:4:3",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -2452,20 +2722,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1096:6:3"
+              "src": "1348:6:3"
             },
-            "scope": 638,
-            "src": "998:201:3",
+            "scope": 650,
+            "src": "1250:173:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 639,
-        "src": "27:1175:3"
+        "scope": 651,
+        "src": "27:1399:3"
       }
     ],
-    "src": "0:1202:3"
+    "src": "0:1426:3"
   },
   "compiler": {
     "name": "solc",
@@ -2473,7 +2743,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-05-24T05:01:33.882Z",
+  "updatedAt": "2019-05-27T03:41:19.625Z",
   "devdoc": {
     "methods": {}
   },
