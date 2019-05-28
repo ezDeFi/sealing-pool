@@ -31,7 +31,7 @@ module.exports = function (deployer) {
     // await deployer.link(Ownable, NtfPool);
     // await deployer.link(Lockable, NtfPool);
 
-    deployer.deploy(
+ /*    deployer.deploy(
         NtfPool,
         _owner,
         ntfAddress,
@@ -45,7 +45,7 @@ module.exports = function (deployer) {
         'Demo Pool Profile'
 
     ).then(async function () {
-    })
+    }) */
 
     deployer.deploy(
         PoolMaker,
@@ -53,4 +53,6 @@ module.exports = function (deployer) {
         govAddress,
     ).then(async function () {
     })
+    //To flatten this contract, using truffle-flattener `npm install truffle-flattener -g`
+    //truffle-flattener /mnt/c/Projects/sealing-pool/contracts/PoolMaker.sol --output /mnt/c/Projects/sealing-pool/contracts/flattened/PoolMaker.sol
 }
