@@ -3,7 +3,7 @@ import NextyGovernanceABI from './../deployed/NextyGovernance.json'
 import NTFPool from './../build/contracts/NTFPool.json'
 import PoolMaker from './../build/contracts/PoolMaker.json'
 
-const TEST_MODE = true
+const TEST_MODE = false
 const NetId = TEST_MODE ? '111111' : '66666'
 
 export const MIN_POOL_NTF = 1
@@ -24,8 +24,8 @@ export const CONTRACTS =
       },
     'NtfPool':
       {
-        'abi': NTFPool.abi,
-        'address': NTFPool.networks[NetId].address
+        'abi': NTFPool.abi
+        //'address': NTFPool.networks[NetId].address
       },
     'NextyGovernance':
       {
