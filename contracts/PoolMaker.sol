@@ -9,6 +9,7 @@ interface NtfPoolI {
 }
 
 contract PoolMaker {
+    event NewPool(address indexed _address);
     address public ntfAddress;
     address public govAddress;
     address[] public pools;
@@ -51,6 +52,7 @@ contract PoolMaker {
         );
         pools.push(address(ntfPool));
         poolOwner[address(ntfPool)] = _owner;
+        emit NewPool(address(ntfPool));
         return (address(ntfPool));
     }
 
