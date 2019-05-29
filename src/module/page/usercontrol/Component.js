@@ -191,7 +191,7 @@ export default class extends LoggedInPage {
 
               <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
-                    compRate:
+                    Compensation Rate:
                 </Col>
                 <Col span={18}>
                   {this.props.compRate}
@@ -200,7 +200,7 @@ export default class extends LoggedInPage {
 
               <Row style={{ 'marginTop': '15px' }}>
                 <Col span={6}>
-                    logo:
+                    Logo:
                 </Col>
                 <Col span={18}>
                   {this.props.logo}
@@ -268,11 +268,6 @@ export default class extends LoggedInPage {
 
                 <Col span={24} style={{ 'marginTop': '15px' }}>
                   <Button onClick={this.requestOut.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw Request</Button>
-                </Col>
-              </Row>
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={24}>
-                  <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
                 </Col>
               </Row>
             </div>

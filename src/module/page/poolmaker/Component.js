@@ -114,7 +114,7 @@ export default class extends LoggedInPage {
 
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-            CompRate (0..100):
+            Compensation Rate (0% - 100%):
           </Col>
           <Col span={18}>
 
@@ -142,7 +142,7 @@ export default class extends LoggedInPage {
 
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-              Owner's actions delay(hours):
+              Owner action delay (hours):
           </Col>
           <Col span={18}>
 
@@ -156,7 +156,7 @@ export default class extends LoggedInPage {
 
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">createPool</Button>
+            <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">Create a Pool</Button>
           </Col>
         </Row>
       </div>
@@ -170,7 +170,7 @@ export default class extends LoggedInPage {
         </div>
 
         <div className="ebp-page">
-          <h3 className="text-center">Pool's Maker</h3>
+          <h3 className="text-center">Create a Pool</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>  
             {!this.state.newPool && this.poolCreateRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
@@ -185,7 +185,7 @@ export default class extends LoggedInPage {
     return (
       <Breadcrumb style={{ 'marginLeft': '16px', 'marginTop': '16px', float: 'right' }}>
         <Breadcrumb.Item><Link to="/userdata"><Icon type="home" /> Home</Link></Breadcrumb.Item>
-        <Breadcrumb.Item>Pool's Control</Breadcrumb.Item>
+        <Breadcrumb.Item>Pool Management</Breadcrumb.Item>
       </Breadcrumb>
     )
   }

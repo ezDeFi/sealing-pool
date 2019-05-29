@@ -89,7 +89,7 @@ export default class extends LoggedInPage {
 
         <Row>
           <Col span={6}>
-                        Pool's compRate:
+                        Owner Compensation Rate:
           </Col>
           <Col span={6}>
             {this.props.compRate}
@@ -220,8 +220,6 @@ export default class extends LoggedInPage {
             {this.props.unlockHeight} / {this.props.blockNumber}
           </Col>
         </Row>
-        <p><strong> In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed </strong></p>
-        <p><strong> Current: >= 1 NTF or owner of pool </strong></p>
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Amount(NTF):
