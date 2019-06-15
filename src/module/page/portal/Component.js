@@ -73,10 +73,9 @@ export default class extends StandardPage {
     )
   }
 
-  ord_renderContent () { // eslint-disable-line
+  renderContent() {
     return (
-      <div className="">
-        <div className="page-common">
+        <div>
           <Row>
             <h3 className="title">NTF Pools</h3>
           </Row>
@@ -344,6 +343,19 @@ export default class extends StandardPage {
             </div>
             }
           </div>
+        </div>
+      )
+  }
+
+  ord_renderContent () { // eslint-disable-line
+    return (
+      <div className="">
+        <div className="page-common">
+          {/*{this.renderContent()}*/}
+          <Row>
+            <h3 className="title">Pool List</h3>
+          </Row>
+
         </div>
       </div>
     )

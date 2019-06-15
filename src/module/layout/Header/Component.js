@@ -58,7 +58,7 @@ export default class extends BaseComponent {
   }
 
   gotoHomePage() {
-    this.props.history.push('/manage')
+    this.props.history.push('/portal')
   }
 
   toggleMobileMenu() {

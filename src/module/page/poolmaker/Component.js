@@ -17,10 +17,10 @@ export default class extends StandardPage {
   componentDidMount () {
     this.setState({
       owner: this.props.wallet,
-      name: 'name',
-      website: 'website',
-      location: 'location',
-      logo: 'logo',
+      name: '',
+      website: '',
+      location: '',
+      logo: '',
       compRate: 50,
       maxLock: 7,
       delay: 24,
@@ -49,116 +49,104 @@ export default class extends StandardPage {
     }
   }
 
+  renderRowText(title, content) {
+    return (
+      <Row>
+        <Col md={8} xs={8}>
+          <span className="text-left">{title}</span>
+        </Col>
+        <Col md={16} xs={16}>
+          <div className="text-right">
+            {content}
+          </div>
+        </Col>
+      </Row>
+    )
+  }
+
+  renderRowInput(title, content) {
+    return (
+      <Row>
+        <Col md={8} xs={8}>
+          <span className="text-left">{title}</span>
+        </Col>
+        <Col md={16} xs={16}>
+          <div className="">
+            {content}
+          </div>
+        </Col>
+      </Row>
+    )
+  }
+
   poolCreateRender () {
     return (
       <div>
-        <Row>
-          <Col span={6}>
-            Owner
-          </Col>
-          <Col span={18}>
-            <Input
-              value={this.state.owner}
-              onChange={this.onOwnerChange.bind(this)}
-            />
-          </Col>
-        </Row>
+        {this.renderRowInput(`Owner`, <span>
+          <Input
+            value={this.state.owner}
+            onChange={this.onOwnerChange.bind(this)}
+          />
+        </span>)}
 
-        <Row>
-          <Col span={6}>
-            Pool's Name
-          </Col>
-          <Col span={18}>
-            <Input
-              value={this.state.name}
-              onChange={this.onNameChange.bind(this)}
-            />
-          </Col>
-        </Row>
+        {this.renderRowInput(`Pool's Name`, <span>
+          <Input
+            placeholder="Your pool name"
+            onChange={this.onNameChange.bind(this)}
+          />
+        </span>)}
 
-        <Row>
-          <Col span={6}>
-            Pool's Website
-          </Col>
-          <Col span={18}>
-            <Input
-              value={this.state.website}
-              onChange={this.onWebsiteChange.bind(this)}
-            />
-          </Col>
-        </Row>
+        {this.renderRowInput(`Pool's Website`, <span>
+          <Input
+            placeholder="Your website url"
+            value={this.state.website}
+            onChange={this.onWebsiteChange.bind(this)}
+          />
+        </span>)}
 
-        <Row>
-          <Col span={6}>
-            Pool's Location
-          </Col>
-          <Col span={18}>
-            <Input
-              value={this.state.location}
-              onChange={this.onLocationChange.bind(this)}
-            />
-          </Col>
-        </Row>
+        {this.renderRowInput(`Pool's Location`, <span>
+          <Input
+            placeholder="Your pool location"
+            value={this.state.location}
+            onChange={this.onLocationChange.bind(this)}
+          />
+        </span>)}
 
-        <Row>
-          <Col span={6}>
-            Pool's logo
-          </Col>
-          <Col span={18}>
-            <Input
-              value={this.state.logo}
-              onChange={this.onlogoChange.bind(this)}
-            />
-          </Col>
-        </Row>
+        {this.renderRowInput(`Pool's logo`, <span>
+          <Input
+            placeholder="Your pool logo"
+            value={this.state.logo}
+            onChange={this.onlogoChange.bind(this)}
+          />
+        </span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={6}>
-            CompRate (0..100):
-          </Col>
-          <Col span={18}>
-
-            <InputNumber
+        {this.renderRowInput(`CompRate (0..100):`, <span>
+          <InputNumber
               defaultValue={0}
               value={this.state.compRate}
               onChange={this.onCompRateChange.bind(this)}
             />
-          </Col>
-        </Row>
+        </span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={6}>
-              Max Lock Duration (days):
-          </Col>
-          <Col span={18}>
-
-            <InputNumber
+        {this.renderRowInput(`Max Lock Duration (days):`, <span>
+          <InputNumber
               defaultValue={0}
               value={this.state.maxLock}
               onChange={this.onMaxLockChange.bind(this)}
             />
-          </Col>
-        </Row>
+        </span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={6}>
-              Owner's actions delay(hours):
-          </Col>
-          <Col span={18}>
-
-            <InputNumber
+        {this.renderRowInput(`Owner's actions delay(hours):`, <span>
+          <InputNumber
               defaultValue={0}
               value={this.state.delay}
               onChange={this.onDelayChange.bind(this)}
             />
-          </Col>
-        </Row>
+        </span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">createPool</Button>
-          </Col>
-        </Row>
+        {this.renderRowInput(`Owner's actions delay(hours):`, <span>
+          <Button onClick={this.createPool.bind(this)} type="ebp">createPool</Button>
+        </span>)}
       </div>
     )
   }
@@ -166,12 +154,12 @@ export default class extends StandardPage {
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
-        <div className="ebp-page">
-          <h3 className="text-center">Pool's Maker</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
+        <div className="page-common">
+          <Row>
+            <h3 className="title">Pool's Maker</h3>
+          </Row>
+          <div>
             {!this.state.newPool && this.poolCreateRender()}
-            <div className="ebp-header-divider dashboard-rate-margin">
-            </div>
           </div>
         </div>
       </div>

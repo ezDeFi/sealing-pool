@@ -179,7 +179,7 @@ export default class extends StandardPage {
             <h3 className="title">Pool's Control</h3>
           </Row>
           <div>
-            {!this.props.mySelectedPool ? this.mainContentRender() : (
+            {this.props.mySelectedPool ? this.mainContentRender() : (
               <div>
                 <p>
                   You are not owner of any pool!

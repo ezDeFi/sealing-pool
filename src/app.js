@@ -79,7 +79,7 @@ function setupWeb3 () {
                   await store.dispatch(contractsRedux.actions.poolMaker_update(contract.PoolMaker))
                   await store.dispatch(userRedux.actions.web3_update(web3))
                   await userService.metaMaskLogin(accounts[0])
-                  userService.path.push('/usercontrol')
+                  userService.path.push('/portal')
                 }
                 isLogined = true
             } else if (!isLogined) {
