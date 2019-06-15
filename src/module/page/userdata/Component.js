@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line
-import LoggedInPage from '../LoggedInPage'
+import StandardPage from '../StandardPage'
 import Footer from '@/module/layout/Footer/Container' // eslint-disable-line
 import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
@@ -13,7 +13,7 @@ const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
 }
 
-export default class extends LoggedInPage {
+export default class extends StandardPage {
   componentDidMount () {
     this.loadData()
   }
@@ -101,7 +101,7 @@ export default class extends LoggedInPage {
                 {this.props.isLocking ? 'locked' : 'not locked'}
               </Col>
             </Row>
-            {this.props.isLocking && 
+            {this.props.isLocking &&
             <Row style={{ 'marginTop': '15px' }}>
               <Col span={6}>
                 UnlockTime:

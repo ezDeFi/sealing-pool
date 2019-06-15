@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line
-import LoggedInPage from '../LoggedInPage'
+import StandardPage from '../StandardPage'
 import Footer from '@/module/layout/Footer/Container' // eslint-disable-line
 import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
@@ -15,7 +15,7 @@ const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
 }
 
-export default class extends LoggedInPage {
+export default class extends StandardPage {
   componentDidMount () {
     this.loadData()
   }
@@ -47,19 +47,48 @@ export default class extends LoggedInPage {
 
   poolsRender () {
     let source = this.props.myPools ? this.props.myPools : []
-    //console.log('data', Object.keys(source).length)
+
+    const title = (<Col>
+        SelectedPool: <img width={24} height={24} src={this.props.logo} />
+      </Col>
+    )
+
+    const content = (
+      <Select defaultValue={this.props.mySelectedPool} className='maxWidth' onChange={this.handleChange.bind(this)}>
+        {Object.keys(source).length > 0 && Object.values(source).map((d, key) => (
+          <Option key={key} value={d}>{this.props.getName(d)} - {cutString(d)}</Option>
+        ))}
+      </Select>
+    )
+
+    return this.renderRowInput(title, content)
+  }
+
+  renderRowText(title, content) {
     return (
-      <Row style={{ 'marginTop': '15px' }}>
-        <Col span={6}>
-          SelectedPool: <img width={24} height={24} src={this.props.logo} />
+      <Row>
+        <Col md={8} xs={8}>
+          <span className="text-left">{title}</span>
         </Col>
-        <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-        <Col span={18}>
-          <Select defaultValue={this.props.mySelectedPool} className='maxWidth' onChange={this.handleChange.bind(this)}>
-            {Object.keys(source).length > 0 && Object.values(source).map((d, key) => (
-              <Option key={key} value={d}>{this.props.getName(d)} - {cutString(d)}</Option>
-            ))}
-          </Select>
+        <Col md={16} xs={16}>
+          <div className="text-right">
+            {content}
+          </div>
+        </Col>
+      </Row>
+    )
+  }
+
+  renderRowInput(title, content) {
+    return (
+      <Row>
+        <Col md={8} xs={8}>
+          <span className="text-left">{title}</span>
+        </Col>
+        <Col md={16} xs={16}>
+          <div className="">
+            {content}
+          </div>
         </Col>
       </Row>
     )
@@ -69,233 +98,75 @@ export default class extends LoggedInPage {
     return (
       <div>
         {this.poolsRender()}
-        <Row>
-          <Col span={6}>
-                        Pool's address:
-          </Col>
-          <Col span={6}>
-            {this.props.address}
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's address:`, <span>{this.props.address}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        Pool's name:
-          </Col>
-          <Col span={6}>
-            {this.props.name}
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's name:`, <span>{this.props.name}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        Pool's compRate:
-          </Col>
-          <Col span={6}>
-            {this.props.compRate}
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's compRate:`, <span>{this.props.compRate}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        Pool's website:
-          </Col>
-          <Col span={6}>
-            <a href={this.props.website} target='_'>{this.props.website}</a>
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's website:`, <a href={this.props.website} target='_'>{this.props.website}</a>)}
 
-        <Row>
-          <Col span={6}>
-                        Pool's location:
-          </Col>
-          <Col span={6}>
-            {this.props.location}
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's location:`, <span>{this.props.location}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        Pool's logo:
-          </Col>
-          <Col span={6}>
-            {this.props.logo}
-          </Col>
-        </Row>
+        {this.renderRowText(`Pool's logo:`, <span>{this.props.logo}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        signer address:
-          </Col>
-          <Col span={6}>
-            {this.props.signer}
-          </Col>
-        </Row>
+        {this.renderRowText(`Signer address:`, <span>{this.props.signer}</span>)}
 
-        {/* <Row>
-          <Col span={6}>
-                        owner:
-          </Col>
-          <Col span={6}>
-            {this.props.owner}
-          </Col>
-        </Row> */}
+        {this.renderRowText(`Owner's balance:`, <span>{this.props.ownerBalance}</span>)}
 
-        <Row>
-          <Col span={6}>
-                        owner's balance:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.ownerBalance)} NTY
-          </Col>
-        </Row>
+        {this.renderRowText(`Lock duration / MAX:`, <span>{this.props.lockDuration} / {this.props.maxLockDuration} Day(s)</span>)}
 
-        <Row>
-          <Col span={6}>
-                        lockDuration / MAX:
-          </Col>
-          <Col span={6}>
-            {this.props.lockDuration} / {this.props.maxLockDuration} Day(s)
-          </Col>
-        </Row>
+        {this.renderRowText(`Owner's actionDelay:`, <span>{this.props.ownerDelay} Hour(s)</span>)}
 
-        <Row>
-          <Col span={6}>
-                        Owner's actionDelay:
-          </Col>
-          <Col span={6}>
-            {this.props.ownerDelay} Hour(s)
-          </Col>
-        </Row>
+        {this.renderRowText(`Fund:`, <span>{weiToEther(this.props.fund)} NTY</span>)}
 
-        <Row>
-          <Col span={6}>
-                        fund:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.fund)} NTY
-          </Col>
-        </Row>
+        {this.renderRowText(`NTY Balance:`, <span>{weiToEther(this.props.poolNtyBalance)} NTY</span>)}
 
-        <Row>
-          <Col span={6}>
-            NTY Balance:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.poolNtyBalance)} NTY
-          </Col>
-        </Row>
+        {this.renderRowText(`NTF Balance:`, <span>{weiToEther(this.props.poolNtfBalance)} NTF</span>)}
 
-        <Row>
-          <Col span={6}>
-            NTF Balance:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.poolNtfBalance)} NTF
-          </Col>
-        </Row>
+        {this.renderRowText(`Stake require:`, <span>{weiToEther(this.props.stakeRequire)} NTF</span>)}
 
-        <Row>
-          <Col span={6}>
-            Stake require:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.stakeRequire)} NTF
-          </Col>
-        </Row>
+        {this.renderRowText(`Status:`, <span>{this.getStatus(Number(this.props.poolStatus))}</span>)}
 
-        <Row>
-          <Col span={6}>
-            Status:
-          </Col>
-          <Col span={6}>
-            {this.getStatus(Number(this.props.poolStatus))}
-          </Col>
-        </Row>
-        <Row>
-          <Col span={6}>
-            Unlock / cur. Block:
-          </Col>
-          <Col span={6}>
-            {this.props.unlockHeight} / {this.props.blockNumber}
-          </Col>
-        </Row>
-        <p><strong> In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed </strong></p>
-        <p><strong> Current: >= 1 NTF or owner of pool </strong></p>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={6}>
-            Amount(NTF):
-          </Col>
-          <Col span={18}>
+        {this.renderRowText(`Unlock / cur. Block:`, <span>{this.props.unlockHeight} / {this.props.blockNumber}</span>)}
+        <h3 className="title-section">In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed</h3>
+        <p>Current: >= 1 NTF or owner of pool</p>
 
-            <InputNumber
+        {this.renderRowInput(`Amount(NTF):`, <span>
+          <InputNumber
               className = "maxWidth"
               defaultValue={0}
               value={this.state.depositAmount}
               onChange={this.onDepositAmountChange.bind(this)}
-            />
-          </Col>
-          <Col span={24} style={{ 'marginTop': '15px' }}>
-            <Button onClick={this.deposit.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Deposit</Button>
-          </Col>
-        </Row>
+            /></span>)}
 
-        <Row>
-          <Col span={6}>
-            Signer
-          </Col>
-          <Col span={18}>
-            <Input
+        {this.renderRowInput(``, <span><Button onClick={this.deposit.bind(this)} type="ebp">Deposit</Button></span>)}
+
+        {this.renderRowInput(`Signer:`, <span>
+          <Input
               value={this.state.signer}
               onChange={this.onSignerChange.bind(this)}
-            />
-          </Col>
-        </Row>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.joinGov.bind(this)} type="primary" className="btn-margin-top submit-button">Join Gov</Button>
-          </Col>
-        </Row>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.leaveGov.bind(this)} type="primary" className="btn-margin-top submit-button">Leave Gov</Button>
-          </Col>
-        </Row>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.tokenPoolWithdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Pool's Token Withdraw</Button>
-          </Col>
-        </Row>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
-          </Col>
-        </Row>
+            /></span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={6}>
-            _lockDuration
-          </Col>
-          <Col span={18}>
-            <InputNumber
+        {this.renderRowInput(``, <span>
+            <Button onClick={this.joinGov.bind(this)} type="ebp">Join Gov</Button>
+            <Button onClick={this.leaveGov.bind(this)} type="ebp">Leave Gov</Button>
+            <Button onClick={this.tokenPoolWithdraw.bind(this)} type="ebp">Pool's Token Withdraw</Button>
+            <Button onClick={this.claimFund.bind(this)} type="ebp">Claim Fund</Button>
+          </span>)}
+
+        {this.renderRowInput(`_lockDuration:`, <span>
+          <InputNumber
               style = {{'width' : '100%'}}
               defaultValue = {0}
               value={this.state.lockDuration}
               onChange={this.onLockDurationChange.bind(this)}
-            />
-          </Col>
-        </Row>
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.setLockDuration.bind(this)} type="primary" className="btn-margin-top submit-button">Set lockDuration</Button>
-          </Col>
-        </Row>
+            /></span>)}
 
-        <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
-          </Col>
-        </Row>
+        {this.renderRowInput(``, <span>
+            <Button onClick={this.setLockDuration.bind(this)} type="ebp">Set lockDuration</Button>
+            <Button onClick={this.virtuellMining.bind(this)} type="ebp" >Mining(virtuell) 3ETH</Button>
+          </span>)}
       </div>
     )
   }
@@ -303,21 +174,18 @@ export default class extends LoggedInPage {
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
-        <div className="ebp-header-divider">
-        </div>
-
-        <div className="ebp-page">
-          <h3 className="text-center">Pool's Control</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
-            {this.props.mySelectedPool ? this.mainContentRender() : (
+        <div className="page-common">
+          <Row>
+            <h3 className="title">Pool's Control</h3>
+          </Row>
+          <div>
+            {!this.props.mySelectedPool ? this.mainContentRender() : (
               <div>
                 <p>
                   You are not owner of any pool!
                 </p>
               </div>
             )}
-            <div className="ebp-header-divider dashboard-rate-margin">
-            </div>
           </div>
         </div>
       </div>
@@ -371,7 +239,7 @@ export default class extends LoggedInPage {
   tokenPoolWithdraw () {
     this.props.tokenPoolWithdraw()
   }
-  
+
   setLockDuration () {
     this.props.setLockDuration(this.state.lockDuration)
   }

@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line
-import LoggedInPage from '../LoggedInPage'
+import StandardPage from '../StandardPage'
 import Footer from '@/module/layout/Footer/Container' // eslint-disable-line
 import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
@@ -13,7 +13,7 @@ const weiToEther = (wei) => {
   return Number(web3.utils.fromWei(wei.toString())).toFixed(4)
 }
 
-export default class extends LoggedInPage {
+export default class extends StandardPage {
   componentDidMount () {
     this.setState({
       owner: this.props.wallet,
@@ -166,12 +166,9 @@ export default class extends LoggedInPage {
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
-        <div className="ebp-header-divider">
-        </div>
-
         <div className="ebp-page">
           <h3 className="text-center">Pool's Maker</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>  
+          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
             {!this.state.newPool && this.poolCreateRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>

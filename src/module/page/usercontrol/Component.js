@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line
-import LoggedInPage from '../LoggedInPage'
+import StandardPage from '../StandardPage'
 import Footer from '@/module/layout/Footer/Container' // eslint-disable-line
 import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
@@ -21,7 +21,7 @@ const toTime = (value) => {
   return dateString
 }
 
-export default class extends LoggedInPage {
+export default class extends StandardPage {
   componentDidMount () {
     this.loadData()
   }
@@ -73,206 +73,270 @@ export default class extends LoggedInPage {
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
-        <div className="ebp-header-divider">
-
-        </div>
-        <div className="ebp-page">
-          <h3 className="text-center">NTF Pools</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3" style={{ 'textAlign': 'left' }}>
+        <div className="page-common">
+          <Row>
+            <h3 className="title">NTF Pools</h3>
+          </Row>
+          <div>
             {this.props.selectedPool && this.poolsRender()}
             <Row>
-              <Col span={6}>
-                  Coin Balance:
+              <Col md={8} xs={8}>
+                <span className="text-left">Coin Balance:</span>
               </Col>
-              <Col span={6}>
-                {weiToEther(this.props.balance)} NTY
-              </Col>
-            </Row>
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                Token Balance:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {weiToEther(this.props.myNtfBalance)} NTF
+              <Col md={16} xs={16}>
+                <div className="text-right">
+                  {weiToEther(this.props.balance)} NTY
+                </div>
               </Col>
             </Row>
-            <h3>Private Informations</h3>
+            <Row>
+              <Col md={8} xs={8}>
+                <span className="text-left">Token Balance:</span>
+              </Col>
+              <Col md={16} xs={16}>
+                <div className="text-right">
+                  {weiToEther(this.props.myNtfBalance)} NTF
+                </div>
+              </Col>
+            </Row>
+            <h3 className="title-section">Private Informations</h3>
             {this.props.selectedPool &&
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                Deposited:
-              </Col>
-              <Col span={6}>
-                {weiToEther(this.props.myNtfDeposited)} NTF
-              </Col>
-            </Row>
+            <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Deposited:</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {weiToEther(this.props.myNtfDeposited)} NTF
+                  </div>
+                </Col>
+              </Row>
             }
             <hr />
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                Pending out:
+            <Row>
+              <Col md={8} xs={8}>
+                <span className="text-left">Pending out:</span>
               </Col>
-              <Col span={6}>
-                {weiToEther(this.props.myPendingOutAmount)} NTF
+              <Col md={16} xs={16}>
+                <div className="text-right">
+                  {weiToEther(this.props.myPendingOutAmount)} NTF
+                </div>
               </Col>
-              {!this.props.isLocking &&
-              <Col span={24} style={{ 'marginTop': '15px' }}>
-                <Button onClick={this.withdraw.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw</Button>
-              </Col>
-              }
             </Row>
-            <hr />
+            <Row>
+              <Col md={8} xs={8}>
+                <span className="text-left"></span>
+              </Col>
+              <Col md={16} xs={16}>
+                {!this.props.isLocking && <Button onClick={this.withdraw.bind(this)} type="ebp">Withdraw</Button>}
+              </Col>
+            </Row>
             {this.props.selectedPool &&
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                Status:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {this.props.isLocking ? 'locked' : 'not locked'}
-              </Col>
-            </Row>
+            <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Status:</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {this.props.isLocking ? 'Locked' : 'Not locked'}
+                  </div>
+                </Col>
+              </Row>
             }
             {this.props.selectedPool && this.props.isLocking &&
-            <Row style={{ 'marginTop': '15px' }}>
-              <Col span={6}>
-                UnlockTime:
-              </Col>
-              <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
-              <Col span={18}>
-                {toTime(this.props.myUnlockTime)}
-              </Col>
-            </Row>}
+            <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">UnlockTime:</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {toTime(this.props.myUnlockTime)}
+                  </div>
+                </Col>
+              </Row>
+            }
             {!this.props.selectedPool &&
-              <p> Not found any pool!</p>
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left"></span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <p>Not found any pool!</p>
+                </Col>
+              </Row>
             }
             {this.props.selectedPool &&
             <div>
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                              Reward Balance:
+              <Row>
+                  <Col md={8} xs={8}>
+                    <span className="text-left">Reward Balance:</span>
+                  </Col>
+                  <Col md={16} xs={16}>
+                    <div className="text-right">
+                      {weiToEther(this.props.myRewardBalance)} NTY
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={8} xs={8}>
+                  </Col>
+                  <Col md={16} xs={16}>
+                    <div className="">
+                      <Button onClick={this.claim.bind(this)} type="ebp">Claim reward</Button>
+                    </div>
+                  </Col>
+                </Row>
+
+              <h3 className="title-section">Current Pool's Informations</h3>
+              <Row>
+                <Col md={8} xs={24}>
+                  <span className="text-left">Pool's Owner:</span>
                 </Col>
-                <Col span={18}>
-                  {weiToEther(this.props.myRewardBalance)} NTY
-                </Col>
-                <Col span={24} style={{ 'marginTop': '15px' }}>
-                  <Button onClick={this.claim.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Claim reward</Button>
+                <Col md={16} xs={24}>
+                  <div className="text-right">
+                    {this.props.owner}
+                  </div>
                 </Col>
               </Row>
 
-              <h3>Current Pool's Informations</h3>
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Pool's Owner:
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Pool's Website:</span>
                 </Col>
-                <Col span={18}>
-                  {this.props.owner}
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Pool's Website:
-                </Col>
-                <Col span={18}>
-                  <a href={this.props.website} target='_'>{this.props.website}</a>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    <a href={this.props.website} target='_'>{this.props.website}</a>
+                  </div>
                 </Col>
               </Row>
 
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Pool's Location:
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Pool's Location:</span>
                 </Col>
-                <Col span={18}>
-                  {this.props.location}
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    compRate:
-                </Col>
-                <Col span={18}>
-                  {this.props.compRate}
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {this.props.location}
+                  </div>
                 </Col>
               </Row>
 
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    logo:
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">compRate:</span>
                 </Col>
-                <Col span={18}>
-                  {this.props.logo}
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Status:
-                </Col>
-                <Col span={18}>
-                  {this.props.poolStatus}
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {this.props.compRate}
+                  </div>
                 </Col>
               </Row>
 
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Holding Ntf Balance:
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Logo:</span>
                 </Col>
-                <Col span={18}>
-                  {weiToEther(this.props.poolNtfBalance)} NTF
-                </Col>
-              </Row>
-
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Holding Nty Balance:
-                </Col>
-                <Col span={18}>
-                  {weiToEther(this.props.poolNtyBalance)} NTY
+                <Col md={16} xs={16}>
+                  <div className="">
+                    {this.props.logo && <img width={24} height={24} src={this.props.logo} />}
+                  </div>
                 </Col>
               </Row>
 
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                  Amount(NTF):
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Status:</span>
                 </Col>
-                <Col span={18}>
-
-                  <InputNumber
-                    className = "maxWidth"
-                    defaultValue={0}
-                    value={this.state.depositAmount}
-                    onChange={this.onDepositAmountChange.bind(this)}
-                  />
-                </Col>
-                <Col span={24} style={{ 'marginTop': '15px' }}>
-                  <Button onClick={this.deposit.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Deposit</Button>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {this.props.poolStatus}
+                  </div>
                 </Col>
               </Row>
 
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={6}>
-                    Amount(NTF):
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Holding Ntf Balance:</span>
                 </Col>
-                <Col span={18}>
-
-                  <InputNumber
-                    className = "maxWidth"
-                    defaultValue={0}
-                    value={this.state.requestOutAmount}
-                    onChange={this.onRequestOutAmountChange.bind(this)}
-                  />
-                </Col>
-
-                <Col span={24} style={{ 'marginTop': '15px' }}>
-                  <Button onClick={this.requestOut.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Withdraw Request</Button>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {weiToEther(this.props.poolNtfBalance)} NTF
+                  </div>
                 </Col>
               </Row>
-              <Row style={{ 'marginTop': '15px' }}>
-                <Col span={24}>
-                  <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
+
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Holding Nty Balance:</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="text-right">
+                    {weiToEther(this.props.poolNtyBalance)} NTY
+                  </div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Amount(NTF):</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="">
+                    <InputNumber
+                      className = "maxWidth"
+                      defaultValue={0}
+                      value={this.state.depositAmount}
+                      onChange={this.onDepositAmountChange.bind(this)}
+                    />
+                  </div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left"></span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="">
+                    <Button onClick={this.deposit.bind(this)} type="ebp">Deposit</Button>
+                  </div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={8} xs={8}>
+                  <span className="text-left">Amount(NTF):</span>
+                </Col>
+                <Col md={16} xs={16}>
+                  <div className="">
+                    <InputNumber
+                      className = "maxWidth"
+                      defaultValue={0}
+                      value={this.state.requestOutAmount}
+                      onChange={this.onRequestOutAmountChange.bind(this)}
+                    />
+                  </div>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={8} xs={24}>
+                  <span className="text-left"></span>
+                </Col>
+                <Col md={16} xs={24}>
+                  <div className="">
+                    <Button onClick={this.requestOut.bind(this)} type="ebp">Withdraw Request</Button>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={8} xs={24}>
+                  <span className="text-left"></span>
+                </Col>
+                <Col md={16} xs={24}>
+                  <div className="">
+                    <Button onClick={this.virtuellMining.bind(this)} type="ebp">Mining(virtuell) 3ETH</Button>
+                  </div>
                 </Col>
               </Row>
             </div>
