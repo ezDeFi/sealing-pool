@@ -58,7 +58,7 @@ export default class extends BaseComponent {
   }
 
   gotoHomePage() {
-    this.props.history.push('/portal')
+    this.props.history.push('/usercontrol')
   }
 
   toggleMobileMenu() {
@@ -74,13 +74,13 @@ export default class extends BaseComponent {
         <div className="header-menu menu-desktop">
           {this.props.isLogin && <Menu onClick={this.clickItem.bind(this)} mode="horizontal" selectedKeys={this.getSelectedKeys()}>
             <Menu.Item key="usercontrol">
-              <Icon type="credit-card" /> {I18N.get('0002')}
+              <Icon type="user" /> {I18N.get('0002')}
             </Menu.Item>
             <Menu.Item key="poolcontrol">
-              <Icon type="credit-card" /> {I18N.get('0004')}
+              <Icon type="database" /> {I18N.get('0004')}
             </Menu.Item>
             <Menu.Item key="poolmaker">
-              <Icon type="credit-card" /> {I18N.get('0017')}
+              <Icon type="file-add" /> {I18N.get('0017')}
             </Menu.Item>
             {isLogin &&  <Menu.Item key="logout">
               <Icon type="logout" style={{color: "#1C7BFF"}} /> {I18N.get('0204')}

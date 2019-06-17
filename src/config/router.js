@@ -4,7 +4,6 @@ import UserDataPage from '@/module/page/userdata/Container'
 import PoolControlPage from '@/module/page/poolcontrol/Container'
 import PoolDataPage from '@/module/page/pooldata/Container'
 import PoolMakerPage from '@/module/page/poolmaker/Container'
-import PortalPage from '@/module/page/portal/Container'
 
 import LoginPage from '@/module/page/login/Container'
 
@@ -14,10 +13,6 @@ export default [
   {
     path: '/',
     page: LoginPage
-  },
-  {
-    path: '/portal',
-    page: PortalPage
   },
   {
     path: '/userdata',

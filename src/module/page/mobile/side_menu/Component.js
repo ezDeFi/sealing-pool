@@ -76,13 +76,13 @@ export default class extends BaseComponent {
                             </Menu.Item>
                         }
                         <Menu.Item key="usercontrol">
-                          <Icon type="credit-card" /> {I18N.get('0002')}
+                          <Icon type="user" /> {I18N.get('0002')}
                         </Menu.Item>
                         <Menu.Item key="poolcontrol">
-                          <Icon type="credit-card" /> {I18N.get('0004')}
+                          <Icon type="database" /> {I18N.get('0004')}
                         </Menu.Item>
                         <Menu.Item key="poolmaker">
-                          <Icon type="credit-card" /> {I18N.get('0017')}
+                          <Icon type="file-add" /> {I18N.get('0017')}
                         </Menu.Item>
                     </Menu>
                 </Col>
