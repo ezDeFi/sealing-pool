@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./../../node_modules/openzeppelin-eth/contracts/ownership/Ownable.sol";
+import "openzeppelin-eth/contracts/ownership/Ownable.sol";
 import "./CoinShare.sol";
 import "./Request.sol";
 
@@ -238,7 +238,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     }
 
 /*
-    TEST TEST TEST TEST TEST TEST TEST TEST TEST 
+    TEST TEST TEST TEST TEST TEST TEST TEST TEST
 */
     // send nty to contract as Reward from Core
     function virtuellMining()
