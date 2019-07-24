@@ -48,7 +48,7 @@ export default class extends BaseComponent {
   }
 
   componentDidMount () {
-    document.title = 'Nexty Governance'
+    document.title = 'Nexty Poolmaster'
     window.addEventListener('resize', this.updateDimensions)
     this.loadData()
   }

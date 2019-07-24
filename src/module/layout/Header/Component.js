@@ -11,7 +11,7 @@ const { Header } = Layout // eslint-disable-line
 
 export default class extends BaseComponent {
   componentDidMount () {
-    document.title = 'Nexty Governance'
+    document.title = 'Nexty Poolmaster'
   }
 
   buildAcctDropdown () {
