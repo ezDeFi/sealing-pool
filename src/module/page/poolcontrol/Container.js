@@ -37,10 +37,10 @@ export default createContainer(Component, (state) => {
 
   if (state.user.wallet !== curWallet && !curWallet) {
     curWallet = state.user.wallet
-    loadOnInit()
-    setInterval(() => {
-      load()
-    }, 5000)
+    // loadOnInit()
+    // setInterval(() => {
+    //   load()
+    // }, 5000)
   }
 
   return {
@@ -76,7 +76,7 @@ export default createContainer(Component, (state) => {
       return ntfPoolService.getName(_address)
     },
     async selectPool (_address) {
-      await ntfPoolService.selectPool(_address)
+      await ntfPoolService.selectMyPool(_address)
     },
     async virtuellMining () {
       await ntfPoolService.virtuellMining()
@@ -95,6 +95,12 @@ export default createContainer(Component, (state) => {
     },
     async setLockDuration (_lockDuration) {
       await ntfPoolService.setLockDuration(_lockDuration)
+    },
+    async approve (amount) {
+      await ntfTokenService.approve(amount)
+    },
+    async deposit (amount) {
+      await ntfPoolService.deposit(amount)
     }
   }
 })

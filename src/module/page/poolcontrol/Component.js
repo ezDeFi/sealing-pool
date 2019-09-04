@@ -45,12 +45,18 @@ export default class extends LoggedInPage {
     this.props.selectPool(value)
   }
 
+  selectPool () {
+    const address = this.state.poolAddress
+    console.log('xxx', address) 
+    this.props.selectPool(address)
+  }
+
   poolsRender () {
     let source = this.props.myPools ? this.props.myPools : []
     //console.log('data', Object.keys(source).length)
     return (
       <Row style={{ 'marginTop': '15px' }}>
-        <Col span={6}>
+        {/* <Col span={6}>
           SelectedPool: <img width={24} height={24} src={this.props.logo} />
         </Col>
         <Col xs={24} sm={24} md={24} lg={0} xl={0}/>
@@ -60,6 +66,20 @@ export default class extends LoggedInPage {
               <Option key={key} value={d}>{this.props.getName(d)} - {cutString(d)}</Option>
             ))}
           </Select>
+        </Col> */}
+        <Col span={6}>
+          Pool Address:
+        </Col>
+        <Col span={18}>
+          <Input
+            className = "maxWidth"
+            onChange={this.onPoolAddressChange.bind(this)}
+          />
+        </Col>
+        <Col span={24}>
+          <Button className = "maxWidth" type = "primary" onClick={() => this.selectPool()}>
+            Select
+          </Button>
         </Col>
       </Row>
     )
@@ -68,13 +88,21 @@ export default class extends LoggedInPage {
   mainContentRender () {
     return (
       <div>
-        {this.poolsRender()}
         <Row>
           <Col span={6}>
                         Pool's address:
           </Col>
           <Col span={6}>
-            {this.props.address}
+            {this.props.mySelectedPool}
+          </Col>
+        </Row>
+
+        <Row>
+          <Col span={6}>
+                        Owner:
+          </Col>
+          <Col span={6}>
+            {this.props.owner}
           </Col>
         </Row>
 
@@ -307,13 +335,8 @@ export default class extends LoggedInPage {
         <div className="ebp-page">
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
-            {this.props.mySelectedPool ? this.mainContentRender() : (
-              <div>
-                <p>
-                  You are not owner of any pool!
-                </p>
-              </div>
-            )}
+            {this.poolsRender()}
+            {this.props.mySelectedPool && this.mainContentRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>
           </div>
@@ -345,6 +368,12 @@ export default class extends LoggedInPage {
   onSignerChange (e) {
     this.setState({
       signer: e.target.value
+    })
+  }
+
+  onPoolAddressChange (e) {
+    this.setState({
+      poolAddress: e.target.value
     })
   }
 

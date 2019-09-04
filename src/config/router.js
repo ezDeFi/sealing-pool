@@ -1,4 +1,4 @@
-import UserControlPage from '@/module/page/usercontrol/Container'
+// import UserControlPage from '@/module/page/usercontrol/Container'
 import UserDataPage from '@/module/page/userdata/Container'
 
 import PoolControlPage from '@/module/page/poolcontrol/Container'
@@ -22,10 +22,10 @@ export default [
     path: '/userdata',
     page: UserDataPage
   },
-  {
-    path: '/usercontrol',
-    page: UserControlPage
-  },
+  // {
+  //   path: '/usercontrol',
+  //   page: UserControlPage
+  // },
   {
     path: '/pooldata',
     page: PoolDataPage

@@ -106,9 +106,9 @@ export default class extends BaseComponent {
 {/*           <Menu.Item key="userdata">
             <Icon type="credit-card" /> {I18N.get('0001')}
           </Menu.Item> */}
-          <Menu.Item key="usercontrol">
+          {/* <Menu.Item key="usercontrol">
             <Icon type="credit-card" /> {I18N.get('0002')}
-          </Menu.Item>
+          </Menu.Item> */}
 {/*           <Menu.Item key="pooldata">
             <Icon type="credit-card" /> {I18N.get('0003')}
           </Menu.Item> */}
@@ -128,7 +128,6 @@ export default class extends BaseComponent {
     if (_.includes([
       'home',
       'userdata',
-      'usercontrol',
       'pooldata',
       'poolcontrol',
       'poolmaker'
@@ -156,7 +155,6 @@ export default class extends BaseComponent {
     let sidebar = [
       'home',
       'userdata',
-      'usercontrol',
       'pooldata',
       'poolcontrol',
       'poolmaker'

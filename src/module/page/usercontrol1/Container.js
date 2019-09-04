@@ -10,7 +10,7 @@ export default createContainer(Component, (state) => {
   const ntfTokenService = new NtfTokenService()
   const ntfPoolService = new NtfPoolService()
   async function load () {
-    ntfPoolService.getPools(false)
+    // ntfPoolService.getPools(false)
     userService.getBalance()
 
     ntfTokenService.loadMyNtfBalance()
