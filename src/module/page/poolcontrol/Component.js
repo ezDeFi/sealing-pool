@@ -49,16 +49,24 @@ export default class extends StandardPage {
     let source = this.props.myPools ? this.props.myPools : []
 
     const title = (<Col>
-        SelectedPool: <img width={24} height={24} src={this.props.logo} />
+        Select Pool: <img width={24} height={24} src={this.props.logo} />
       </Col>
     )
-
-    const content = (
-      <Select defaultValue={this.props.mySelectedPool} className='maxWidth' onChange={this.handleChange.bind(this)}>
+/* <Select defaultValue={this.props.mySelectedPool} className='maxWidth' onChange={this.handleChange.bind(this)}>
         {Object.keys(source).length > 0 && Object.values(source).map((d, key) => (
           <Option key={key} value={d}>{this.props.getName(d)} - {cutString(d)}</Option>
         ))}
-      </Select>
+      </Select> */
+    const content = (
+      <Col span={24}>
+              <Input
+            className = "maxWidth"
+            onChange={this.onPoolAddressChange.bind(this)}
+          />
+        <Button className = "maxWidth" type = "primary" onClick={() => this.selectPool()}>
+          Select
+        </Button>
+      </Col>
     )
 
     return this.renderRowInput(title, content)
@@ -97,8 +105,9 @@ export default class extends StandardPage {
   mainContentRender () {
     return (
       <div>
-        {this.poolsRender()}
-        {this.renderRowText(`Pool's address:`, <span>{this.props.address}</span>)}
+        {this.renderRowText(`Pool's address:`, <span>{this.props.mySelectedPool}</span>)}
+
+        {this.renderRowText(`Pool's owner:`, <span>{this.props.owner}</span>)}
 
         {this.renderRowText(`Pool's name:`, <span>{this.props.name}</span>)}
 
@@ -128,9 +137,9 @@ export default class extends StandardPage {
 
         {this.renderRowText(`Status:`, <span>{this.getStatus(Number(this.props.poolStatus))}</span>)}
 
-        {this.renderRowText(`Unlock / cur. Block:`, <span>{this.props.unlockHeight} / {this.props.blockNumber}</span>)}
-        <h3 className="title-section">In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed</h3>
-        <p>Current: >= 1 NTF or owner of pool</p>
+        {/* {this.renderRowText(`Unlock / cur. Block:`, <span>{this.props.unlockHeight} / {this.props.blockNumber}</span>)} */}
+        {/* <h3 className="title-section">In production version, only Pools: status != 0 or Holding Ntf Balance >= 3000 NTF will be showed</h3>
+        <p>Current: >= 1 NTF or owner of pool</p> */}
 
         {this.renderRowInput(`Amount(NTF):`, <span>
           <InputNumber
@@ -179,13 +188,8 @@ export default class extends StandardPage {
             <h3 className="title">Pool's Control</h3>
           </Row>
           <div>
-            {this.props.mySelectedPool ? this.mainContentRender() : (
-              <div>
-                <p>
-                  You are not owner of any pool!
-                </p>
-              </div>
-            )}
+            {this.poolsRender()}
+            {this.props.mySelectedPool && this.mainContentRender()}
           </div>
         </div>
       </div>
@@ -204,6 +208,18 @@ export default class extends StandardPage {
   async deposit () {
     await this.props.approve(this.state.depositAmount * 1e18)
     await this.props.deposit(this.state.depositAmount * 1e18)
+  }
+
+  selectPool () {
+    const address = this.state.poolAddress
+    console.log('xxx', address) 
+    this.props.selectPool(address)
+  }
+
+  onPoolAddressChange (e) {
+    this.setState({
+      poolAddress: e.target.value
+    })
   }
 
   onDepositAmountChange (value) {
