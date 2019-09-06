@@ -75,9 +75,9 @@ export default class extends BaseComponent {
                                 <b>{username}</b>
                             </Menu.Item>
                         }
-                        <Menu.Item key="usercontrol">
+                        {/* <Menu.Item key="usercontrol">
                           <Icon type="user" /> {I18N.get('0002')}
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item key="poolcontrol">
                           <Icon type="database" /> {I18N.get('0004')}
                         </Menu.Item>
