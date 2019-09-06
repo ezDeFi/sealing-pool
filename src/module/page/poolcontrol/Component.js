@@ -228,7 +228,7 @@ export default class extends LoggedInPage {
             Stake require:
           </Col>
           <Col span={6}>
-            {weiToEther(this.props.stakeRequire)} NTF
+            {this.props.stakeRequire} NTF
           </Col>
         </Row>
 
@@ -388,6 +388,7 @@ export default class extends LoggedInPage {
   }
 
   joinGov () {
+    console.log('xxx signer', this.state.signer)
     this.props.joinGov(this.state.signer)
   }
 

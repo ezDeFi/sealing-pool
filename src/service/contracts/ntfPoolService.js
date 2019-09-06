@@ -16,6 +16,15 @@ export default class extends BaseService {
     const store = this.store.getState()
     console.log('my current Pool', store.pool.mySelectedPool)
     await this.selectPool(store.pool.mySelectedPool)
+    this.loadFund()
+    this.loadPoolNtfBalance()
+    this.loadPoolNtyBalance()
+
+    this.loadPoolIsWithdrawable()
+    this.loadPoolUnlockHeight()
+    this.loadPoolDeposited()
+    this.loadPoolInfo()
+    this.loadPoolSigner()
   }
 
   async selectMyPool (_address) {
@@ -114,9 +123,9 @@ export default class extends BaseService {
   async joinGov (_signer) {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
-    let stakeRequire = 500 * 1e18
+    let stakeRequire = '50000000000000000000000'
     let wallet = store.user.wallet
-    return await methods.join(stakeRequire.toString(), _signer).send({from: wallet})
+    return await methods.join(stakeRequire, _signer).send({from: wallet})
   }
 
   async leaveGov () {
