@@ -174,7 +174,7 @@ export default class extends StandardPage {
 
         {this.renderRowInput(``, <span>
             <Button onClick={this.setLockDuration.bind(this)} type="ebp">Set lockDuration</Button>
-            <Button onClick={this.virtuellMining.bind(this)} type="ebp" >Mining(virtuell) 3ETH</Button>
+            {/* <Button onClick={this.virtuellMining.bind(this)} type="ebp" >Mining(virtuell) 3ETH</Button> */}
           </span>)}
       </div>
     )

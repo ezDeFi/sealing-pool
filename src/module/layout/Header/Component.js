@@ -73,9 +73,9 @@ export default class extends BaseComponent {
         <span className="logo-icon" onClick={this.gotoHomePage.bind(this)}><img src='/assets/images/logo.png' /></span>
         <div className="header-menu menu-desktop">
           {this.props.isLogin && <Menu onClick={this.clickItem.bind(this)} mode="horizontal" selectedKeys={this.getSelectedKeys()}>
-            <Menu.Item key="usercontrol">
+            {/* <Menu.Item key="usercontrol">
               <Icon type="user" /> {I18N.get('0002')}
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item key="poolcontrol">
               <Icon type="database" /> {I18N.get('0004')}
             </Menu.Item>
@@ -115,7 +115,6 @@ export default class extends BaseComponent {
         if (_.includes([
             'home',
             'dashboard',
-            'usercontrol',
             'deposit',
             'userdata',
             'pooldata',
