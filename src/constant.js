@@ -1,6 +1,6 @@
 import NTFToken from './../deployed/NtfToken.json'
 import NextyGovernanceABI from './../deployed/NextyGovernance.json'
-import NTFPool from './../build/contracts/NTFPool.json'
+import NTFPool from './../build/contracts/NtfPool.json'
 import PoolMaker from './../build/contracts/PoolMaker.json'
 
 const TEST_MODE = false
