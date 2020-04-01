@@ -11,7 +11,6 @@ contract PoolDesc {
     string public name;
     string public website;
     string public location;
-    string public email;
     string public logo;
 
     constructor (
@@ -20,6 +19,13 @@ contract PoolDesc {
         string memory _location,
         string memory _logo
     ) public {
+        name = _name;
+        website = _website;
+        location = _location;
+        logo = _logo;
+    }
+
+    function updateDesc(string memory _name, string memory _website, string memory _location, string memory _logo) public {
         name = _name;
         website = _website;
         location = _location;
@@ -125,6 +131,17 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     {
         lastActionTime = block.timestamp;
         _setLockDuration(_lockDuration);
+    }
+
+    function updateComRate(
+        uint256 _COMPRATE
+    )
+        public
+        onlyOwner()
+        delayPast()
+    {
+        lastActionTime = block.timestamp;
+        _updateComRate(_COMPRATE);
     }
 
     // members function
@@ -235,16 +252,5 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         returns(bool)
     {
         return gov.isWithdrawable(address(this));
-    }
-
-/*
-    TEST TEST TEST TEST TEST TEST TEST TEST TEST 
-*/
-    // send nty to contract as Reward from Core
-    function virtuellMining()
-        public
-        payable
-    {
-
     }
 }

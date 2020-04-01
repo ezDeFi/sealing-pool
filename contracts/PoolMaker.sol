@@ -9,10 +9,12 @@ interface NtfPoolI {
 }
 
 contract PoolMaker {
+    event NewPool(address indexed _address);
     address public ntfAddress;
     address public govAddress;
     address[] public pools;
     mapping(address => address) public poolOwner;
+    mapping(address => address) public ownedBy;
 
     constructor (
         address _ntfAddress,
@@ -51,6 +53,8 @@ contract PoolMaker {
         );
         pools.push(address(ntfPool));
         poolOwner[address(ntfPool)] = _owner;
+        ownedBy[_owner] = address(ntfPool);
+        emit NewPool(address(ntfPool));
         return (address(ntfPool));
     }
 
@@ -70,6 +74,21 @@ contract PoolMaker {
         returns(address, address, string memory, uint256, uint256)
     {
         address _pAddress = pools[i];
+        address _owner = poolOwner[_pAddress];
+        string memory _name = NtfPoolI(_pAddress).name();
+        // avaiable balance
+        uint256 _poolNtfBalance = NtfPoolI(_pAddress).getPoolNtfBalance();
+        // in Gov Ntf balance
+        uint256 _poolGovBalance = NtfPoolI(_pAddress).getPoolGovBalance();
+        return(_pAddress, _owner, _name, _poolNtfBalance, _poolGovBalance);
+    }
+
+
+    function getPoolByAddress(address _pAddress)
+        public
+        view
+        returns(address, address, string memory, uint256, uint256)
+    {
         address _owner = poolOwner[_pAddress];
         string memory _name = NtfPoolI(_pAddress).name();
         // avaiable balance

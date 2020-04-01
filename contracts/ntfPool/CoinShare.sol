@@ -30,6 +30,15 @@ contract CoinShare is ERC20{
         lastBalance = address(this).balance;
     }
 
+
+    function _updateComRate(
+        uint256 _COMPRATE
+    )
+        internal
+    {
+        COMPRATE = _COMPRATE;
+    }
+
     function _fundWithdraw(
         address payable _toAddress
     )
