@@ -52,7 +52,7 @@ export default class extends LoggedInPage {
   poolCreateRender () {
     return (
       <div>
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Owner
           </Col>
@@ -64,7 +64,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Name
           </Col>
@@ -76,7 +76,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Website
           </Col>
@@ -88,7 +88,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Location
           </Col>
@@ -100,7 +100,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's logo
           </Col>

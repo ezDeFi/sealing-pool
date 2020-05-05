@@ -67,20 +67,25 @@ export default class extends LoggedInPage {
             ))}
           </Select>
         </Col> */}
-        <Col span={6}>
-          Pool Address:
-        </Col>
-        <Col span={18}>
-          <Input
-            className = "maxWidth"
-            onChange={this.onPoolAddressChange.bind(this)}
-          />
-        </Col>
-        <Col span={24}>
-          <Button className = "maxWidth" type = "primary" onClick={() => this.selectPool()}>
-            Select
-          </Button>
-        </Col>
+        <Row>
+          <Col span={6}>
+            Pool Address:
+          </Col>
+          <Col span={18}>
+            <Input
+              className = "maxWidth"
+              onChange={this.onPoolAddressChange.bind(this)}
+            />
+          </Col>
+        </Row>
+        <Row style={{ 'marginTop': '25px' }}>
+          <Col span={6}></Col>
+          <Col span={12}>
+            <Button className = "maxWidth" type = "primary" onClick={() => this.selectPool()}>
+              Select
+            </Button>
+          </Col>
+        </Row>
       </Row>
     )
   }

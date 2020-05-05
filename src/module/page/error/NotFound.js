@@ -7,7 +7,6 @@ export default class extends StandardPage {
       <div className="ebp-page">
         <h1>404, not found</h1>
       </div>
-
     )
   }
 }
