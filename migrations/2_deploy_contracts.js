@@ -1,4 +1,4 @@
-var NtfPool = artifacts.require('./ntfPool/NtfPool.sol');
+var Pool = artifacts.require('./ntfPool/NtfPool.sol');
 var PoolMaker = artifacts.require('./PoolMaker.sol');
 // var NtfTokenI = artifacts.require('./ntfPool/interfaces/NtfTokenI.sol');
 // var GovI = artifacts.require('./ntfPool/interfaces/GovI.sol');

@@ -51,6 +51,7 @@
     "zos-lib": "^2.2.2"
   },
   "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.9",
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
