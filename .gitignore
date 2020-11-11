@@ -1,10 +1,10 @@
 node_modules/
 
 # disable dist due to the aws server performance is too low to build dist.
-#dist/
+dist/
 
 dev_dist/node_modules/
-# build/
+build/
 
 # misc
 .DS_Store
