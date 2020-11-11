@@ -52,7 +52,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     (
         address _owner,
         address _ntfAddress,
-        address _govAddress,
+        address payable _govAddress,
         uint256 _COMPRATE,
         uint256 _MAX_LOCK_DURATION,
         uint256 _OWNER_ACTION_DELAY,
@@ -89,7 +89,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     {
         require(_amount.add(pendingOutSum) <= getPoolNtfBalance(), "not enough to join");
         ntfToken.approve(address(gov), _amount);
-        gov.deposit(_amount);
+        address(gov).transfer(_amount);
         gov.join(_signer);
     }
 

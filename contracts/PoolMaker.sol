@@ -11,14 +11,14 @@ interface NtfPoolI {
 contract PoolMaker {
     event NewPool(address indexed _address);
     address public ntfAddress;
-    address public govAddress;
+    address payable public govAddress;
     address[] public pools;
     mapping(address => address) public poolOwner;
     mapping(address => address) public ownedBy;
 
     constructor (
         address _ntfAddress,
-        address _govAddress
+        address payable _govAddress
     )
       public
     {
