@@ -77,9 +77,10 @@ contract("PoolMaker", accounts => {
       await instPool.requestOut(2+'0'.repeat(18), {from: accounts[2]})
     })
 
-    it("member acc2 token withdraw: not joined", async() => {
-      // TODO: this is an actual legacy bug
-      await expectRevert(instPool.tokenMemberWithdraw({from: accounts[2]}), 'not joined')
+    it("member acc2 token withdraw", async() => {
+      await instPool.tokenMemberWithdraw({from: accounts[2]})
+      // // TODO: this is an actual legacy bug
+      // await expectRevert(instPool.tokenMemberWithdraw({from: accounts[2]}), 'not joined')
     })
 
     it("tokenDeposit: acc3 with 100", async() => {
@@ -91,7 +92,7 @@ contract("PoolMaker", accounts => {
 
     it("total pool stake", async() => {
       const totalPoolStake = await instPool.getPoolNtfBalance()
-      expect(totalPoolStake).to.be.bignumber.equal(new BN(103+'0'.repeat(18)))
+      expect(totalPoolStake).to.be.bignumber.equal(new BN(101+'0'.repeat(18)))
     })
 
     it("gov join", async() => {
