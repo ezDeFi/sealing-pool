@@ -87,9 +87,63 @@ contract("PoolMaker", accounts => {
       const b = await balance.current(accounts[2])
       await instPool.tokenMemberWithdraw({from: accounts[2]})
       const a = await balance.current(accounts[2])
+      expect(a.sub(b)).to.be.bignumber.gt(new BN(0))
       expect(a.sub(b)).to.be.bignumber.lt(new BN('2'+'0'.repeat(18)))
       // // TODO: this is an actual legacy bug
       // await expectRevert(instPool.tokenMemberWithdraw({from: accounts[2]}), 'not joined')
+    })
+
+    it("tokenVesting: #4 instant unlock", async() => {
+      await instPool.tokenVesting(
+        accounts[4],
+        1,  // 1s
+        {value: 3+'0'.repeat(18)}
+      )
+      await instPool.requestOut(3+'0'.repeat(18), {from: accounts[4]});
+      await instPool.tokenMemberWithdraw({from: accounts[4]})
+    })
+
+    it("tokenVesting: #4", async() => {
+      await instPool.tokenVesting(
+        accounts[4],
+        20,  // 20s
+        {value: 1+'0'.repeat(18)}
+      )
+      await expectRevert(instPool.requestOut(1+'0'.repeat(18), {from: accounts[4]}), 'vesting time not over')
+      await expectRevert(instPool.tokenVesting(
+        accounts[4],
+        1 * 60,  // 1 min
+        {value: 2+'0'.repeat(18)}
+      ), 'already vesting')
+    })
+
+    it("tokenVesting: #4 wait and withdraw", async() => {
+      function timeout(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      await timeout(20000); // 20s
+
+      await instPool.requestOut(1+'0'.repeat(18), {from: accounts[4]})
+
+      const b = await balance.current(accounts[4])
+      await instPool.tokenMemberWithdraw({from: accounts[4]})
+      const a = await balance.current(accounts[4])
+      expect(a.sub(b)).to.be.bignumber.gt(new BN(0))
+      expect(a.sub(b)).to.be.bignumber.lt(new BN(1+'0'.repeat(18)))
+    })
+
+    it("tokenVesting: #4 again", async() => {
+      await instPool.tokenVesting(
+        accounts[4],
+        1 * 60,  // 1m
+        {value: 1+'0'.repeat(18)}
+      )
+      await expectRevert(instPool.requestOut(1+'0'.repeat(18), {from: accounts[4]}), 'vesting time not over')
+      await expectRevert(instPool.tokenVesting(
+        accounts[4],
+        1 * 60,  // 1 min
+        {value: 2+'0'.repeat(18)}
+      ), 'already vesting')
     })
 
     it("tokenDeposit: #3 with 100", async() => {
@@ -101,7 +155,7 @@ contract("PoolMaker", accounts => {
 
     it("total pool stake", async() => {
       const totalPoolStake = await instPool.getPoolNtfBalance()
-      expect(totalPoolStake).to.be.bignumber.equal(new BN(101+'0'.repeat(18)))
+      expect(totalPoolStake).to.be.bignumber.equal(new BN(102+'0'.repeat(18)))
     })
 
     it("gov join", async() => {

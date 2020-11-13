@@ -41,6 +41,8 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     NtfTokenI public ntfToken;
     GovI public gov;
 
+    mapping(address => uint) public vestingTime;
+
     modifier delayPast() {
         require(block.timestamp > lastActionTime + OWNER_ACTION_DELAY, "dont change to quick");
         _;
@@ -150,6 +152,7 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     )
         public
     {
+        require(block.timestamp > vestingTime[msg.sender], "vesting time not over");
         _updateFundCpt();
         address payable _sender = msg.sender;
         _coinWithdraw(_sender);
@@ -158,14 +161,26 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         _updateCredit(_sender, 0);
     }
 
+    function tokenVesting(
+        address member,
+        uint    lockTime
+    ) external payable {
+        require(vestingTime[member] <= block.timestamp, "already vesting");
+        vestingTime[member] = block.timestamp + lockTime;    // unsafe
+        _tokenDeposit(member);
+    }
+
     function tokenDeposit()
         public
         payable
     {
+        _tokenDeposit(msg.sender);
+    }
+
+    function _tokenDeposit(address _sender) internal {
         // NOTE: WZD.deposit() must be called first, before anything else since the ZD balance is affected
         ntfToken.deposit.value(msg.value)();    // ZD => WZD
         _updateFundCpt();
-        address _sender = msg.sender;
         uint256 _coinBalance = coinOf(_sender);
         _mint(_sender, msg.value);
         _updateCredit(_sender, _coinBalance);
