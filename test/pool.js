@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { time, expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
+const { balance, expectRevert, expectEvent } = require('@openzeppelin/test-helpers');
 const { duration } = require('moment');
 const { BN } = require('web3').utils;
 
@@ -31,18 +31,24 @@ contract("PoolMaker", accounts => {
       expect(instPool, 'contract not deployed: Pool').to.not.be.null
     })
 
-    it("tokenDeposit: acc1 with 1", async() => {
+    it("tokenDeposit: #1 with 1", async() => {
+      const b = await balance.current(accounts[1])
       await instPool.tokenDeposit({
         from: accounts[1],
-        value: 1+'0'.repeat(18),
+        value: '1'+'0'.repeat(18),
       })
+      const a = await balance.current(accounts[1])
+      expect(b.sub(a)).to.be.bignumber.gt(new BN('1'+'0'.repeat(18)))
     })
 
-    it("tokenDeposit: acc2 with 2", async() => {
+    it("tokenDeposit: #2 with 2", async() => {
+      const b = await balance.current(accounts[2])
       await instPool.tokenDeposit({
         from: accounts[2],
         value: 2+'0'.repeat(18),
       })
+      const a = await balance.current(accounts[2])
+      expect(b.sub(a)).to.be.bignumber.gt(new BN('2'+'0'.repeat(18)))
     })
 
     it("total pool stake", async() => {
@@ -61,11 +67,11 @@ contract("PoolMaker", accounts => {
     //   // await expectRevert(instPool.requestOut(2, {from: accounts[1]}), expectRevert.unspecified)
     // })
 
-    it("memeber acc1 requestOut: just enough", async() => {
+    it("memeber #1 requestOut: just enough", async() => {
       await instPool.requestOut(1+'0'.repeat(18), {from: accounts[1]})
     })
 
-    it("member acc1 token withdraw: still locking", async() => {
+    it("member #1 token withdraw: still locking", async() => {
       await expectRevert(instPool.tokenMemberWithdraw({from: accounts[1]}), 'still locking')
     })
 
@@ -73,17 +79,20 @@ contract("PoolMaker", accounts => {
       await instPool.setLockDuration(1)
     })
 
-    it("memeber acc2 requestOut: just enough", async() => {
+    it("memeber #2 requestOut: just enough", async() => {
       await instPool.requestOut(2+'0'.repeat(18), {from: accounts[2]})
     })
 
-    it("member acc2 token withdraw", async() => {
+    it("member #2 token withdraw", async() => {
+      const b = await balance.current(accounts[2])
       await instPool.tokenMemberWithdraw({from: accounts[2]})
+      const a = await balance.current(accounts[2])
+      expect(a.sub(b)).to.be.bignumber.lt(new BN('2'+'0'.repeat(18)))
       // // TODO: this is an actual legacy bug
       // await expectRevert(instPool.tokenMemberWithdraw({from: accounts[2]}), 'not joined')
     })
 
-    it("tokenDeposit: acc3 with 100", async() => {
+    it("tokenDeposit: #3 with 100", async() => {
       await instPool.tokenDeposit({
         from: accounts[3],
         value: 100 + '0'.repeat(18),
@@ -99,16 +108,20 @@ contract("PoolMaker", accounts => {
       await instPool.join(100+'0'.repeat(18), accounts[4])
     })
 
-    it("memeber acc3 requestOut: just enough", async() => {
+    it("member #3 requestOut: just enough", async() => {
       await instPool.requestOut(100+'0'.repeat(18), {from: accounts[3]})
     })
 
-    it("member acc3 token withdraw: joined", async() => {
+    it("member #3 token withdraw: joined", async() => {
       await instPool.tokenMemberWithdraw({from: accounts[3]})
     })
 
-    it("gov leave", async() => {
-      await instPool.leave()
+    it("gov leave: not joined", async() => {
+      await expectRevert(instPool.leave(), 'not joined')
+    })
+
+    it("gov withdraw: not joined", async() => {
+      await expectRevert(instPool.tokenPoolWithdraw(), 'unable to withdraw at the moment')
     })
   })
 })
