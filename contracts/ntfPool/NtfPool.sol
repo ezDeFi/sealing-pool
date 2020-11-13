@@ -88,8 +88,8 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         onlyOwner()
     {
         require(_amount.add(pendingOutSum) <= getPoolNtfBalance(), "not enough to join");
-        ntfToken.approve(address(gov), _amount);
-        address(gov).transfer(_amount);
+        ntfToken.withdraw(_amount);     // WZD => ZD
+        address(gov).transfer(_amount); // stake ZD in to gov
         gov.join(_signer);
     }
 
@@ -161,12 +161,13 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
     function tokenDeposit(
         uint256 _amount
     )
-            public
+        public
+        payable
     {
         _updateFundCpt();
         address _sender = msg.sender;
         uint256 _coinBalance = coinOf(_sender);
-        ntfToken.transferFrom(_sender, address(this), _amount);
+        ntfToken.deposit.value(msg.value)();    // ZD => WZD
         _mint(_sender, _amount);
         _updateCredit(_sender, _coinBalance);
     }
@@ -176,13 +177,15 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         public
         notLocking()
     {
-        address _sender = msg.sender;
+        address payable _sender = msg.sender;
         uint256 _amount = pendingOut[_sender];
         if (_amount > getPoolNtfBalance()) {
+            // TODO: [LEGACY BUG] in this case, withdraw will failed if the pool is not joined
             _leave();
             return;
         }
-        ntfToken.transfer(_sender, _amount);
+        ntfToken.withdraw(_amount); // WZD => ZD
+        _sender.transfer(_amount);  // transfer ZD to sender
         _removeRequest(_sender);
     }
 
