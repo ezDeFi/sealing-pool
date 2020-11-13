@@ -158,17 +158,16 @@ contract NtfPool is PoolDesc, CoinShare, Ownable, Request {
         _updateCredit(_sender, 0);
     }
 
-    function tokenDeposit(
-        uint256 _amount
-    )
+    function tokenDeposit()
         public
         payable
     {
+        // NOTE: WZD.deposit() must be called first, before anything else since the ZD balance is affected
+        ntfToken.deposit.value(msg.value)();    // ZD => WZD
         _updateFundCpt();
         address _sender = msg.sender;
         uint256 _coinBalance = coinOf(_sender);
-        ntfToken.deposit.value(msg.value)();    // ZD => WZD
-        _mint(_sender, _amount);
+        _mint(_sender, msg.value);
         _updateCredit(_sender, _coinBalance);
     }
 
