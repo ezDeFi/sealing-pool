@@ -106,7 +106,7 @@ export default createContainer(Component, (state) => {
     },
     async tokenVesting (_address, _time) {
       console.log('2',_address, _time)
-      return ntfPoolService.tokenVesting(_address, _time)
+      return ntfPoolService.tokenVesting(_address, value, time)
     },
   }
 })

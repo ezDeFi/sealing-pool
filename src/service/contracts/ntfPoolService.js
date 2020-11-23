@@ -194,19 +194,21 @@ export default class extends BaseService {
     return await methods.virtuellMining().send({from: wallet, value: 3e18})
   }
 
-  async tokenVesting (_address, _amount, _time) {
-    console.log('3', _address, _amount,_time)
+  async tokenVesting (_address, _amount, time) {
+    console.log('3', _address, value, time)
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     if (_address == null) {
       return await methods.tokenVesting(
         _address,
         _time * 60,  // 20s
+        value
       )
     } else if (_address != null ) {
       return await methods.tokenVesting(
         _address,
         _time * 60,  // 20s
+        value
         )
       }
     }

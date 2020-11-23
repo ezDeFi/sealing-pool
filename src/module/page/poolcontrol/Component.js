@@ -346,6 +346,19 @@ export default class extends LoggedInPage {
           </Row>
           <Row style={{ 'marginTop': '15px' }}>
             <Col span={6}>
+              Vesting amount:
+            </Col>
+            <Col span={18}>
+              <InputNumber
+                className = "maxWidth"
+                defaultValue={0}
+                value={this.state.vestingValue}
+                onChange={this.onvestingValueChange.bind(this)}
+              />
+            </Col>
+          </Row>
+          <Row style={{ 'marginTop': '15px' }}>
+            <Col span={6}>
               Vesting time:
             </Col>
             <Col span={18}>
@@ -399,9 +412,9 @@ export default class extends LoggedInPage {
   }
 
   async vesting () {
-    if (this.state.vestingAddress && this.state.vestingTime) {
-      console.log('1', this.state.vestingAddress, this.state.vestingTime)
-      await this.props.tokenVesting(this.state.vestingAddress, this.state.vestingTime)
+    if (this.state.vestingAddress && this.state.vestingValue && this.state.vestingTime) {
+      console.log('2', this.state.vestingAddress, this.state.vestingValue, this.state.vestingTime)
+      await this.props.tokenVesting(this.state.vestingAddress, this.state.vestingValue, this.state.vestingTime)
     }else {
       this.setState({
         vestingError: 'fill all input!'
@@ -416,9 +429,9 @@ export default class extends LoggedInPage {
     })
   }
 
-  onVestingAmountChange (value) {
+  onvestingValueChange (value) {
     this.setState({
-      vestingAmount: value
+      vestingValue: value
     })
   }
 
