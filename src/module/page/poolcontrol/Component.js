@@ -17,7 +17,10 @@ const weiToEther = (wei) => {
 
 export default class extends LoggedInPage {
   componentDidMount () {
-    this.loadData()
+    this.setState({
+      vestingAddress: this.props.wallet
+    })
+    // this.loadData()
   }
 
   loadData () {
@@ -47,7 +50,7 @@ export default class extends LoggedInPage {
 
   selectPool () {
     const address = this.state.poolAddress
-    console.log('xxx', address) 
+    console.log('xxx', address)
     this.props.selectPool(address)
   }
 
@@ -88,79 +91,79 @@ export default class extends LoggedInPage {
   mainContentRender () {
     return (
       <div>
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Pool's address:
+            Pool's address:
           </Col>
           <Col span={6}>
             {this.props.mySelectedPool}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Owner:
+            Owner:
           </Col>
           <Col span={6}>
             {this.props.owner}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Pool's name:
+            Pool's name:
           </Col>
           <Col span={6}>
             {this.props.name}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Owner Compensation Rate:
+            Owner Compensation Rate:
           </Col>
           <Col span={6}>
             {this.props.compRate}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Pool's website:
+            Pool's website:
           </Col>
           <Col span={6}>
             <a href={this.props.website} target='_'>{this.props.website}</a>
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Pool's location:
+            Pool's location:
           </Col>
           <Col span={6}>
             {this.props.location}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Pool's logo:
+            Pool's logo:
           </Col>
           <Col span={6}>
             {this.props.logo}
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        signer address:
+            signer address:
           </Col>
           <Col span={6}>
             {this.props.signer}
           </Col>
         </Row>
 
-        {/* <Row>
+        {/* <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
                         owner:
           </Col>
@@ -169,70 +172,61 @@ export default class extends LoggedInPage {
           </Col>
         </Row> */}
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        owner's balance:
+            owner's balance:
           </Col>
           <Col span={6}>
-            {weiToEther(this.props.ownerBalance)} NTY
+            {weiToEther(this.props.ownerBalance)} ZD
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        lockDuration / MAX:
+            lockDuration / MAX:
           </Col>
           <Col span={6}>
             {this.props.lockDuration} / {this.props.maxLockDuration} Day(s)
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        Owner's actionDelay:
+            Owner's actionDelay:
           </Col>
           <Col span={6}>
             {this.props.ownerDelay} Hour(s)
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-                        fund:
+            fund:
           </Col>
           <Col span={6}>
-            {weiToEther(this.props.fund)} NTY
-          </Col>
-        </Row>
-
-        <Row>
-          <Col span={6}>
-            NTY Balance:
-          </Col>
-          <Col span={6}>
-            {weiToEther(this.props.poolNtyBalance)} NTY
+            {weiToEther(this.props.fund)} ZD
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-            NTF Balance:
+            ZD Balance:
           </Col>
           <Col span={6}>
-            {weiToEther(this.props.poolNtfBalance)} NTF
+            {weiToEther(this.props.poolNtfBalance)} ZD
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Stake require:
           </Col>
           <Col span={6}>
-            {this.props.stakeRequire} NTF
+            {this.props.stakeRequire} ZD
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Status:
           </Col>
@@ -240,7 +234,8 @@ export default class extends LoggedInPage {
             {this.getStatus(Number(this.props.poolStatus))}
           </Col>
         </Row>
-        <Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Unlock / cur. Block:
           </Col>
@@ -248,12 +243,12 @@ export default class extends LoggedInPage {
             {this.props.unlockHeight} / {this.props.blockNumber}
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-            Amount(NTF):
+            Amount(ZD):
           </Col>
           <Col span={18}>
-
             <InputNumber
               className = "maxWidth"
               defaultValue={0}
@@ -266,7 +261,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Signer
           </Col>
@@ -277,21 +272,25 @@ export default class extends LoggedInPage {
             />
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.joinGov.bind(this)} type="primary" className="btn-margin-top submit-button">Join Gov</Button>
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.leaveGov.bind(this)} type="primary" className="btn-margin-top submit-button">Leave Gov</Button>
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.tokenPoolWithdraw.bind(this)} type="primary" className="btn-margin-top submit-button">Pool's Token Withdraw</Button>
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.claimFund.bind(this)} type="primary" className="btn-margin-top submit-button">Claim Fund</Button>
@@ -311,6 +310,7 @@ export default class extends LoggedInPage {
             />
           </Col>
         </Row>
+
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.setLockDuration.bind(this)} type="primary" className="btn-margin-top submit-button">Set lockDuration</Button>
@@ -320,6 +320,45 @@ export default class extends LoggedInPage {
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={24}>
             <Button style={{ 'width': '100%' }} onClick={this.virtuellMining.bind(this)} type="primary" className="btn-margin-top submit-button">Mining(virtuell) 3ETH</Button>
+          </Col>
+        </Row>
+
+        <Row style={{ 'marginTop': '15px' }}>
+          <Row style={{ 'marginTop': '15px' }}>
+            <Col span={6}>
+              Token vesting
+            </Col>
+            <Col span={6} style={{ 'textAlign': 'center' }}>
+              {this.state.vestingError && <p>{this.state.vestingError}</p>}
+            </Col>
+          </Row>
+          <Row style={{ 'marginTop': '15px' }}>
+            <Col span={6}>
+              Vesting address:
+            </Col>
+            <Col span={18}>
+              <Input
+                className = "maxWidth"
+                value={this.state.vestingAddress}
+                onChange={this.onVestingAddressChange.bind(this)}
+              />
+            </Col>
+          </Row>
+          <Row style={{ 'marginTop': '15px' }}>
+            <Col span={6}>
+              Vesting time:
+            </Col>
+            <Col span={18}>
+              <InputNumber
+                className = "maxWidth"
+                defaultValue={0}
+                value={this.state.vestingTime}
+                onChange={this.onVestingTimeChange.bind(this)}
+              />
+            </Col>
+            </Row>
+          <Col span={24} style={{ 'marginTop': '15px' }}>
+            <Button onClick={this.vesting.bind(this)} type="primary" className="btn-margin-top submit-button maxWidth">Vesting</Button>
           </Col>
         </Row>
       </div>
@@ -336,7 +375,7 @@ export default class extends LoggedInPage {
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
             {this.poolsRender()}
-            {this.props.mySelectedPool && this.mainContentRender()}
+            {this.mainContentRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>
           </div>
@@ -357,6 +396,36 @@ export default class extends LoggedInPage {
   async deposit () {
     await this.props.approve(this.state.depositAmount * 1e18)
     await this.props.deposit(this.state.depositAmount * 1e18)
+  }
+
+  async vesting () {
+    if (this.state.vestingAddress && this.state.vestingTime) {
+      console.log('1', this.state.vestingAddress, this.state.vestingTime)
+      await this.props.tokenVesting(this.state.vestingAddress, this.state.vestingTime)
+    }else {
+      this.setState({
+        vestingError: 'fill all input!'
+      })
+    }
+  }
+
+  onVestingAddressChange (e) {
+    console.log(e.target.value)
+    this.setState({
+      vestingAddress: e.target.value
+    })
+  }
+
+  onVestingAmountChange (value) {
+    this.setState({
+      vestingAmount: value
+    })
+  }
+
+  onVestingTimeChange (value) {
+    this.setState({
+      vestingTime: value
+    })
   }
 
   onDepositAmountChange (value) {
@@ -399,12 +468,16 @@ export default class extends LoggedInPage {
   tokenPoolWithdraw () {
     this.props.tokenPoolWithdraw()
   }
-  
+
   setLockDuration () {
     this.props.setLockDuration(this.state.lockDuration)
   }
 
   virtuellMining () {
     this.props.virtuellMining()
+  }
+
+  tokenVesting (_address, _amount, _time) {
+    this.props.tokenVesting(_address, _amount, _time)
   }
 }

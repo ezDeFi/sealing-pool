@@ -26,7 +26,7 @@ export default class extends LoggedInPage {
       delay: 24,
       newPool: false
     })
-    this.loadData()
+    // this.loadData()
   }
 
   loadData () {

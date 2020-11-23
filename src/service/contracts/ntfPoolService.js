@@ -160,7 +160,10 @@ export default class extends BaseService {
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
     console.log('deposit', _amount)
-    return await methods.tokenDeposit(_amount.toString()).send({from: wallet})
+    return await methods.tokenDeposit({
+      from: wallet,
+      value: _amount.toString(),
+    })
   }
 
   async requestOut (_amount) {
@@ -174,7 +177,7 @@ export default class extends BaseService {
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
-    return await methods.tokenMemberWithdraw().send({from: wallet})
+    return await methods.tokenMemberWithdraw({from: wallet})
   }
 
   async claim () {
@@ -190,8 +193,25 @@ export default class extends BaseService {
     let wallet = store.user.wallet
     return await methods.virtuellMining().send({from: wallet, value: 3e18})
   }
-  // load pool's datas
 
+  async tokenVesting (_address, _amount, _time) {
+    console.log('3', _address, _amount,_time)
+    const store = this.store.getState()
+    let methods = store.contracts.ntfPool.methods
+    if (_address == null) {
+      return await methods.tokenVesting(
+        _address,
+        _time * 60,  // 20s
+      )
+    } else if (_address != null ) {
+      return await methods.tokenVesting(
+        _address,
+        _time * 60,  // 20s
+        )
+      }
+    }
+
+    // load pool's datas
   async loadPoolInfo () {
     const store = this.store.getState()
     const poolRedux = this.store.getRedux('pool')

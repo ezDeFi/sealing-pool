@@ -23,7 +23,7 @@ export default createContainer(Component, (state) => {
 
   async function load () {
     // let _selectedPool = await ntfPoolService.getPools(true)
-    if (await !_selectedPool) return
+    // if (await !_selectedPool) return
     ntfPoolService.loadFund()
     ntfPoolService.loadPoolNtfBalance()
     ntfPoolService.loadPoolNtyBalance()
@@ -37,6 +37,7 @@ export default createContainer(Component, (state) => {
 
   if (state.user.wallet !== curWallet && !curWallet) {
     curWallet = state.user.wallet
+    console.log('@@@', state.user.wallet)
     // loadOnInit()
     // setInterval(() => {
     //   load()
@@ -44,6 +45,7 @@ export default createContainer(Component, (state) => {
   }
 
   return {
+    wallet : state.user.wallet,
     mySelectedPool: state.pool.mySelectedPool,
     myPools: state.pool.myPools,
     pools: state.pool.pools,
@@ -101,6 +103,10 @@ export default createContainer(Component, (state) => {
     },
     async deposit (amount) {
       await ntfPoolService.deposit(amount)
-    }
+    },
+    async tokenVesting (_address, _time) {
+      console.log('2',_address, _time)
+      return ntfPoolService.tokenVesting(_address, _time)
+    },
   }
 })
