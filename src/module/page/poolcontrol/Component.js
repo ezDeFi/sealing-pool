@@ -76,8 +76,8 @@ export default class extends LoggedInPage {
             onChange={this.onPoolAddressChange.bind(this)}
           />
         </Col>
-        <Col span={24}>
-          <Button className = "maxWidth" type = "primary" onClick={() => this.selectPool()}>
+        <Col span={24} className = "center"  style={{ 'marginTop': '15px' }}>
+          <Button type = "primary" onClick={() => this.selectPool()}>
             Select
           </Button>
         </Col>

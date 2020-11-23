@@ -13,7 +13,7 @@ export default createContainer(Component, (state) => {
   async function loadOnInit () {
     console.log('loadOnInit')
 
-    ntfPoolService.getPools()
+    // ntfPoolService.getPools()
     load()
   }
 
@@ -32,7 +32,7 @@ export default createContainer(Component, (state) => {
     // ntfPoolService.loadPoolDeposited()
     // ntfPoolService.loadPoolStatus()
     // ntfPoolService.loadPoolSigner()
-    ntfPoolService.getPools()
+    // ntfPoolService.getPools()
   }
 
   if (state.user.wallet !== curWallet && !curWallet) {
@@ -70,9 +70,9 @@ export default createContainer(Component, (state) => {
     async createPool (owner, compRate, maxLock, delay, name, website, location, logo) {
       return await ntfPoolService.createPool(owner, compRate, maxLock, delay, name, website, location, logo)
     },
-    async getPools () {
-      await ntfPoolService.getPools()
-    },
+    // async getPools () {
+    //   await ntfPoolService.getPools()
+    // },
     async virtuellMining () {
       await ntfPoolService.virtuellMining()
     },

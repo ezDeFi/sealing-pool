@@ -64,7 +64,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Name
           </Col>
@@ -76,7 +76,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Website
           </Col>
@@ -88,7 +88,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's Location
           </Col>
@@ -100,7 +100,7 @@ export default class extends LoggedInPage {
           </Col>
         </Row>
 
-        <Row>
+        <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
             Pool's logo
           </Col>
@@ -117,7 +117,6 @@ export default class extends LoggedInPage {
             Compensation Rate (0% - 100%):
           </Col>
           <Col span={18}>
-
             <InputNumber
               defaultValue={0}
               value={this.state.compRate}
@@ -128,7 +127,7 @@ export default class extends LoggedInPage {
 
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-              Max Lock Duration (days):
+            Max Lock Duration (days):
           </Col>
           <Col span={18}>
 
@@ -142,7 +141,7 @@ export default class extends LoggedInPage {
 
         <Row style={{ 'marginTop': '15px' }}>
           <Col span={6}>
-              Owner action delay (hours):
+            Owner action delay (hours):
           </Col>
           <Col span={18}>
 
@@ -155,8 +154,8 @@ export default class extends LoggedInPage {
         </Row>
 
         <Row style={{ 'marginTop': '15px' }}>
-          <Col span={24}>
-            <Button style={{ 'width': '100%' }} onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">Create a Pool</Button>
+          <Col span={24} className="center">
+            <Button onClick={this.createPool.bind(this)} type="primary" className="btn-margin-top submit-button">Create a Pool</Button>
           </Col>
         </Row>
       </div>
@@ -171,7 +170,7 @@ export default class extends LoggedInPage {
 
         <div className="ebp-page">
           <h3 className="text-center">Create a Pool</h3>
-          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>  
+          <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
             {!this.state.newPool && this.poolCreateRender()}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>

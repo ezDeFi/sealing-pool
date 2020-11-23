@@ -22,7 +22,7 @@ export default createContainer(Component, (state) => {
   }
 
   async function load () {
-    let _selectedPool = await ntfPoolService.getPools(true)
+    // let _selectedPool = await ntfPoolService.getPools(true)
     if (await !_selectedPool) return
     ntfPoolService.loadFund()
     ntfPoolService.loadPoolNtfBalance()
