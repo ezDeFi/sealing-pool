@@ -5,6 +5,7 @@ import Tx from 'ethereumjs-tx' // eslint-disable-line
 import { Link } from 'react-router-dom' // eslint-disable-line
 import web3 from 'web3'
 import { cutString } from '@/service/Help'
+import { zdToWei } from '../../../config/utils'
 
 import './style.scss'
 
@@ -352,8 +353,8 @@ export default class extends LoggedInPage {
               <InputNumber
                 className = "maxWidth"
                 defaultValue={0}
-                value={this.state.vestingValue}
-                onChange={this.onvestingValueChange.bind(this)}
+                value={this.state.vestingAmount}
+                onChange={this.onVestingAmountChange.bind(this)}
               />
             </Col>
           </Row>
@@ -412,9 +413,10 @@ export default class extends LoggedInPage {
   }
 
   async vesting () {
-    if (this.state.vestingAddress && this.state.vestingValue && this.state.vestingTime) {
-      console.log('2', this.state.vestingAddress, this.state.vestingValue, this.state.vestingTime)
-      await this.props.tokenVesting(this.state.vestingAddress, this.state.vestingValue, this.state.vestingTime)
+    if (this.state.vestingAddress && this.state.vestingAmount && this.state.vestingTime) {
+      console.log('2', this.state.vestingAddress, this.state.vestingAmount, this.state.vestingTime)
+      let value = zdToWei(this.state.vestingAmount)
+      await this.props.tokenVesting(this.state.vestingAddress, value, this.state.vestingTime)
     }else {
       this.setState({
         vestingError: 'fill all input!'
@@ -429,9 +431,9 @@ export default class extends LoggedInPage {
     })
   }
 
-  onvestingValueChange (value) {
+  onVestingAmountChange (value) {
     this.setState({
-      vestingValue: value
+      vestingAmount: value
     })
   }
 
