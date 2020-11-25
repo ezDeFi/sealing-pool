@@ -156,10 +156,11 @@ export default class extends BaseService {
 
   // members actions
   async deposit (_amount) {
+    console.log('deposit', _amount)
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
-    console.log('deposit', _amount)
+    console.log('deposit', wallet)
     return await methods.tokenDeposit({
       from: wallet,
       value: _amount.toString(),
@@ -174,9 +175,11 @@ export default class extends BaseService {
   }
 
   async withdraw () {
+    console.log('withdraw')
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     let wallet = store.user.wallet
+    console.log('withdraw', wallet)
     return await methods.tokenMemberWithdraw({from: wallet})
   }
 
@@ -195,7 +198,7 @@ export default class extends BaseService {
   }
 
   async tokenVesting (_address, _amount, time) {
-    console.log('3', _address, value, time)
+    console.log('tokenVesting', _address, value, time)
     const store = this.store.getState()
     let methods = store.contracts.ntfPool.methods
     if (_address == null) {

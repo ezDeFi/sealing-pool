@@ -382,14 +382,13 @@ export default class extends LoggedInPage {
   ord_renderContent () { // eslint-disable-line
     return (
       <div className="">
-        <div className="ebp-header-divider">
-        </div>
-
+        <div className="ebp-header-divider"/>
         <div className="ebp-page">
           <h3 className="text-center">Pool's Control</h3>
           <div className="ant-col-md-18 ant-col-md-offset-3 text-alert" style={{ 'textAlign': 'left' }}>
             {this.poolsRender()}
-            {this.mainContentRender()}
+            {this.props.mySelectedPool && this.mainContentRender()}
+            {/* {this.mainContentRender()} */}
             <div className="ebp-header-divider dashboard-rate-margin">
             </div>
           </div>
