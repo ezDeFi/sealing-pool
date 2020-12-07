@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Dapp Nexty PoolMaster",
   "scripts": {
-    "deploy:dev": "truffle migrate --reset --network development",
-    "deploy:pro": "truffle migrate --reset --network production",
+    "deploy:dev": "truffle migrate --network development",
+    "deploy:pro": "truffle migrate --network production",
     "compile": "truffle compile",
     "parser": "babel-eslint",
     "//pretest": "eslint --ignore-path .gitignore .",
-    "test": "truffle test --bail --network development",
+    "test": "truffle test --network development",
     "start": "rimraf dev_dist && webpack-dev-server --mode development --config ./webpack/webpack.dev.js",
     "build": "rimraf dist && NODE_ENV=production webpack --mode production --config ./webpack/webpack.prod.js --colors --progress",
     "lint": "eslint ./**.js **.js",
@@ -51,6 +51,7 @@
     "zos-lib": "^2.2.2"
   },
   "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.9",
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

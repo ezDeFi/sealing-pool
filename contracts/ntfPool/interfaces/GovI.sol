@@ -1,7 +1,8 @@
 pragma solidity ^0.5.0;
 
 interface GovI {
-  function deposit(uint256 _amount) external returns (bool);
+  function () external payable;
+  function deposit() external payable;
   function join(address _signer) external returns (bool);
   function leave() external returns (bool);
   function withdraw() external returns (bool);
